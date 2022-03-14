@@ -1,0 +1,161 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200&display=swap');
+/* JetBrains Mono */
+
+
+@keyframes Gradation{
+	0%{background-position:0% 50%}
+	50%{background-position:100% 50%}
+	100%{background-position:0% 50%}
+}
+
+body{
+	margin: 0 auto;
+	padding: 0;
+	font-family:'JetBrains Mono', sans-serif;
+	width: 80%;
+	align-items: center;
+	overflow-x:hidden;
+}
+
+header{
+	width: 100%;
+	height: 100px;
+}
+
+nav{
+	width:100%;
+	display:flex;
+	justify-content: center;
+	position:relative;
+	background: #2ed1d1;
+}
+
+ul{
+	margin:0px;
+	padding: 0px;
+	list-style:none;
+	width:100%;
+}
+
+li{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	height:100%;
+	width:12.5%;
+}
+
+a{
+	vertical-align: middle;
+}
+
+footer{
+	width:100%;
+	display:block;
+	clear:both;
+}
+
+#main-menu > li{
+	float:left;
+	position : relative;
+	
+}
+
+#main-menu > li:hover{
+	color: #fff;
+	background: linear-gradient(-45deg, #ee7755,#e73377,#23abab,#23d5ab);
+	background-size:400% 400%;
+	animation: Gradation 3s ease infinite;
+	flex-direction : column;
+	text-align:center;
+}
+
+#main-menu > li >a{
+	font-size: 1.5rem;
+	color: rgba(255,255,255,0.85);
+	text-align: center;
+	text-decoration: none;
+	letter-spacing: 0.05em;
+	display: block;
+	margin: 20px auto;
+	border-right: 1px solid rgba(0,0,0,0.15);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+#main-menu > li:nth-child(1) > a{
+	border-left: 3px solid rgba(0,0,0,0.15);	
+}
+
+#main-menu > li:hover #sub-menu{
+	opacity: 1;
+	width: 100%;
+	visibility: visible;
+}
+
+#sub-menu{
+	position: absolute;
+	background:#182952;
+	opacity: 0;
+	visibility: hidden;
+	transition : all 0.15s ease-in;
+	z-index: 9999;
+}
+
+#sub-menu > li{
+	padding: 16px 0px;
+	width: 100%;
+	border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+#sub-menu > li > a{
+		color: rgba(256, 256, 256, 0.6);
+		text-decoration: none;
+}
+
+#sub-menu > li:hover{
+	color: #fff;
+	background: linear-gradient(-45deg, #ee7755,#e73377,#23abab,#23d5ab);
+	background-size:400% 400%;
+	animation: Gradation 3s ease infinite;
+	flex-direction : column;
+	text-align:center;
+}
+
+#sub-menu > li > a:hover{
+	text-decoration: underline;
+}
+
+@media screen and (max-width:1250px){
+	header{
+		height: 400px;
+	}
+	body{
+		width: 1000px;
+	}
+}
+
+th{
+	text-align: center;
+}
+
+td{
+	text-align: center;
+}
+
+td:nth-child(4){
+	text-align: left;
+}
+
+.cancle{
+	width:50%;
+}
+
+
+
+
+
+
+
+
+
