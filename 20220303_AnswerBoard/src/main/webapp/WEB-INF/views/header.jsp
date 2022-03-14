@@ -56,7 +56,7 @@
 				<h1 style="display: inline;"><a href="./main.do">게시판 구현</a></h1>
 				<%if(loginInfo==null){%>
 				<div style="display: inline; float: right; margin:10px;">
-					<button class="btn btn-info">Sign in</button>
+					<button class="btn btn-info" >Sign in</button>
 					<button class="btn btn-primary">Sign up</button>
 				</div>
 			<%}else{%>

@@ -17,7 +17,7 @@
 			<thead>
 				<tr>
 					<th style="width:100px">아이디</th>
-					<td><input type="text" name="id" id="id" class="form-control"></td>
+					<td><input type="text" name="id" id="id" class="form-control" value="<%=request.getParameter("loc")%>"></td>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,13 +28,13 @@
 				<tr>
 					<td>내용</td>
 					<td>
-						<textarea cols="50" style="width: 800px"></textarea>
+						<textarea cols="50" class="form-control"></textarea>
 					</td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="2" style="text-align: center" class="form-control">
+					<td colspan="2" style="text-align: center">
 						<input class="btn btn-primary active" type="button" value="새글작성" onclick="validationForm()">
 						<input class="btn btn-primary active" type="reset" value="다시작성">
 					</td>

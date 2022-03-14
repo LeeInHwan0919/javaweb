@@ -29,6 +29,7 @@ public class BoardLoginServlet extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8;");
 		logger.info("BoardLoginServlet doPost");
 	
+		//null을 String으로 받아옴
 	String loc = req.getParameter("loc");
 	
 	HttpSession session = req.getSession();

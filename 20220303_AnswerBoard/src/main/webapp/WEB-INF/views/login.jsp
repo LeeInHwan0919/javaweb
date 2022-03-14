@@ -8,12 +8,12 @@
 </head>
 <%@include file="./header.jsp" %>
 <body>
-<form action="boardLogin.do" method="post">
+<form action="login.do" method="post">
 	<table style="margin: 100px auto; text-align: center">
 	  <tbody>
 		<tr>
 			<th>아이디 : </th>
-			<td><input type="text" name="id" id="id" required> </td>
+			<td><input type="text" name="id" id="id" readonly="readonly" > </td>
 		</tr>
 		<tr>
 			<th></th>
