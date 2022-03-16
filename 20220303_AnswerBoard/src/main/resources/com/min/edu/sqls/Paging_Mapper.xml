@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.PagingDaoImpl">
+
+<select id="boardPaging" parameterType="java.lang.Integer" resultType="aDto">
+<![CDATA[SELECT SEQ, ID, TITLE, "REF", STEP, "DEPTH", DELFLAG, REGDATE
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY REF DESC, STEP ASC)AS RNUM,SEQ, ID, TITLE, "REF", STEP, "DEPTH", DELFLAG, REGDATE
+	FROM ANSWERBOARD a )
+		WHERE RNUM>#{page} AND ROWNUM <=10]]>
+</select>
+
+<select id="rowCount" resultType="java.lang.Integer">
+SELECT COUNT(*) 
+	FROM ANSWERBOARD a 
+</select>
+
+</mapper>

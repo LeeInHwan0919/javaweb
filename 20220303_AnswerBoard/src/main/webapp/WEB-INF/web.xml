@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>Web Application</display-name>
+	<welcome-file-list>
+		<welcome-file>loginForm.jsp</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>MainServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.MainServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MainServlet</servlet-name>
+		<url-pattern>/main.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardDetailServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardDetailServlet</servlet-name>
+		<url-pattern>/boardDetail.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardInsertServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardInsertServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardInsertServlet</servlet-name>
+		<url-pattern>/boardInsert.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardDeleteServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardDeleteServlet</servlet-name>
+		<url-pattern>/boardDelete.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardAnswerServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardAnswerServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardAnswerServlet</servlet-name>
+		<url-pattern>/boardAnswer.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BoardModifyServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardModifyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardModifyServlet</servlet-name>
+		<url-pattern>/boardModify.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 로그인을 테스트 하기 위한 환경 -->
+	<servlet>
+		<servlet-name>UserController</servlet-name>
+		<servlet-class>com.min.edu.ctrl.UserController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserController</servlet-name>
+		<url-pattern>/logout.do</url-pattern>
+	</servlet-mapping>	
+	
+	<!-- 로그인 -->
+	<servlet>
+		<servlet-name>LoginController</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginController</servlet-name>
+		<url-pattern>/boardLogin.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>SignServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.SignServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SignServlet</servlet-name>
+		<url-pattern>/sign.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UserInfoServlet</servlet-name>
+		<servlet-class>com.min.edu.ctrl.UserInfoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UserInfoServlet</servlet-name>
+		<url-pattern>/userInfo.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 페이징 BoardList -->
+	<servlet>
+		<servlet-name>BoardPaging</servlet-name>
+		<servlet-class>com.min.edu.ctrl.BoardPagingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BoardPaging</servlet-name>
+		<url-pattern>/boardPaging.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	<servlet-name>BoardJSTL</servlet-name>
+	<servlet-class>com.min.edu.ctrl.BoardJSTL_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>BoardJSTL</servlet-name>
+	<url-pattern>/boardJSTL.do</url-pattern>
+	</servlet-mapping>
+
+</web-app>
