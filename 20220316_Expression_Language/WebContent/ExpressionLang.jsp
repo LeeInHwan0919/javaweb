@@ -56,7 +56,7 @@ request.setAttribute("xx", val());
 			<thead>
 				<tr>
 					<th>EL Expression</th><th>Result</th>
-				</tr>
+				</tr>	
 			</thead>
 			<tbody>
 				<tr>
