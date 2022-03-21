@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+<style type="text/css">
+  img{
+  width: 100px;
+  height: auto;
+  
+  }
+</style>
+<script type="text/javascript" src="./js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+  /*
+     jQuery 기본 작성 방법 : selector 표현식(CSS방식 + javascript방식) > 돔탐색도되면서 tag검색, name검색, class검색 가능, 내부에서 document를 자동으로 생성
+     작성예)
+       $("selector").메소드();
+       $("p").eq(0).css("color","red").css("background":"lime"); //eq(0)첫번째것을 선택 
+       $("p").css({"color":"red","background":"lime"});
+       var p = document.getElementsByTagName("p")[0];
+       p.style.color="red";
+       p.style.background="lime";
+       
+       onload 구현 방법
+       - javascript
+         : window.onload = function(){},onload = function(){}
+         -jQuery
+         : $(document).ready(function(){});
+           $(function(){});
+  */
+  
+  $(function(){
+	  $("img").click(function(){
+		  alert("이미지를 클릭합니다.");
+		  $(this).hide();
+	  });
+  });
+           
+//      window.onload = function(){
+//     	 var img = document.getElementsByTagName("img");
+//     	 console.log(img);
+//     	 console.log(img.length);
+//     	 for(let i=0;i<img.length;i++){
+//     		 img[i].onclick = function(){
+//     			 this.style.display = "none";
+//     		 }
+//     	 }
+    	 
+//      }
+     
+ //1.imgSize
+ function imgSize(){
+// 	 $("img").css("width","200px");
+// 	 $("img").css("width","200px").css("opacity","0.2");
+	   $("img").css({"width":"200px","opacity":"0.2"});
+ }
+ 
+ //2. highLight
+ function highLight(){
+	   //js방식
+// 	   var li = document.getElementsByTagName("li");
+// 	   li[1].style.background = "orange";
+
+      //jquery
+// 	   $("li").eq(1).css({"font-weight" : "bold"});
+	   
+      //js방식 2      
+// 	   var list = document.getElementById("list01").children;
+// 	   console.log(list.length);
+// 	   list[1].style.background = "orange";
+
+      //jquery
+	   $("#list01 > li:eq(1)").css("fontWeight","bold");
+ }
+ 
+ //3. addImg
+ function addImg(){
+	   //img태그중에서 마지막 태그를 구해서 새로운 이미지를 추가
+	   //아래 javascript
+	   $("img").last().after('<img src="./img/PZoneTwo.png">').attr("title","그림").attr("title","멍뭉이");
+// 	   $("img").attr("title","그림");
+ }
+
+
+</script>
+</head>
+<body>
+<fieldset>
+  <legend>기능 예제</legend>
+  <div>
+    <button onclick="imgSize()">이미지 축소</button>
+    <button onclick="highLight()">리스트 강조하기</button>
+    <button onclick="addImg()">이미지 추가하기</button>
+    <button onclick="hideImg()">이미지 숨기기</button>
+    <button onclick="showImg()">이미지 드러내기</button>
+  </div>
+  <div id="img"><img src="./img/PZoneTwo.png"></div>
+</fieldset>
+
+
+  <h1>jQuery시작</h1>
+  <ul id="list01">
+    <li>1.셀렉터 표현식</li>
+    <li>2.DOM탐색 메소드</li>
+    <li>3.DOM처리 메소드</li>
+    <li>4.이벤트 메소드</li>
+    <li>5.이펙트 함수</li>
+    <li>6.AJAX 메소드</li>
+    <li>7.기타 메소드</li>
+  </ul>
+  
+  <select id="choice">
+  <option>하늘</option>
+  <option>보리</option>
+  <option>사과</option>
+  </select>
+  
+  <button onclick="myChoice()">lastChild</button>
+  
+  <script type="text/javascript">
+  
+  function myChoice(){
+	  //lastChild or childNodes 화면의 출력되어 있는  node를 가져오게 됨. 가독성을 위해 줄바꿈이 되어 있다면 마지막 노드는 text가 되어버림
+	  // => textNode는 자식의 값을 가질 수 없음 (element가 아니기때문) text만 가지고 있기 때문에 자식을 가질 수 없음
+	  // lastChild가 아닌 Element만을 검색하는 lastElementChild 하면 node를 찾음 
+	  // 하지만 appendChild(node)를 하게되면 자식으로 들어가게됨
+	  // 마지막 줄에 붙여 지는 append 상위 노드에서 붙여 줘야함
+	  
+// 	  var ch = document.getElementById("choice").lastChild;
+// 	  var div = document.createElement("option");
+// 	  var textNode = document.createTextNode("안녕하세요");
+// 	  div.appendChild(textNode);
+// 	  document.getElementById("choice").lastChild.appendChild(div);
+
+//????
+// 	  var div = document.createElement("option");
+//     var textNode = document.createTextNode("안녕하세요");
+//     div.appendChild(textNode);
+//     document.getElementById("choice").lastChild.appendChild(div);
+
+  }
+  
+  </script>
+</body>
+</html>
