@@ -9,3 +9,10 @@ Sqld(book, google ,youtube)
 0318
 이력서항목작성 강사님 이메일로 보내기
 
+0322
+https://po9357.github.io/spring/2019-05-28-Board_Paging/
+게시판 페이징
+,
+로그인시험, api조사 
+[개발상식] Ajax와 Axios 그리고 fetch
+https://velog.io/@kysung95/%EA%B0%9C%EB%B0%9C%EC%83%81%EC%8B%9D-Ajax%EC%99%80-Axios-%EA%B7%B8%EB%A6%AC%EA%B3%A0-fetch

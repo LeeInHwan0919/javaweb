@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./js/jq_003.js"></script>
+<style type="text/css">
+  img{
+  width:100px;
+  height: 100px;
+  }
+  h1{
+  font-size: 12pt;}
+</style>
+
+</head>
+<body>
+  <h1>1. 이미지의 크기를 모두 300px * 300px로 설정하세요.</h1>
+  <button onclick="imgSize()">클릭</button>
+  <hr>
+  <h1>2. 이미지 중 id가 setId인 태그를 찾아 숨기세요</h1>
+  <button onclick="idSelector()">클릭</button>
+  <hr>
+  <h1>3. 이미지 중 class가 selClass인 태그를 찾아 투명도(opacity)를 0.3으로 지정하세요.</h1>
+  <button onclick="classSeletor()">클릭</button>
+  <hr>
+  <h1>4. 이미지 바꾸기 (td의 자식요소 img만 선택하여 바꾸기)</h1>
+  <button onclick="changeImg()">클릭</button>
+  <hr>
+  <h1>5. 이미지 중 속성값으로 탐색하여 slideup기능을 적용하세요.(title속성중 '02'를 포함하고 있는 img tag만 선택) </h1>
+  <button onclick="propSeleotr()">클릭</button>
+  <hr>
+  <table>
+  	<tr>
+  	  <td><img id="selId"       title="img01" src="./img/PZoneTwo.png"></td>
+  	  <td><span><img            title="img02" src="./img/PZoneTwo.png"></span></td>
+  	  <td><img class="selClass" title="img03" src="./img/PZoneTwo.png"></td>
+  	  <td><img class="selClass" title="img04" src="./img/PZoneTwo.png"></td>
+  	</tr>
+  </table>
+</body>
+</html>

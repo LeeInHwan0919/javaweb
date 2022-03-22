@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+	  $("fieldset(0)").css({"border":"1px solid red","width":"300px"});
+	  $("#view").css({"border":"1px solid red","height":"150px","width":"400px"}); 
+  });
+  
+  //a1()>tag로 선택하기
+  function a1(){
+	  //jQuery에서는 tag를 탐색을 해도 자동으로 NodeList를 처리해 준다.
+	  //index eq(index번호)
+	  console.log($("span").length);
+	  $("span").css("color","lime");
+	  //text(), html() / textContent, innerHTML
+// 	  $("#view").text('$("span").css("color","lime");');
+	  $("#view").html("<b>글작성</b>")
+  }
+  
+  function a2(){
+	  jQuery("#t1").css("color","blue");
+	  $("#view").text('jQuery("#t1").css("color","blue");');
+  }
+  
+  function a3(){
+	  $(".t2").css("background","yellow");
+	  $("#view").text('("background","yellow");');
+  }
+  
+  //a4() > parent child로 선택하기
+  //div span{}
+  //div , span{}
+  //div, span{}
+  //div[name=* 'btn']
+  function a4(){
+// 	$("li span").css("color","red"); //li 하위에 있는 모든 자식 노드중 span인 태그 변경
+// 	$("li, span").css("color","red"); //li또는 span의 tag를 선택
+    $("li>span").css("color","green"); //li의 자식중 첫번째 계층의 span만 선택  
+  }
+  
+  // a5 parent > child로 선택하기
+  function a5(){
+	  $("li>span").css("color","green");
+  }
+  
+  //a6 :nth-child(n/even/odd)로 선택하기 속성
+  function a6(){
+// 	  $("li:nth-child(odd)").css("background","skyblue");
+// 	  $("li:nth-child(even)").css("background","orange");
+	  $("li:nth-child(n+7)").css("background","orange"); //이해안됨
+ }
+  function a7(){
+	  $("li:first-child").css({"background":"black","color":"white"});
+  }
+  
+  function a8(){
+	  $("li:last-child").css({"background":"black","color":"white"});
+  }
+</script>
+</head>
+<body>
+    <fieldset>
+        <legend>Selector 표현식</legend>
+        <ul class="sub_menu">
+            <li><span>tag로 선택하기</span></li>
+            <li id="t1">ID로 선택하기</li>
+            <li class="t2">Class로 선택하기</li>
+            <li><span>parent child로 선택하기</span></li>
+            <li><b><span>parent &gt; child</span>로 선택하기</b></li>
+            <li>:nth-child(n/even/odd)로 선택하기</li>
+            <li>:first-child</li>
+            <li>:last-child</li>
+        </ul>
+    </fieldset>
+    <fieldset>
+        <button onclick="a1()">tag로 선택하기</button>
+        <button onclick="a2()">ID로 선택하기</button>
+        <button onclick="a3()">Class로 선택하기</button>
+        <button onclick="a4()">parent child로 선택하기</button>
+        <button onclick="a5()">parent &gt; child로 선택하기</button>
+        <button onclick="a6()">:nth-child(n/even/odd)로 선택하기</button>
+        <button onclick="a7()">first-child</button>
+        <button onclick="a8()">:last-child</button>
+        <div>
+            코드내용
+            <div id="view"></div>
+        </div>
+    </fieldset>
+
+
+</body>
+</html>
