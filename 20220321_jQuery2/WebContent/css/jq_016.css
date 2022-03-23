@@ -1,0 +1,27 @@
+@charset "UTF-8";
+body{
+	margin: 10px auto;
+	width: 450px;
+}
+
+h3 {
+	margin: 0px;
+	padding: 0 0.3em;
+}
+
+p{
+	margin: 0px;
+	padding: 0.05em;
+}
+
+.panel{
+	background-color: #f9ffdd;
+	padding:10px 20px;
+	position: relative;
+	border:2px solid #a5c800;
+}
+
+.delete{
+	position: absolute;
+	top:10px;
+}
