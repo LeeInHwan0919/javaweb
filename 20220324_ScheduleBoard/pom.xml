@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.min.edu</groupId>
+  <artifactId>20220324_ScheduleBoard</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>20220324_ScheduleBoard Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    
+    
+    <!-- 데이터 전송객체 DTO VO를 자동으로 get/set 등으로 annotation으로 생성 -->
+  <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.20</version>
+  </dependency>
+    
+    <!-- oracle(벤더)에서 제공해주는 java를 통해서 Oracle DataBase를 접속 하는 소스 파일 -->
+  <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc10</artifactId>
+      <version>19.12.0.0</version>
+  </dependency>
+    
+    <!-- JDBC를 향상시켜서 사용하기 편하도록 만들어 놓은 라이브러리 Persistance Layer -->
+  <dependency>
+     <groupId>org.mybatis</groupId>
+     <artifactId>mybatis</artifactId>
+     <version>3.5.6</version>
+  </dependency>
+  
+  <!-- 로그의 형태 및 출력 상황을 자동으로 처리 해주는 라이브러리 java resource에 root위치 log4j.properties 파일이 문법에 맞춰 위치 -->
+  <dependency>
+     <groupId>log4j</groupId>
+     <artifactId>log4j</artifactId>
+     <version>1.2.17</version>
+  </dependency>
+  
+    <!-- Java Standard Tag Library 자바의 문법을 tag로 만들어 놓은 라이브러리 -->
+  <dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+  </dependency>
+    
+    <!-- JAVA에 JSON을 사용할 수 있도록 해주는 라이브러리 -->
+  <dependency>
+    <groupId>net.sf.json-lib</groupId>
+    <artifactId>json-lib</artifactId>
+    <version>2.4</version>
+    <classifier>jdk15</classifier>
+  </dependency>
+    
+    
+    <!-- 단위 테스트 도구 Junit4 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+  
+  
+  <build>
+    <finalName>20220324_ScheduleBoard</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,45 @@
+@charset "UTF-8";
+body{
+	margin: 10px auto;
+	width:570px;
+	font:70% Arial, helvetica, sans-serif;
+}
+
+div{
+	width: 480px;
+	border:1px solid #ccc;
+}
+
+/* div요소> h3에 배경색을 넣고 #e9e9e9, 배경으로 이미지 square.gif
+*/
+div h3{
+	padding: 7px 15px;
+	margin: 0px;
+	border:1px solid #c4c4c4;
+	border-bottom:none;
+	cursor:pointer;
+	font:bold 120% A rial; 
+	
+	background-color: #e9e9e9;
+	background-image: url(../img/arrow-square.gif);
+	background-repeat: no-repeat;
+	background-position: right -50px;
+}
+
+h3:hover{
+	background-color:#e3e2e2;
+}
+
+/*
+  javascript에서 Class Name의 변경을 통해서 배경의 위치를 수정
+*/
+.active{
+	background-position:right 5px; 
+}
+
+p{
+	background-color: #f7f7f7;
+	margin: 0px;
+	padding: 10px 15px 10px;
+	border:1px solid #c4c4c4;
+}

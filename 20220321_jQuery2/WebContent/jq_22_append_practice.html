@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./js/jq_022.js"></script>
+<style type="text/css">
+  img{
+   width: 150px;
+   height: 150px;
+   display:block;
+   float:left;
+  }
+  
+  #menubox{
+    position: relative;
+  }
+  
+  #menu{
+    overflow: auto;
+  }
+  
+  .sel{
+    width: 140px;
+    height: 140px;
+    border: 5px dotted red;
+    position: absolute;
+    left:300px;
+  }
+  
+  button{
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color:black;
+    margin: 20px 300px;
+    
+  }
+</style>
+</head>
+
+<body>
+  <h1>저녘 메뉴를 선택해 주세요.</h1>
+  <div id="menubox">
+    <div class="sel"></div>
+    <div id="menu">
+      <img alt="뒷고기" src="./img/backMeet.jpg">
+      <img alt="짜장면" src="./img/blackRamen.jpg">
+      <img alt="치킨" src="./img/chicken.png">
+      <img alt="계란반숙" src="./img/halfEgg.jpg">
+      <img alt="떡볶이" src="./img/redRice.jpg">
+    </div>
+    <button>START</button>
+  </div>
+</body>
+</html>

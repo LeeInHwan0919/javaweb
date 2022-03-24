@@ -4,7 +4,7 @@
 
 <select id="loginSelect" parameterType="java.util.HashMap" resultType="uDto">
 SELECT ID, NAME, EMAIL , AUTH
-	FROM USERINFO u 
+	FROM USERINFO
 	WHERE DELFLAG = 'N' 
 	AND ID=#{id}
 	AND PASSWORD =#{password}

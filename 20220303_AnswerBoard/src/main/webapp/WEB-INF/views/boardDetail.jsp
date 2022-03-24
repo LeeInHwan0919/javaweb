@@ -11,6 +11,9 @@
 <%
  AnswerBoardDto dto = (AnswerBoardDto)request.getAttribute("dto");
 %>
+<%
+ UserVo loginInfo = (UserVo)request.getAttribute("vo");
+%>
 <%@ include file ="./header.jsp" %>
 <body>
 <div id = "container" >

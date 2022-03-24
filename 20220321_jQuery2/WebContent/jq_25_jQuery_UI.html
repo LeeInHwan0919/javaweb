@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/black-tie/jquery-ui.css">
+<script type="text/javascript">
+$(function () {
+    $(".resiable").draggable();
+});
+</script>
+
+</head>
+<body>
+<!-- 이미지와 같은 영역에 대해서 이동을 drag&drop을 통해서 설정할 수 있도록 함 -->
+<div class="resiable ui-widget-content" style="width:300px; height:300px">
+  <img src="img/gi.gif">
+</div>
+</body>
+</html>
