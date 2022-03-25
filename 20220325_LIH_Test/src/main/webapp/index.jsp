@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 </head>
 <body>
-  <a href="./login.do">로그인으로 이동</a>
+  <a href="./ajaxTest.do">로그인으로 이동</a>
 </body>
 </html>

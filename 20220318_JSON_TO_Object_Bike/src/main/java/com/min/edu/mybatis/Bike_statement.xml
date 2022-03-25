@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.edu.model.BikeDaoImpl">
-    <insert id="bikeInsert" parameterType="com.min.edu.dto.BikeDto">
-    INSERT INTO SEOULBIKE
-        (NEW_ADDR, CONTENT_ID, ADDR_GU, LONGITUDE, CRADLE_COUNT, LATITUDE, CONTENT_NM)
-        VALUES(#{new_addr}, #{content_id}, #{addr_gu}, #{longitude}, #{cradle_count}, #{latitude}, #{content_nm})
+    <insert id="userInsert" parameterType="com.min.edu.dto.BikeDto">
+    INSERT INTO USERS (ID, PW, NAME, AUTH)
+        VALUES(#{id},#{pw},#{name},#{auth})
     </insert>
-    <delete id="bikeDelete">
-    TRUNCATE TABLE SEOULBIKE 
+    <delete id="userDelete">
+    TRUNCATE TABLE USERS
     </delete>
 </mapper>

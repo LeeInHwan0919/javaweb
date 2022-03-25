@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.CalBoardDaoImpl">
+  <select id="getCalViewList" parameterType="java.util.Map" resultType="cDto">
+    SELECT SEQ,ID,TITLE,MDATE,REGDATE
+     FROM(SELECT ROW_NUMBER() OVER(PARTITION BY SUBSTR(MDATE,1,8) ORDER BY MDATE)RN , SEQ, ID, TITLE, MDATE, REGDATE
+        FROM CALENDARBOARD c
+        WHERE ID=#{id} AND SUBSTR(MDATE,1,6)=#{yyyymm})
+     WHERE RN BETWEEN 1 AND 3
+  </select>
+  
+  <insert id="insertCalBoard" parameterType="cDto">
+    INSERT INTO CALENDARBOARD (SEQ, ID, TITLE, CONTENT, MDATE, REGDATE)
+    VALUES(CALENDARBOARD_SEQ.NEXTVAL, #{id},#{title},#{content},#{mdate}, SYSDATE)
+  
+  </insert>
+  
+  <select id="getCalList" parameterType="java.util.Map" resultType="cDto">
+  SELECT SEQ,ID,TITLE,MDATE,REGDATE
+    FROM CALENDARBOARD c 
+    WHERE ID=#{id} AND SUBSTR(MDATE,1,8) = #{yyyymmdd}
+  </select>
+  
+  <select id="getCalCount" parameterType="java.util.Map" resultType="int">
+  SELECT COUNT(*) 
+    FROM CALENDARBOARD c
+    WHERE ID=#{id}AND SUBSTR(MDATE,1,8)=#{yyyymmdd}
+  </select>
+  
+  <select id="getCalDetail" parameterType="java.util.Map" resultType="cDto">
+  SELECT SEQ,ID,TITLE,CONTENT,MDATE,REGDATE 
+    FROM CALENDARBOARD c
+    WHERE ID=#{id} AND SUBSTR(MDATE,1,8)=#{yyyymmdd}
+    AND SEQ=#{seq}
+  
+  </select>
+  
+  <delete id="multiDel" parameterType="java.lang.String">
+    DELETE FROM CALENDARBOARD c WHERE SEQ=#{seq}
+  </delete>
+</mapper>
