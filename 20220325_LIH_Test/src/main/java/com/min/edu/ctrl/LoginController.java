@@ -26,25 +26,32 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
-		req.getRequestDispatcher("./WEB-INF/views/login.jsp").forward(req,resp);
+		req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		logger.info("BoardLoginServlet doPost");
+		
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
+		logger.info("login do Post");
 		
 		String id = req.getParameter("id");
-		String password = req.getParameter("password");
+		String password = req.getParameter("pw");
+		
+		logger.info(id+password);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("password", password);
 		
 		IUserDao uDao = new UserDaoImpl();
-		uDao.selectId(id);
-	
+		int cnt = uDao.selectUser(map);
+		if(cnt>0) {
+			resp.sendRedirect("./loginSuccess.do");
+		}else {
+			
+		}
 	}
 
 }

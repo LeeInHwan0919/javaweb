@@ -46,18 +46,12 @@ public class BoardLoginServlet extends HttpServlet {
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 		
-//		UserVo vo = new UserVo();
-//		vo.setId(id);
-//		vo.setName("세미콜론");
-//		vo.setAuth("A");
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("password", password);
 		
 		IUserInfoDao uDao = new UserInfoDaoImpl();
 		UserVo vo = uDao.loginSelect(map);
-		
 		
 		session.setAttribute("loginInfo", vo);
 		

@@ -37,11 +37,10 @@ public class UserDto {
 	public UserDto() {
 		
 	}
-	public UserDto(String id, String password, String name, String regdate) {
+	public UserDto(String id, String password, String name) {
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.regdate = regdate;
 	}
 	
 	public UserDto(String id) {

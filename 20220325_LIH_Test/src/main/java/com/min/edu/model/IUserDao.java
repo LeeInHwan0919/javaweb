@@ -1,12 +1,14 @@
 package com.min.edu.model;
 
-import java.util.List;
+import java.util.Map;
 
 import com.min.edu.dto.UserDto;
 
 public interface IUserDao {
 	
-	public int userInsert(List<UserDto> dtos);
+	public int selectUser(Map<String, Object> map);
 	
-	public UserDto selectId(String dto);
+	public int insertUser(UserDto dto);
+	
+	public int idCheck(String id);
 }

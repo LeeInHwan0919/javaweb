@@ -29,11 +29,20 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>SignIn</servlet-name>
-    <servlet-class>com.min.edu.ctrl.SignInController</servlet-class>
+    <servlet-name>loginSuccess</servlet-name>
+    <servlet-class>com.min.edu.ctrl.LoginSuccessController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SignIn</servlet-name>
-    <url-pattern>/SignIn.do</url-pattern>
+    <servlet-name>loginSuccess</servlet-name>
+    <url-pattern>/loginSuccess.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>RealSignUp</servlet-name>
+    <servlet-class>com.min.edu.ctrl.RealSignUpController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RealSignUp</servlet-name>
+    <url-pattern>/RealSignUp.do</url-pattern>
   </servlet-mapping>
 </web-app>

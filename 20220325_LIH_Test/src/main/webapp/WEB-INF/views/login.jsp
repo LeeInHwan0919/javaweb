@@ -21,33 +21,39 @@
   }
   
   #signUp{
-    margin-left: 35px;
-    width: 235px;
+    width: 150px;
+  }
+  
+  div{
+    text-align:center;
+    width: 50%;
+    position: absolute;
+    left: 20%; 
   }
 </style>
 </head>
 <body>
-<form action="./login.do">
-  <fieldset>
-    <legend>로그인창</legend>
+<div>
+
+<form action="./login.do" method="post">
+    <h3>로그인창</h3>
      <table>
     <tbody>
       <tr>
         <td>id : </td>
         <td><input type="text" name="id" id="id"></td>
-        <td rowspan="2"><button onclick='location.href="./signIn.do"' type="submit" id="signIn">로그인</button></td>
+        <td rowspan="2"><button type="submit" id="signIn">로그인</button></td>
       </tr>
       <tr>
         <td>pw : </td>
         <td><input type="password" name="pw" id="pw"></td>
       </tr>
-      <tr>
-        <td colspan="3"><button onclick='location.href="./signUp.do"' type="submit" id="signUp">회원가입</button></td>
-        
-      </tr>
-    </tbody>
+    </tbody>  
+      
   </table>
-  </fieldset>
-  </form>
+</form>
+
+  <button onclick='location.href="./signUp.do"' id="signUp">회원가입</button>
+  </div>
 </body>
 </html>

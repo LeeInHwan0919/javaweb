@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SignInController extends HttpServlet {
+public class LoginSuccessController extends HttpServlet {
 
 	private static final long serialVersionUID = -3658648913162434941L;
 
@@ -16,8 +16,7 @@ public class SignInController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
-		
-		req.getRequestDispatcher("./WEB-INF/views/signIn6.jsp").forward(req,resp);
+		req.getRequestDispatcher("./WEB-INF/views/loginSuccess.jsp").forward(req,resp);
 		}
 	
 	

@@ -1,6 +1,7 @@
 package com.min.edu.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,27 +13,29 @@ import com.min.edu.mybatis.SqlSessionFactoryManager;
 public class UserDaoImpl implements IUserDao {
 
 	private SqlSessionFactory manager = SqlSessionFactoryManager.getFactory();
-	private Logger logger = Logger.getLogger(this.getClass());
 	private final String NS = "com.min.edu.model.UserDaoImpl.";
-	
 	@Override
-	public int userInsert(List<UserDto> dtos) {
-		logger.info("UserDaoImpl userInsert: "+dtos.size());
-		int cnt=0;
-		SqlSession session = manager.openSession();
-		for (UserDto dto : dtos) {
-			cnt += session.insert(NS+"userInsert",dto);
-		}
-		session.commit();
+	public int selectUser(Map<String, Object> map) {
+        SqlSession session = manager.openSession();
+        int cnt = session.selectOne(NS+"selectUser",map);
+        System.out.println("cnt의 값은 : "+cnt);
 		return cnt;
 	}
-
 	@Override
-	public UserDto selectId(String str) {
-		logger.info("아이디가 있는지 검사");
-		SqlSession session = manager.openSession();
-		return session.selectOne(NS+"selectId", str);
+	public int insertUser(UserDto dto) {
+		SqlSession session = manager.openSession(true);
+		int cnt = session.insert(NS+"insertUser",dto);
+		System.out.println("cnt의 값은 : "+cnt);
+		return cnt;
 	}
+	@Override
+	public int idCheck(String id) {
+		 SqlSession session = manager.openSession();
+		int cnt = session.selectOne(NS+"idCheck",id);
+		return cnt;
+	}
+	
+	
 	
 	
 	
