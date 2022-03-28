@@ -18,10 +18,5 @@ public class LoginSuccessController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		req.getRequestDispatcher("./WEB-INF/views/loginSuccess.jsp").forward(req,resp);
 		}
-	
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
+
 }

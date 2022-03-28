@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>회원가입 화면</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="./js/js.js"></script>
+<script type="text/javascript" src="./js/signUp.js"></script>
 
 <style type="text/css">
   fieldset {

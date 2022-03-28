@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" 
+	"http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration>
+
+<!-- appender 영역 : 로그 출력 유형과 출력 형태 등을 설정 하는 태그 -->
+<appender name="cosole" class="org.apache.log4j.ConsoleAppender">
+	<!-- 출력 형태 layout -->
+	 <layout class="org.apache.log4j.PatternLayout"> 
+        <param name="ConversionPattern" value="%t>; [%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%L] [%p] %m %n"/> 
+    </layout>
+</appender> 
+<!-- DailyRollingFileAppender 하루에 한번씩 파일을 새로 생성 , 기존의 파일은 확장자를 DatePattern의 규칙으로 변경된 -->
+<appender name="dailyFile" class="org.apache.log4j.DailyRollingFileAppender">
+<!-- 파일이 저장되는 곳 Root폴더는 선택이 안됨, 하위 폴더면 폴더가 생성되어있어야함 mkdir은 되지 않음 -->
+     <param name="File" value="C:/java/log/mybatis.log" />
+    <param name="Append" value="true" />
+    <!-- 파일 재생성 규칙  mybatis.log 하루가지나면 mybatis.220203으로 변경 시킴-->
+    <param name="DatePattern" value="'.'yyMMdd"/> 
+    <layout class="org.apache.log4j.PatternLayout"> 
+        <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%c{1}] [%p] %m %n"/>
+    </layout> 
+</appender> 
+
+<!-- logger 영역-->
+<!-- 출력하는 유형에 모두다 적용되는 "대상"  -->
+<logger name="java.sql.Connection">
+	<level value="TRACE"/>
+</logger>
+<logger name="java.sql.PreparedStatement">
+	<level value="TRACE"/>
+</logger>
+<logger name="java.sql.ResultSet">
+	<level value="TRACE"/>
+</logger>
+
+<!-- root영역 : 로그 레벨을 설정하고 사용되는 객체(유형)를 선언 -->
+<root>
+	<level value="TRACE"/>
+	<appender-ref ref="cosole"/><!-- 콘솔 -->
+	<appender-ref ref="dailyFile"/><!-- 파일 -->
+</root>
+
+</log4j:configuration>
+

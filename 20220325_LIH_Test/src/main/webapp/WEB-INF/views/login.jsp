@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 화면</title>
+<script type="text/javascript" src="./js/signIn.js"></script>
 <style type="text/css">
   #signIn{
     height: 50px;

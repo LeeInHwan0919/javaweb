@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+#container{
+	border: 5px solid tomato;
+	position: relative;
+	margin: auto;
+	top: 150px;
+	width: 400px;
+	height: 200px;
+	padding: 50px;
+	padding-top: 0px;	
+}
+
+#title{
+	margin-top:20px;
+	margin-bottom: 30px;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+	color:tomato;
+}
+
+#id, #pw{
+	width: 70px;
+	font-weight: bold;
+	display: flex;
+	float: left;
+	justify-content: space-around;
+}
+
+#btn{
+	text-align: center;
+}
+
+#login{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	background-color: tomato;
+	color: white;
+	width: 100px;
+	height: 50px;
+	font-weight: bold;
+}

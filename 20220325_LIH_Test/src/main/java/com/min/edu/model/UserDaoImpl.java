@@ -1,11 +1,9 @@
 package com.min.edu.model;
 
-import java.util.List;
 import java.util.Map;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.log4j.Logger;
+
 
 import com.min.edu.dto.UserDto;
 import com.min.edu.mybatis.SqlSessionFactoryManager;

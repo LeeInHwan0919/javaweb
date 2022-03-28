@@ -50,7 +50,7 @@ public class LoginController extends HttpServlet {
 		if(cnt>0) {
 			resp.sendRedirect("./loginSuccess.do");
 		}else {
-			
+			req.getRequestDispatcher("WEB-INF/views/login.jsp").forward(req, resp);
 		}
 	}
 
