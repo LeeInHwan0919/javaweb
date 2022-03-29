@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="myAddr01" class="com.min.edu.bean2.Address"/>
+<bean id="myAddr02" class="com.min.edu.bean2.Address">
+  <property name="name" value="조르디"/>
+  <property name="addr" value="니니즈프렌즈"/>
+  <property name="phone" value="007"/>
+</bean>
+<bean id="myAddr11" class="com.min.edu.bean2.Address"/>
+
+<bean id="myAddr03" class="com.min.edu.bean2.Address">
+  <property name="name" value="김우연"/>
+  <property name="addr" value="신림동"/>
+  <property name="phone" value="5050"/>
+</bean>
+
+<bean id="woo" class="com.min.edu.bean2.jobAddress">
+  <constructor-arg ref="myAddr03"/>
+  <constructor-arg value="개발자"/>
+</bean>
+
+<bean id="jiwoo" class="com.min.edu.bean2.jobAddress">
+  <constructor-arg ref="myAddr02"/>
+  <constructor-arg value="프랑스가수"/>
+</bean>
+</beans>

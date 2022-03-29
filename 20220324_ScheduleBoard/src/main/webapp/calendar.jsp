@@ -82,8 +82,8 @@
                 <caption style="text-align: center; font-size: 17pt;">
                 <a href="./calendar.jsp?year=<%=year-1 %>&month=<%=month%>">◁</a>
                 <a href="./calendar.jsp?year=<%=year%> %&month=<%=month-1%>">◀</a>
-                    <span class="y"><%=year %>년도</span>&nbsp;
-                    <span class="m"><%=month %>월</span>
+                    <span class="y"><%=year%></span>년도&nbsp;
+                    <span class="m"><%=month%></span>월
                 <a href="./calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a>
                 <a href="./calendar.jsp?year=<%=year+1 %>&month=<%=month%>">▷</a>
                 </caption>
@@ -135,6 +135,11 @@
             </tbody>
   </table>
 </div>
-	
+	<div class="wrap-loading" style="display:none;">
+
+    <div><img src="./image/loading1.gif" /></div>
+
+</div>
+
 </body>
 </html>

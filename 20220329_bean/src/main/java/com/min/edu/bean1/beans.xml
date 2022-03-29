@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 기존 > POJO의 호출 MessageImpl mi = new MessageImpl() 생성자를 통해서 생성 -->
+
+<!-- bean > default 생성자를 호출하여 생성 -->
+<bean id="Kenya" class="com.min.edu.bean1.MessageImpl"/>
+
+<!-- 생성자 오버로딩 -->
+<!-- 메소드(setter)에 값을 입력 property -->
+<!-- 생성자의 argument constructor ex)arg index를 정하지 않으면 순서대로 입력 도니다-->
+<bean id="Americano" class="com.min.edu.bean1.MessageImpl">
+  <constructor-arg>
+    <value>Americano</value>
+  </constructor-arg>
+  <constructor-arg value="2000"/>
+</bean>
+
+<!-- 생성자의 argument를 index를 통해서 입력 -->
+<bean id="Arabica" class="com.min.edu.bean1.MessageImpl">
+  <constructor-arg index="1" value="2500"/>
+  <constructor-arg index="0" value="arabica"/>
+</bean>
+</beans>

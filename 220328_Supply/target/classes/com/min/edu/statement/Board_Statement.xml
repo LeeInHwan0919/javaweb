@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.BoardDaoImpl">
+
+<select id="getAllBoard" resultType="bVo">
+<![CDATA[
+SELECT a.SEQ, NVL(NAME,'GUEST') AS ID, TITLE, CONTENT,
+  CASE
+        WHEN TO_CHAR(REGDATE,'YYYY-MM-DD') <= TO_CHAR(SYSDATE,'YYYY-MM-DD')
+        THEN '이전글' 
+        ELSE TO_CHAR(REGDATE,'YYYY-MM-DD') END AS REGDATE
+  FROM ANSWERBOARD a LEFT JOIN STARMEMBER s
+  USING(ID)
+  WHERE DELFLAG ='N'
+  AND "DEPTH"='0'
+  ORDER BY a.SEQ DESC]]>
+  
+</select>
+
+<select id="getOneBoard" parameterType="java.lang.String" resultType="bVo">
+  SELECT *
+    FROM ANSWERBOARD
+      WHERE SEQ=#{seq}
+  
+</select>
+
+</mapper>

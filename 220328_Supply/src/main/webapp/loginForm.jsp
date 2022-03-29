@@ -14,10 +14,10 @@
 		<div id="title">Login</div>
 		<!--       <form action="./login.do" method="post" name="loginForm"> -->
 		<form method="post" name="loginForm">
-			<div id="id">아이디</div>
-			<input type="text" id="inputId" value="GD001" placeholder="아이디 입력"><br>
+			<div id="id">아 이 디</div>
+			<input type="text" id="inputId" value="ldkkoj111" placeholder="아이디 입력"><br>
 			<div id="pw">비밀번호</div>
-			<input type="password" id="inputPw" value="GD001"
+			<input type="password" id="inputPw" value="123456"
 				placeholder=" 비밀번호 입력"><br>
 				<div id="result"></div>
 		</form>
