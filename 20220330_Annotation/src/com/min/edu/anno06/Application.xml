@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- 작성한 일반 JAVA POJO를 bean으로 자동 등록 하는 방법 -->
+<!--
+  <context:component-scan base-package="위치"/>
+  base-package를 기준(top-level)으로 하위에 있는 모든 패키지의 stereoType과 Annotation을 검색하여 bean으로 만들어줌
+  
+  <context:annotation-config/>
+  프로젝트의 모든 Annotation을 Spring 사용할 수 있도록 해줌
+   -->
+<!-- <context:annotation-config/> -->
+<context:component-scan base-package="com.min.edu.anno06"/>
+
+<!-- <bean id="userDto" class="com.min.edu.anno06.UserDto"/> -->
+
+<!-- setter를 통해서 값을 입력 할 때는 property를 사용하면 된다. -->
+<!-- 오버로딩된 생성자를 통해서 값을 입력을 할 때는 constructor-arg 사용하면 됨
+     주의사항
+     constructor의 argument는 순서 차례대로 넣어줘야함 만약 순서없이 넣고싶다면 index를 사용하라
+   -->
+<!-- <bean id="myUser01" class="com.min.edu.anno06.UserDto"> -->
+<!--   <constructor-arg value="윌슨"/> -->
+<!-- </bean> -->
+
+<bean id="userServiceImpl" class="com.min.edu.anno06.UserServiceImpl"/>
+
+</beans>

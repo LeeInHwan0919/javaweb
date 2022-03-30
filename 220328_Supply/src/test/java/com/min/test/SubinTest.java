@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.min.edu.mybatis.SqlSessionFactoryManager;
 
-public class SooBinTest {
+public class SubinTest {
 
 	@Test
 	public void test() {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<context:annotation-config/>
+
+<bean id="stu01" class="com.min.edu.Anno05.Student">
+  <property name="name" value="코로나"/>
+  <property name="addr" value="외계인"/>
+  <property name="age" value="3년"/>
+</bean>
+
+<bean id="stu02" class="com.min.edu.Anno05.Student">
+  <property name="name" value="홍길동"/>
+  <property name="addr" value="탐라국"/>
+  <property name="age" value="200살"/>
+</bean>
+
+<bean class="com.min.edu.Anno05.Student">
+  <property name="name" value="또치"/>
+  <property name="addr" value="성북구"/>
+  <property name="age" value="41살"/>
+</bean>
+
+<bean id="school" class="com.min.edu.Anno05.School">
+  <property name="grade" value="1"/>
+</bean>
+</beans>

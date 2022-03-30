@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
 
+	
 	<display-name>220328_Supply</display-name>
 	<welcome-file-list>
 		<welcome-file>loginForm.jsp</welcome-file>
@@ -19,6 +20,16 @@
 		<url-pattern>/login.do</url-pattern>
 	</servlet-mapping>
 	
+	 <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.min.edu.ctrl.LoginServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout.do</url-pattern>
+  </servlet-mapping>
+	
 	<servlet>
 		<servlet-name>loginAjax</servlet-name>
 		<servlet-class>com.min.edu.ctrl.LoginAjax</servlet-class>
@@ -28,4 +39,11 @@
 		<servlet-name>loginAjax</servlet-name>
 		<url-pattern>/loginCheckText.do</url-pattern>
 	</servlet-mapping>
+	
+	
+	<error-page>
+	  <error-code>404</error-code>
+	  <location>/WEB-INF/views/error.html</location>
+	</error-page>
+
 </web-app>

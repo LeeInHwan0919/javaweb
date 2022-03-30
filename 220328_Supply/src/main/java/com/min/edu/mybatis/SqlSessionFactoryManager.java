@@ -16,7 +16,7 @@ public class SqlSessionFactoryManager {
 	}
 	
 	static {
-		String path = "com/min/edu/mybatis/Config.xml";
+		String path = "com/min/edu/mybatis/config.xml";
 		try {
 			Reader reader = Resources.getResourceAsReader(path);
 			factory = new SqlSessionFactoryBuilder().build(reader);

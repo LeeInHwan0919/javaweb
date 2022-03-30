@@ -6,18 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/login.css">
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<div id="title">Login</div>
 		<!--       <form action="./login.do" method="post" name="loginForm"> -->
 		<form method="post" name="loginForm">
-			<div id="id">아 이 디</div>
-			<input type="text" id="inputId" value="ldkkoj111" placeholder="아이디 입력"><br>
+			<div id="id">아이디</div>
+			<input type="text" id="inputId" name="id" value="GD001" placeholder="아이디 입력"><br>
 			<div id="pw">비밀번호</div>
-			<input type="password" id="inputPw" value="123456"
+			<input type="password" id="inputPw" name="pw" value="GD001"
 				placeholder=" 비밀번호 입력"><br>
 				<div id="result"></div>
 		</form>

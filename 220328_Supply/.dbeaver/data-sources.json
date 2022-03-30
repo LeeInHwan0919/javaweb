@@ -1,10 +1,10 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-17fd00e9d01-6adef9dec4d6c155": {
+		"oracle_thin-17fd829bdc4-13bae2e26098e8c2": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "localhost",
+			"name": "XE",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
@@ -12,7 +12,7 @@
 				"port": "1521",
 				"database": "XE",
 				"url": "jdbc:oracle:thin:@//localhost:1521/XE",
-				"home": "C:\\app\\ldkko\\product\\21c\\dbhomeXE",
+				"home": "C:\\app\\GDJ44\\product\\21c\\dbhomeXE",
 				"type": "dev",
 				"provider-properties": {
 					"show-only-one-schema@": "false",

@@ -1,7 +1,7 @@
 package com.min.edu.dto;
 
 public class UserVo {
-
+	
 	private String seq;
 	private String id;
 	private String password;
@@ -12,8 +12,13 @@ public class UserVo {
 	private String enable;
 	private String role;
 	
+	public UserVo() {
+		super();
+	}
+	
 	public UserVo(String seq, String id, String password, String name, String address, String phone, String email,
 			String enable, String role) {
+		super();
 		this.seq = seq;
 		this.id = id;
 		this.password = password;
@@ -83,10 +88,5 @@ public class UserVo {
 		return "UserVo [seq=" + seq + ", id=" + id + ", password=" + password + ", name=" + name + ", address="
 				+ address + ", phone=" + phone + ", email=" + email + ", enable=" + enable + ", role=" + role + "]";
 	}
-	public UserVo() {
-
-	}
-	
-
 	
 }

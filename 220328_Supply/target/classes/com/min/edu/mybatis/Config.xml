@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-  <typeAliases>
-    <typeAlias type="com.min.edu.dto.BoardVo" alias="bVo"/>
-    <typeAlias type="com.min.edu.dto.UserVo" alias="uVo"/>
-  </typeAliases>
 
-<environments default="development">
-  <environment id="development">
-    <transactionManager type="JDBC"/>
-    <dataSource type="POOLED">
-     <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-     <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
-     <property name="username" value="BD"/>
-     <property name="password" value="bd"/>
-    </dataSource>
-  </environment>
-</environments>
+	<typeAliases>
+		<typeAlias type="com.min.edu.dto.BoardVo" alias="bVo"/>
+		<typeAlias type="com.min.edu.dto.UserVo" alias="uVo"/>
+	</typeAliases>
+	
+	<environments default="developement">
+		<environment id="developement">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+				<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+				<property name="username" value="BD"/>
+				<property name="password" value="bd"/>
+			</dataSource>
+		</environment>
+	</environments>
 
-<mappers>
- <mapper resource="com/min/edu/statement/Board_Statement.xml"/>
- <mapper resource="com/min/edu/statement/User_Statement.xml"/>
-</mappers>
+	<mappers>
+		<mapper resource="com/min/edu/statement/Board_Statement.xml"/>
+		<mapper resource="com/min/edu/statement/User_Statement.xml"/>
+	</mappers>
+
 </configuration>

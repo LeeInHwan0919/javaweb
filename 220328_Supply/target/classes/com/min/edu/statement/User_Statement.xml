@@ -3,9 +3,9 @@
 <mapper namespace="com.min.edu.model.UserDaoImpl">
 
 <select id="login" resultType="uVo" parameterType="java.util.Map">
-  SELECT ID, NAME, ROLE
-    FROM STARMEMBER
-      WHERE ID=#{id} AND PASSWORD=#{pw} AND ENABLE='Y' 
+	SELECT ID,NAME,ROLE
+		FROM STARMEMBER
+			WHERE ID=#{id} AND PASSWORD=#{pw} AND ENABLE='Y'
 </select>
 
 </mapper>
