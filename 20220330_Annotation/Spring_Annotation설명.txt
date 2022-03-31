@@ -16,4 +16,115 @@
  
  --> 위의 Annotation은 자동 등록을 위해 (StereoType Annotation) <context:component-scan> 을 통해 자동 등록이 됨
        (=> Spring Container가 bean을 관리할 수 있도록 함)
+  ------------------------------------------------------------------------------------------------
+     MVC
+ - M : model -database layer -> DAO
+ - V : view - presentation layer -> JSP
+ - C : controller - business layer -> Servlet
+  => 3 tier방식 => Life-Cycle 로 개발을 진행해야 한다. => 순서 규칙 변경수정이 불가능함
   
+  해결방법 => 4tier
+  <bean> : 기존의 처리 방식에는 필요한 객체는 new를 통해서 사용할 때 생성을 함
+  Controller가 life-cycle을 따라가지 않고 개발 할 수 있도록 함
+  주도적인 실행이 되어야 함 -> 미리 만들어져 있어야함
+  미리 "spring container"가 가질 수 있도록 영역에 넣어줌
+
+
+ MVC1 vs MVC2
+ - MVC1 : 모든 로직처리 디비처리 등 모든 처리를 하나의 클래스(Servlet, JSP)에서 처리하게 됨.
+ - MVC2 : MVC를 각 따로 개발 => 개발자, 퍼블리셔, DBA
+             M : dao -> JPA(java persistence layer) -> ORM(Object Relation Mapping)
+             V : reactjs, vuejs ..
+             C : Spring Framework, Nodejs
+
+1)
+CC가 되는 POJO를 작성 Man Woman
+CCC가 동작되는 기능을 작성 implements MethodInterceptor MyCCCAspect
+
+2)
+spring bean configuration 등록
+CC와 CCC를 Bean으로 등록
+
+3)
+자동으로 서로 합쳐주는 설정 AutoProxy를 <bean>으로 설정
+
+4) 실행 되는 CCC인 myAdvice(메소드)와 대상이되는(pointCut)의 위치를 문법(expression)으로 작성한다. 
+  ------------------------------------------------------------------------------------------------
+  
+  org.springframework.stereotype vs org.springframework.beans.factory.annotation vs javax.annotation
+  
+  ● @Component
+    패키지 : org.springframework.stereotype
+    버전 : spring 2.5
+    설명 : <bean> 등록 => spring은 framework 사용할 수 있도록 Spring Container에 등록하는 과정
+          <bean>으로 등록하고자 하는 클래스의 위에 선언하여 해당 클래스를 "자동"으로 bean으로 등록 되도록 함
+          ban의 이름 해당 클래스명의 camel 방법을 자동으로 사용하게 된다
+          범위는 default로 singTon이며 필요 시 지정 할 수 있다 @Scope 를 통해서 선언도 가능함 
+          
+  ● @Autowired
+    패키지 : org.springframework.bean.factory.annotaion
+    버전 : spring 2.5
+    설명 : Autowiering annotation은 spring의 DI(의존관계)를 자동으로 설정 할 때 사용
+         작성되는 곳은 생성자, 멤버필드, 메소드(setter, 일반메소드)에서 적용이 가능
+         타입을 이용한 프로퍼티 자동 설정기능
+         즉, 해당타입의 존재를 자동으로 사용할 수 있도록 해줌
+          (단점) 해당 타입의 빈 객체가 없거나 2개 이상일 경우 예외를 방생시킴
+         프로퍼티 설정이 필수가 아닌 경우에는 @Autowired(required=false)로 선언하여 null을 허용 하면 됨 (기본은 true로 오류를 발생시킴)
+         "byType 형태"
+         의존관계를 자동으로 설정하면 같은 타입의 빈이 2개인 경우는 반드시 예외가 발생함
+         그래서 @Qualifier를 사용하여 동일 타입의 빈중 특정한 빈을 선택적으로 사용할 수 있다
+         ex) @Autowired
+             @Qualifier("test") // 빈중에 이름이 test인 bean을 찾아서 등록 해줌
+             private Test test;
+             *** byType 형태 -> ByName 형태로 변경되어 사용됨       
+    
+    ● @Qualifier
+    패키지 : org.springframework.bean.factory.annotaion
+    버전 : spring 2.5
+    설명 : @Autowired이 타입기반이기 때문에 2개 이상의 동일한 빈 중에서 특정 빈을 사용하도록 선언       
+    
+    ● @Required
+    패키지 : org.springframework.bean.factory.annotaion 
+    버전 : spring 2.0
+    설명 : 빈을 만들 때 필수 Propertyfmf audtlgksms rjtdmfh dldirlgka
+          set 메소드에 사용한다 (set되지 않으면 오류가 뜨게끔)
+          필수 Property를 선정하지 않으면 <bean>을 생성시 예외를 발생시킴
+    
+    ● @Resource
+    패키지 : javax.annotation
+    버전 : spring 2.5
+    설명 : Java 1.6버전 / J2EE 5 버전에서 추가 된 객체
+          어플리케이션에서 필요로 하는 자원을 자동연결 하기 위해서 사용
+          의존하는 빈의 객체를 전달 할 때 사용함
+          name 속성으로 자동으로 연결 빈의 이름을 입력하게 됨
+          @Resource(name="testDao")
+          ** ByName
+          
+
+    
+    ● @Controller
+    패키지 :
+    버전 : 
+    설명 :        
+    
+    ● @Service
+    패키지 :
+    버전 : 
+    설명 :        
+    
+    ● @Repository
+    패키지 :
+    버전 : 
+    설명 :        
+    
+    
+    ● @
+    패키지 :
+    버전 : 
+    설명 :        
+    
+    ● @
+    패키지 :
+    버전 : 
+    설명 :        
+    

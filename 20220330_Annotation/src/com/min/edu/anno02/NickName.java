@@ -8,7 +8,7 @@ public class NickName {
 
 	@Override
 	public String toString() {
-		return "NickName = 자바커피";
+		return "자바커피";
 	}
 	
 	

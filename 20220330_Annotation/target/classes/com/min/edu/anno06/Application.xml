@@ -13,19 +13,19 @@
   <context:annotation-config/>
   프로젝트의 모든 Annotation을 Spring 사용할 수 있도록 해줌
    -->
-<!-- <context:annotation-config/> -->
-<context:component-scan base-package="com.min.edu.anno06"/>
+<context:annotation-config/>
+<!-- <context:component-scan base-package="com.min.edu.anno06"/> -->
 
-<!-- <bean id="userDto" class="com.min.edu.anno06.UserDto"/> -->
+<bean id="userDto" class="com.min.edu.anno06.UserDto"/>
 
 <!-- setter를 통해서 값을 입력 할 때는 property를 사용하면 된다. -->
 <!-- 오버로딩된 생성자를 통해서 값을 입력을 할 때는 constructor-arg 사용하면 됨
      주의사항
      constructor의 argument는 순서 차례대로 넣어줘야함 만약 순서없이 넣고싶다면 index를 사용하라
    -->
-<!-- <bean id="myUser01" class="com.min.edu.anno06.UserDto"> -->
-<!--   <constructor-arg value="윌슨"/> -->
-<!-- </bean> -->
+<bean id="myUser01" class="com.min.edu.anno06.UserDto">
+  <constructor-arg value="윌슨"/>
+</bean>
 
 <bean id="userServiceImpl" class="com.min.edu.anno06.UserServiceImpl"/>
 

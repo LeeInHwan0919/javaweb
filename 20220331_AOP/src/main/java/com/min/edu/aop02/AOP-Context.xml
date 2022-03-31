@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 일반적인 POJO를 Spring Container가 사용할 수 있도록 bean으로 등록  -->
+  <bean id="man" class="com.min.edu.aop02.Man"/>
+  <bean id="woman" class="com.min.edu.aop02.Woman"/>
+  <bean id="myAdvice" class="com.min.edu.aop02.MyCCCAspect"/>
+  
+ <!-- 1) aspect와 bean으로 등록 CC가 같이 묶이도록 해줘야함 Proxy작업 해주ㅡㅓ야함-->
+ <!-- Aspect, Expression, PointCut, Advisor -->
+  <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+  
+ <!-- 2) 동작될 묶음의 대상을 선정 -->
+  <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+    <!-- 사용할 CCC의 메소드 -->
+    <property name="advice" ref="myAdvice"/>
+    <!-- 대상CC의 위치 선정 : 선정하는 문법 expression  -->
+    <!-- * 모든, ()메소드, .. 모든 argument -->
+    <property name="expression" value="execution(public * *(..))"/>
+  </bean>
+    
+
+</beans>

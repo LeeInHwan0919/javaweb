@@ -8,7 +8,8 @@ public class Anno04_Main {
 	public static void main(String[] args) {
 		ApplicationContext bean = new ClassPathXmlApplicationContext("com/min/edu/anno04/Application.xml");
 		RemoteControl rc = (RemoteControl) bean.getBean("television");
-		rc.powerOff();
+//		rc.powerOff();
+//		rc = bean.getBean("samsung",RemoteControl.class);
 		rc = bean.getBean("samsung",RemoteControl.class);
 		rc.powerOn();
 		

@@ -1,5 +1,7 @@
 package com.min.edu.anno06;
 
+import org.springframework.stereotype.Component;
+
 public class UserDto {
 
 	private String name;

@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 <bean id="myAddr01" class="com.min.edu.bean2.Address"/>
+
 <bean id="myAddr02" class="com.min.edu.bean2.Address">
   <property name="name" value="조르디"/>
   <property name="addr" value="니니즈프렌즈"/>
@@ -26,4 +27,6 @@
   <constructor-arg ref="myAddr02"/>
   <constructor-arg value="프랑스가수"/>
 </bean>
+
+<bean id="gora" class="com.min.edu.bean2.jobAddress"/>
 </beans>

@@ -29,6 +29,7 @@
     <version>${org.springframework}</version>
 </dependency>
 
+<!-- 원래는 톰캣에 포함된 기능이지만,  WAS때문에 최근 포함안됨 따로 디펜던시 해줘야함 -->
 <dependency>
     <groupId>javax.annotation</groupId>
     <artifactId>javax.annotation-api</artifactId>
