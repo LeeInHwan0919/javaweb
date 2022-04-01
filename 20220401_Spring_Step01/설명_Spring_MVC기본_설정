@@ -1,0 +1,36 @@
+■ servlet framework의 설명과 문제점
+  1. 실행순서
+    - url요청 : http://localhost:8077/20220329_DispatcherServlet/app/Hello?name=star
+    - > web.xml에 servlet mapping을 통해 /app로 시작되는 모든 요청을 DispatcherServlet 클래스로 이동
+    
+    2. DispatcherServlet.class는 요청(Get, Post) 처리를 
+       한곳에하는데 어디서하냐~ > 메소드인 handleRequest(HttpServletRequest req, HttpServletResponse resp)를 통해서 처리한다.
+       
+    3. handlerMapping(request) : 요청된 URL을 처리 한다.
+        - http://localhost:8077/20220329_DispatcherServlet/app/Hello?name=star
+        - uri를 추출 : 20220329_DispatcherServlet/app/Hello
+        - 마지막의 '/'부터 잘라낸다 => Hello
+        - 실행시킬 class가 위치하는 package를 문자열로 조합한다.
+           => com.min.edu.mapping.HelloHandler
+        - 객체를 호출하여 invoke하고 객체를 생성한다 => Class.forName("com.min.edu.mapping.HelloHandler")
+    
+     4. handlerAdapter(Handler, request, response)
+        - 3번에서 생성된 객체 중 요청을 처리해 주는 메소드 interface로 되어 있기 때문에 같은 이름으로 호출이 가능
+        - 선언 : handler.getClass().getMethod("메소드명", args.class)선언
+        - 선언된 메소드를 invoke 하고 reflection 하여 자동 연산으로 처리하고
+        - 최종적인 결과인 문자열을 받는다.
+     
+     5. dispatcher(ViewName, request, response)
+       - 4번에서 반환된 문자열을 조합하여 페이지의 위치를 작성해 준다.
+       - prefix, 값, suffix 를 조합하여 위치 생성
+       - 흐름제어를 통해 실행한다.  
+       
+     ※ 문제점
+      핸들러 매핑 로직을 변경 할 수 없음
+      핸들러를 여러 형태로 만드는 것이 불가능 하다.
+      예외처리를 할 수 없음
+      뷰를 찾는 로직을 변경할 수 없다.
+      
+      => (문제점 해결하기위해) Spring Framework의 org.springframework.web.servlet.DispatcherServlet 클래스를 사용하여 작성한다.
+      
+      Step_1 에서는 Spring의 DispatcherServlet을 통한 호출과 ViewResolver를 통한 화면이동 

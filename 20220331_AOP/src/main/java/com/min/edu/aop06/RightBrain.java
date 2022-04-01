@@ -3,7 +3,7 @@ package com.min.edu.aop06;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RightBrain implements Person, ETC {
+public class RightBrain implements Person /*  ,ETC  */ { // ETC는 Spring AOP의 작동원리인 Runtime Proxy 때문에 작성해 줌
 
 	@Override
 	public void thinking() {
@@ -14,7 +14,7 @@ public class RightBrain implements Person, ETC {
 	 * aop는 상위 부모에서 가지고 있는 메소드만을 VMI 로 실행시킨다.
 	 * 따라서 interface에 구성이 되어 있지 않다면 작동의 대상이 되지 않는다.
 	 */
-	@Override
+
 	public String use(String action) {
 		System.out.println("반환과 argument를 가지고 있는 메소드");
 		return action+"한다";

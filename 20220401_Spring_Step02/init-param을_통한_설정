@@ -1,0 +1,10 @@
+■ 관리하고자 하는 spring bean configuration을 묶음으로 처리
+■ <servlet-name> 값으로 만들게 되면 기본 위치가 WEB-INF에 servlet-name의 이름으로 xml을 설정
+ -> DispatcherServlet이 가져갈 수 있는 값으로 생성하기 위해서 
+    <init-param>으로 spring bean configuration을 설정 함
+■ Request와 Response의 요청 값을 Encoding 처리
+  -> web.xml에 <filter> 를 통해서 등록
+  -> spring filter의 CharacterEncodingFilter를 통해서 처리함
+ 
+■ 요청되는 클라이언트의 정보를 관리(출력/저장)
+  -> Header 정보를 출력
