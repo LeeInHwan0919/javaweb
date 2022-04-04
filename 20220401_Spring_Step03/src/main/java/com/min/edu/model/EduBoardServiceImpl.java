@@ -1,0 +1,33 @@
+package com.min.edu.model;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.min.edu.vo.EduVo;
+
+@Service
+public class EduBoardServiceImpl implements IEduBoardService {
+
+	@Autowired
+	private IEduBoardDao dao;
+	
+	@Override
+	public List<EduVo> selectBoard() {
+		return dao.selectBoard();
+	}
+
+	@Override
+	public int insertBoard(EduVo vo) {
+		return dao.insertBoard(vo);
+	}
+
+	@Override
+	public int transactionTest(EduVo vo) {
+		int m = dao.updateBoard();//기존의 데이터의 컬럼 중 DELFLAG 를 모두 'Y'로 변경 
+		int n = dao.insertBoard(vo);
+		return (m>0||n>0)?1:0;
+	}
+
+}

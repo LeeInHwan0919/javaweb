@@ -1,0 +1,199 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.min.edu</groupId>
+  <artifactId>20220401_Spring_Step03</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>20220401_Spring_Step03 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <!-- framework와 library가 의존관계의 버전통일을 위한 버전 변수 설정 -->
+  <properties>
+    <org.springframework-version>4.3.25.RELEASE</org.springframework-version>
+    <org.aspectj-version>1.9.6</org.aspectj-version>
+    <org.slf4j-version>1.7.25</org.slf4j-version>
+  </properties>
+  
+  
+  <dependencies>
+  <!-- Spring 관련 core, MVC 개발에 필요 한 라이브러리 -->
+  <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${org.springframework-version}</version>
+      <exclusions>
+        <!-- Exclude는 Maven의 Dependency 관계에 제외할 라이브러리를 작성-->
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+         </exclusion>
+      </exclusions>
+    </dependency>
+    
+    <!-- Spring MVC 개발에서 StereoType인 @Controller @Service @Repository의 Annotation 기능을 사용함 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+    
+    <!-- 로그처리를 자동으로 해주는 라이브러리 slf4j는 Log4j.jar보다 향상된 기능을 제공 log4j를 재정의한 구현체입니다. -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${org.slf4j-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+      <version>${org.slf4j-version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${org.slf4j-version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.mail</groupId>
+          <artifactId>mail</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.jms</groupId>
+          <artifactId>jms</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.jdmk</groupId>
+          <artifactId>jmxtools</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.sun.jmx</groupId>
+          <artifactId>jmxri</artifactId>
+        </exclusion>
+      </exclusions>
+      <scope>runtime</scope>
+    </dependency>
+    
+    <!-- 생성된 bean DI할때 사용할 수 있는 @Autowired @Resource @Inject 사용되는 프로젝트가 있다면 선언-->
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
+    </dependency>
+
+    <!-- Servlet은 tomcat이 가지고 있는 라이브러리 scope를 provide로 하며 , 실행할때는 maven 사용하고 배포했을 배포 서버를 사용하겠다. -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>2.1</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- java standard tag library jsp에서 자바를 쉽게 tag를 통해 사용할 수 있도록 해줌  -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+    
+    
+    <!-- 문자열 처리를 위한 라이브러리 -->
+  <dependency>
+     <groupId>org.apache.commons</groupId>
+     <artifactId>commons-lang3</artifactId>
+     <version>3.12.0</version>
+  </dependency>
+    
+    
+    <!-- Persistence Layer 사용 -->
+    <!-- MyBatis 라이브러리 -->
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis</artifactId>
+    <version>3.5.6</version>
+</dependency>
+    
+    <!-- OJDBC 10 라이브러리 -->
+    <!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
+<dependency>
+    <groupId>com.oracle.database.jdbc</groupId>
+    <artifactId>ojdbc10</artifactId>
+    <version>19.12.0.0</version>
+</dependency>
+    
+    <!-- MyBatis의 SqlSessionFactory MyBatis-String -->
+    <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+<dependency>
+    <groupId>org.mybatis</groupId>
+    <artifactId>mybatis-spring</artifactId>
+    <version>2.0.6</version>
+</dependency>
+    
+    <!-- Spring-orm -->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-orm</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+    
+    <!-- DataSource 생성객체 -->
+<dependency>
+    <groupId>commons-dbcp</groupId>
+    <artifactId>commons-dbcp</artifactId>
+    <version>1.4</version>
+</dependency>
+
+<!-- Java를 단위 테스트 할 수 있는 도구 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
+    
+    <!-- JUnit과 Spring을 같이 동작 시키기 위한 라이브러리 -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>${org.springframework-version}</version>
+</dependency>
+    
+    <!-- 객체의 은닉화 getter/setter -->
+    <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <version>1.18.20</version>
+    <scope>provided</scope>
+</dependency>
+    
+    
+  </dependencies>
+  <build>
+    <finalName>20220401_Spring_Step03</finalName>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

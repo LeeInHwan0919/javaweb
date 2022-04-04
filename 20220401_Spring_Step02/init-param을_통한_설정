@@ -7,4 +7,25 @@
   -> spring filter의 CharacterEncodingFilter를 통해서 처리함
  
 ■ 요청되는 클라이언트의 정보를 관리(출력/저장)
-  -> Header 정보를 출력
+  -> Header 정보를 출력(User-Agent 접속 정보, Referer 이전 접속 링크0)
+  -> RemoteAddr, URL 요청 주소, QueryString 요청 값들    
+  
+■ Model 작성
+  -> MyBatis를 Spring Framework
+  -> MyBatis, OJDBC, mybatis-spring, spring-orm, commons-dbcp
+  -> 프로젝트의 모든 곳에서 사용하기 위해서 <context-param>으로 가져 옴
+  -> MyBatis의 SqlSessionFactory 객체를 생성하기 위한 방법
+    1) bean으로 properties 파일을 읽어옴
+    2) bean DataSource를 통해서 접속정보를 읽어옴
+    3) SqlSessionFactoryBean을 통해서 MyBatis에 SqlSessionFactory 객체를 bean으로 만듬
+    4) SqlSessionTemplate를 통해서 객체를 bean으로 만들어 사용시 @Autowired를 통해서 사용
+    
+※※ Spring + JUnit4 ※※
+  -> Spring의 빈을 JUnit을 통해 사용하기 위해서는 Spring+JUnit
+  -> JUnit(4.12 이상) 을 생성할 때 RunWithw를 통해서 SpringJunit4.class를 같이 load해줘야 함
+  -> spring bean configuration : ApplicationContext를 로드할 수 있도록 @ContextConfiguration을 설정 해줌
+  
+※※ java Resource의 파일은 연결시 classpath를 통해서 함
+    WEB-INF에 있는 파일은 연결시 /WEB-INF/~~로 호출 한다.
+    
+  
