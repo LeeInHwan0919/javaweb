@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+<!-- view와 control에 관련된 설정을 함  
+		context를 통해서 bean을 자동으로 등록해 주는 것 
+		controller에서 처리된 결과인 문자를 화면의 위치를 만들어 주는 것 
+		SMTP 설정 하는 것 등...
+-->
+
+<context:component-scan base-package="com.min.edu"/>
+<mvc:annotation-driven/>
+
+<!-- DispatcerServlet에 의해서 반환되는 문자열의 값을 화면의 위치 값으로 만들어줌 
+		View-Resolver
+-->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/views/"/>
+	<property name="suffix" value=".jsp"/>
+</bean>
+<!-- 
+	application Context에 있는 TransactionManager를 사용하여 MVC의 동작에 Transaction을 처리해줌 
+	service에서 dao를 조합하고 단일의 기능은 dao가 예외가 발생했을 경우 Transaction 동작으로 service를 통해 실행된 모든 dao를 rollback해줌	
+	Annotation Transaction 처리방식
+		DB : timeout? (오류) 
+-->
+
+<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
+<tx:annotation-driven/>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

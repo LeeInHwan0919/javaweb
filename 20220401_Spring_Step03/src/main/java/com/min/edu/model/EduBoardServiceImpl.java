@@ -12,6 +12,7 @@ public class EduBoardServiceImpl implements IEduBoardService {
 
 	@Autowired
 	private IEduBoardDao dao;
+	//VMI , 메모리4대원칙 , 다형성3대원칙 , Spring runtime
 	
 	@Override
 	public List<EduVo> selectBoard() {
@@ -25,9 +26,9 @@ public class EduBoardServiceImpl implements IEduBoardService {
 
 	@Override
 	public int transactionTest(EduVo vo) {
-		int m = dao.updateBoard();//기존의 데이터의 컬럼 중 DELFLAG 를 모두 'Y'로 변경 
+		int m = dao.updateBoard(); //기존 데이터의 컬럼 중 DELFLAG를 모두 'Y'로 변경
 		int n = dao.insertBoard(vo);
-		return (m>0||n>0)?1:0;
+		return (m>0 || n>0)?1:0;
 	}
 
 }

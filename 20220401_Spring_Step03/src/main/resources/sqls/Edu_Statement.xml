@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.edu.model.EduBoardDaoImpl">
-  
-  
-  <insert id="insertBoard" parameterType="eDto">
-    INSERT INTO GDBOARD
-    VALUES(GSEQ.NEXTVAL,#{id},#{title},#{content},"N", SYSDATE)
-  </insert>
-  
-  <select id="selectBoard" resultType="eDto">
-    SELECT SEQ, ID, TITLE, CONTENT, DELFLAG, REGDATE
-    FROM GDBOARD
-    ORDER BY REGDATE DESC
-  </select>
-  
-  <update id="updateBoard">
-    UPDATE GDBOARD SET DELFLAG='Y'
-  </update>
+
+<insert id="insertBoard" parameterType="eDto">
+	INSERT INTO GDBOARD
+	VALUES(GDBOARD_SEQ.NEXTVAL,#{id},#{title},#{content},'N',SYSDATE)
+</insert>
+<select id="selectBoard" resultType="eDto">
+	SELECT SEQ,ID,TITLE,CONTENT,DELFLAG,REGDATE
+	FROM GDBOARD
+	ORDER BY REGDATE DESC
+</select>
+<update id="updateBoard">
+	UPDATE GDBOARD SET DELFLAG='Y'
+</update>
 </mapper>

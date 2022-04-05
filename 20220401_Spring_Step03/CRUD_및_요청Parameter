@@ -1,3 +1,27 @@
-■ 처리 방식에 Controller 연습
-1) Get / Post
-
+■ 처리 방식에 따른 Controller연습
+	1)Get/Post 
+	2)Spring MVC - spring-webmvc
+	 => Bean 자동으로 만들어 내는 작업 
+	 =>  @Compontent, @Controller,@Sevice,@Respository
+	 3)DispatcherServlet -> HandlerMapping(@Comtoller)->HandlerAdapter(@RequestMapping)
+	 									<context:component-scan> @GetMapping(value=""), @
+	 4) 요청의 Mapping인 Controller의 요청의 이름을 부여할 수 있다 
+	 @Controller
+	 @RequestMapping("./board") <=화면에서 요청처리되면 /board로 시작되는 요청을 처리해줌 
+	 public class~~~~...
+	 
+■ 흐름제어 
+1) forward,redirect
+2)Spring 에서 처리 방식은 모두 forward=> RequestScope
+3)Spring 에서 redirect servlet에서의 요청된 페이지 주소에 응답을 해주는 것이 아닌
+		Spring Container의 다른 requestMapping을 찾아준다. 
+		
+		* redirect를 통해서 다른 RequestMapping을 호출 값을 전송할 수 있다. Model.ui 객체를 사용하면 전송이 가능하다
+		
+■ Parameter 처리 
+1) DTO/VO 사용한다면 화면의 name과 같은 setter를 호출하여 자동으로 객체로 만들어줌 
+2)만약 요청되는 name을 변경해서 사용하고 싶다면 @RequestParam을 통해서 변경이 가능하다 
+3)요청되는 name만 같다면 Parameter의 변수 타입 선언을 통해서 자동으로 형변환이 된다 
+ex) @RequestParam Map<String,Object> map
+	@RequestParam("a") int seq
+4) 

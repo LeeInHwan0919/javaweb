@@ -27,6 +27,6 @@
   <constructor-arg value="윌슨"/>
 </bean>
 
-<bean id="userServiceImpl" class="com.min.edu.anno06.UserServiceImpl"/>
+<!-- <bean id="userServiceImpl" class="com.min.edu.anno06.UserServiceImpl"/> -->
 
 </beans>

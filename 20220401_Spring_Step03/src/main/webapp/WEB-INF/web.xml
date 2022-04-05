@@ -1,51 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
-  <display-name>20220401_Spring_Step03</display-name>
+  <display-name>20220401_Spring_Step02</display-name>
   <welcome-file-list>
     <welcome-file>home.do</welcome-file>
   </welcome-file-list>
+  
   <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring/appServlet/application-context.xml</param-value>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/spring/appServlet/application-context.xml</param-value>
   </context-param>
+  
   <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+  
   <servlet>
     <servlet-name>appServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
+  
+  
     <servlet-name>appServlet</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
+  <!-- DispatcherServlet으로 요청되는 모든 값을 인코딩 처리함 -->
   <filter>
-    <filter-name>encodingFilter</filter-name>
-    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-    <init-param>
-      <param-name>encoding</param-name>
-      <param-value>UTF-8</param-value>
-    </init-param>
-    <init-param>
-      <param-name>forceEncoding</param-name>
-      <param-value>true</param-value>
-    </init-param>
+  	<filter-name>encodingFilter</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  <init-param>
+  	<param-name>encoding</param-name>
+  	<param-value>UTF-8</param-value>
+  </init-param>
+  <init-param>
+  	<param-name>forceEncoding</param-name>
+  	<param-value>true</param-value>
+  </init-param>
   </filter>
   <filter-mapping>
-    <filter-name>encodingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    	<filter-name>encodingFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!-- 서버에 요청 된 정보를 수집 및 출력 -->
   <filter>
-    <filter-name>AccessFilter</filter-name>
-    <filter-class>com.min.edu.common.filter.ClientAccessFilter</filter-class>
+  	<filter-name>AccessFilter</filter-name>
+  	<filter-class>com.min.edu.comm.filter.ClientAccessFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>AccessFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    	<filter-name>AccessFilter</filter-name>
+    	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
 </web-app>
+
+
+

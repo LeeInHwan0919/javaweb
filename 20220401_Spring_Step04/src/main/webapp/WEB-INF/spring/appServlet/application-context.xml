@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+<!-- M001 properties 파일을 읽어서 bean으로 만듬-->
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="locations">
+	<list>
+		<value>classpath:properties/db.properties</value>
+	</list>
+</property>
+</bean>
+	
+	<!-- M002 DataSource bean 을 만들어 준다 -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${pw}"/>
+	</bean>
+	
+	<!-- M003 SqlSessionFactory 를 bean으로 만들어 준다 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+<!-- 		<property name="configLocation" value="/WEB-INF/spring/mybatis/Configuration.xml"/> -->
+		<property name="configLocation" value="classpath:mybatis/Configuration.xml"></property>
+<!-- 	<property name="mapperLocations" value="classpath:sqls/**/Statement.xml"/> -->	
+	</bean>
+	
+	<!-- M004 MyBatis의 SqlsessionFactory bean을 spring에서 사용하는 template으로 만들어서 Autowired를 통해 사용하기 위함 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
+	</bean>
+	
+	<!-- M005 Datasource를 사용하여 TransactionManager를 설정한다 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- AOP를 통한 Transaction 처리 -->
+	<!-- 
+		IoC 구조에서는 Bean을 기능을 조합하여 Service에서 독립적으로 실행이 가능함
+		Life-cycle 구조에서는 절대 Dao를 제어할 수 없다
+		하지만 IoC구조에서는 service에서 조합되어 있는 Dao의 메소드를 제어하여 Rollback할 수 있다
+	 -->
+	 <!-- Transaction이 동작되는 상황 메소드 -> Advice -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:advisor advice-ref ="transactionAdvice" pointcut="execution(* com.min.edu.model.*Service*.*(..))"/>
+	</aop:config>
+</beans>

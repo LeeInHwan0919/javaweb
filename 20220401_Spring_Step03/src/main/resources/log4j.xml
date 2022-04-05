@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" 
+	"http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
@@ -10,11 +11,10 @@
 		</layout>
 	</appender>
 	
-	<!-- 추가된 Appenders-->
+	
 	<appender name="RollingAppender" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="File" value="C:/Goodee/spring_log" />
+       <param name="File" value="C:/eclipse_web_2020_09/Spring_log/spring.log" />
        <param name="DatePattern" value="'.'yyyy-MM-dd" />
-       <param name="Append" value="true"/>
        <layout class="org.apache.log4j.PatternLayout">
           <param name="ConversionPattern" value="[%p] %d %c %M - %m%n" />          
        </layout>
@@ -43,25 +43,22 @@
 	</logger>
 	
 	<logger name="java.sql.Connection">
-	  <level value="trace"/>
+		<level value="trace" />
 	</logger>
 	<logger name="java.sql.Statement">
-	  <level value="trace"/>
+		<level value="trace" />
 	</logger>
 	<logger name="java.sql.PreparedStatement">
-	  <level value="trace"/>
+		<level value="trace" />
 	</logger>
 	<logger name="java.sql.ResultSet">
-	  <level value="trace"/>
+		<level value="trace" />
 	</logger>
-  
-  
-
 	<!-- Root Logger -->
 	<root>
-        <priority value="trace" />
-        <appender-ref ref="console" />
-<!--         <appender-ref ref="RollingAppender" /> -->
-    </root>
+		<priority value="trace" />
+		<appender-ref ref="console" />
+		<appender-ref ref="RollingAppender" />
+	</root>
 	
 </log4j:configuration>

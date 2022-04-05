@@ -1,0 +1,45 @@
+■ AOP(Aspect Oriented Programming)
+- Transaction, Logger 처리
+- Transaction
+    @Service에서 발생시점은 Exception이 되었음, rollback 처리 advice
+
+    application-context.xml
+    <tx:advice id="tt" transaction-manager="transactionManager">
+        <tx:attribute>
+            <!-- Transaction 이 작동되는 advice를 작성 Exception일 때 동작 Rollback -->
+            <tx:method name="메소드명" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="reply" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="select" readonly="true"/>
+        </tx:attribute>
+    </tx:advice>
+
+    <aop:config>
+        <aop:advisor advice-ref="tt" pointcut=""/>
+    </aop:config>
+
+    servlet-context.xml 에는
+    <tx:annotation-driven> 설정이 되어있어야함
+
+- Logger 처리
+    @Dao에서 발생
+    발생시점 메소드전, 반환타입, 에러
+    advice POJO 
+
+    aop-context.xml => init-param에 작성한다
+    1)POJO를 작성해서 advice를 작성한다(before, afterReturning, afterThrowing)
+    2)aop-context.xml
+    <aop:config>
+        <aop:pointcut expression = "execution()" id="reff"/><!--주소로 만들어 다른 여러곳에 적용-->
+        <aop:pointcut expression = "execution()" id="regg"/><!--주소로 만들어 다른 여러곳에 적용-->
+        <aop:aspect ref="실행되는 POJO를 bean으로 만들 것 1)">
+            <aop:before method="1)의 메소드명" point-ref="reff"/>
+            <aop:after method="1)의 메소드명" point-ref="regg"/>
+            <aop:after-returning method="1)의 메소드명" point-ref="reff"/>
+            <aop:around method="1)의 메소드명" point-ref="regg"/>
+
+            <aop:after-throwing method="1)의 메소드명" point-ref="regg" throwing="e"/><!-- throwing의 값을 e라고 작성 -->
+        </aop:aspect>
+    </aop:config>
+
+    1) 1번 POJO의 afterthrowing 메소드에서 parameter의 이름을 같은 e라고 사용해야함
+    public void error(JoinPoint j, Exception e)

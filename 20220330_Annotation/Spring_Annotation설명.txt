@@ -86,7 +86,7 @@ CC와 CCC를 Bean으로 등록
     ● @Required
     패키지 : org.springframework.bean.factory.annotaion 
     버전 : spring 2.0
-    설명 : 빈을 만들 때 필수 Propertyfmf audtlgksms rjtdmfh dldirlgka
+    설명 : 빈을 만들 때 필수 Property를 명시가능 것으로 이야기함
           set 메소드에 사용한다 (set되지 않으면 오류가 뜨게끔)
           필수 Property를 선정하지 않으면 <bean>을 생성시 예외를 발생시킴
     
