@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 
+	  bean을 생성하는 value가 외부에 있다면 java Resource이면 classpath:~~ 
+	                                                   WEB-INF면    /WEB-INF/~~
+	                       내부에 있다면 ref  
+	-->
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations">
+      <list>
+        <value>classpath:properties/db.properties</value>
+      </list>
+    </property>
+  </bean>
+		
+		<!-- dataSource 갖고옴 -->
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		  <property name="driverClassName" value="${driver}"/>
+		  <property name="url" value="${url}"/>
+		  <property name="username" value="${username}"/>
+		  <property name="password" value="${password}"/>
+		  <property name="maxActive" value="5"/>
+		  <property name="maxIdle" value="8"/>
+		  <property name="maxWait" value="30000"/>
+		</bean>
+
+    <!-- MyBatis SqlSessionFactory 객체 생성 -->
+    <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"/>
+      <property name="configLocation" value="classpath:config/Configuration.xml"/>
+    </bean>
+
+    <!-- Spring MyBatis 객체를 Bean생성 -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg ref="sqlSessionFactoryBean"/>
+    </bean>
+        		
+</beans>
