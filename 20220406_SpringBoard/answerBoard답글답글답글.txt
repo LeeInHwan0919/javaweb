@@ -1,0 +1,146 @@
+쿼리문
+
+-- 답글입력(STEP)
+UPDATE ANSWERBOARD SET STEP = STEP+1 
+WHERE REF = (SELECT REF FROM ANSWERBOARD a4 WHERE SEQ ='2')
+AND STEP > (SELECT STEP FROM ANSWERBOARD a5 WHERE SEQ = '2');
+-- 답글 입력(INSERT)
+INSERT INTO ANSWERBOARD(SEQ,ID,TITLE,
+                            CONTENT,"REF",STEP,
+                            "DEPTH")
+                            VALUES (ANSWERBOARD_SEQ.NEXTVAL, 'Q003','답글3입니다',
+                            '답글3 달아요',(SELECT REF FROM ANSWERBOARD a WHERE SEQ='2'),
+                            (SELECT STEP FROM ANSWERBOARD a2 WHERE SEQ='2')+1,
+                            (SELECT DEPTH FROM ANSWERBOARD a3 WHERE SEQ='2')+1);
+
+======================
+AnswerBoardDaoImpl.java
+
+@Override
+	public boolean reply(AnswerBoardDto dto) {
+		logger.info(this.getClass().getSigners()+"reply 답글작성: 부모seq("+ dto.getSeq()+",)"+dto);
+		SqlSession session = manager.openSession();
+		int cntU = session.update(NS+"replyUpdate", dto);
+		int cntI = session.insert(NS+"replyInsert", dto);
+		session.commit();
+		return (cntU+cntI)>0? true:false;
+	}
+
+
+======================
+AnswerBoardDto.java
+
+@Data
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+public class AnswerBoardDto implements Serializable {
+
+	private static final long serialVersionUID = 7072715040224794703L;
+
+	private int seq;
+	private String id;
+	private String title;
+	private String content;
+	private int ref;
+	private int step;
+	private int depth;
+	private String delflag;
+	private String regdate;
+	
+	public AnswerBoardDto(int seq, String id, String title, String content) {
+		this.seq = seq;
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+
+	public AnswerBoardDto(String id, String title, String content) {
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+
+========================================
+boardAnswer.jsp
+<div class="btn-group">
+<button type="button" class="btn btn-success" onclick="reply(<%=dto.getSeq()%>)">답글</button>
+</div>
+
+========================================
+BoardAnswerServlet
+public class BoardAnswerServlet extends HttpServlet {
+	
+	private static final long serialVersionUID = -3264143122039552633L;
+	private Logger logger = Logger.getLogger(this.getClass());
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		logger.info("BoardInsertServlet doGet");
+		
+		String seq = req.getParameter("seq");
+		logger.info("받은 seq는 " + seq);
+		
+		
+		
+		HttpSession session = req.getSession();
+		if(session.getAttribute("loginInfo") == null) {
+			PrintWriter out = resp.getWriter();
+			String str = JSFlow.jsForward("로그인을 해주세요", "./boardLogin.do?loc=boardAnswer.do?seq="+seq);
+			out.print(str);
+		}else {
+			IAnswerBoardDao dao = new AnswerBoardDaoImpl();
+			AnswerBoardDto iDto = new AnswerBoardDto();
+			iDto.setSeq(Integer.parseInt(seq));
+			AnswerBoardDto dto = dao.selectDetailBoard(iDto);
+//			dto.setSeq(Integer.parseInt(seq));
+			req.setAttribute("dto", dto);
+			logger.info("dto에서 출력된 값"+dto);
+			req.getRequestDispatcher("/WEB-INF/views/boardAnswer.jsp").forward(req, resp);
+		}
+//		req.getRequestDispatcher("WEB-INF/views/boardAnswer.jsp").forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
+		HttpSession session = req.getSession();
+		UserVo loginVo = (UserVo)session.getAttribute("loginInfo");
+		
+		logger.info("BoardInsertServlet doPost");
+		
+		String pSeq = req.getParameter("seq");
+		String title = req.getParameter("title");
+		String content = req.getParameter("content");
+		logger.info("BoardInsertServlet doPost 전달받은 값 " + pSeq);
+		logger.info("BoardInsertServlet doPost 전달받은 값 " + title);
+		logger.info("BoardInsertServlet doPost 전달받은 값 " + content);
+		
+		AnswerBoardDto dto = new AnswerBoardDto();
+		dto.setSeq(Integer.parseInt(pSeq));
+		dto.setId(loginVo.getId());
+		dto.setTitle(title);
+		dto.setContent(content);
+		
+		IAnswerBoardDao dao = new AnswerBoardDaoImpl();
+		
+		boolean isc = dao.reply(dto);
+		
+		if(isc) {
+			resp.sendRedirect("./boardDetail.do?seq="+dto.getSeq());
+		}else {
+			resp.sendRedirect("./logout.do");
+		}
+		
+	}
+}
+========================================
+========================================
+========================================
+========================================
+========================================

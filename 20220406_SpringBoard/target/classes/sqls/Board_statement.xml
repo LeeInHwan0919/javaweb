@@ -3,6 +3,7 @@
 <mapper namespace="com.min.edu.model.mapper.BoardDaoImpl">
 <select id="userBoardList" resultType="BoardVo">
 SELECT SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF, DELFLAG, REGDATE FROM ANSWERBOARD
+WHERE DELFLAG='N'
 </select>
 
 <update id="delflagBoard" parameterType="java.util.Map">

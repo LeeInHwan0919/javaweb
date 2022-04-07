@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.min.edu.model.mapper.IBoardDao;
+import com.min.edu.model.mapper.IUserDao;
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.UserVo;
 
@@ -32,6 +34,12 @@ public class SpringBoardTest {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	@Autowired
+	private IUserDao uDao;
+	
+	@Autowired
+	private IBoardDao bDao;
+	
 //	@Test
 	public void templateTest() {
 		assertNotNull(sqlSession);
@@ -47,47 +55,53 @@ public class SpringBoardTest {
 //	@Test
 	public void delflagBoard() {
 	  Map<String, String[]> map = new HashMap<String, String[]>();
-	  String[] seq= {"1"};
+	  String[] seq= {"4,5,6,7"};
 	  map.put("seqs", seq);
       int cnt = sqlSession.update("com.min.edu.model.mapper.BoardDaoImpl.delflagBoard",map);
       System.out.println(cnt+"cnt값");
 	}
 	
-	@Test
+//	@Test
 	public void writeBoard() {
-		Map<String, String[]> map = new HashMap<String, String[]>();
-		String[] seqs= {"1","2"};
-	      map.put("seqs", seqs);
-	      sqlSession.update("com.min.edu.model.mapper.BoardDaoImpl.writeBoard",map);
+		BoardVo vo = new BoardVo(4, "ldkkoj111", "junittest", "Test");
+		 int cnt = sqlSession.update("com.min.edu.model.mapper.BoardDaoImpl.writeBoard",vo);
+		 System.out.println(cnt+"cnt값");
 	}
 	
-//	@Test
+	@Test
 	public void getOneBoard() {
-		List<BoardVo> lists = sqlSession.selectList("com.min.edu.model.mapper.BoardDaoImpl.getOneBoard","1");
-		System.out.println(lists);
+		BoardVo bVo = bDao.getOneBoard("4");
+		System.out.println(bVo);
 	}
 	
 //	@Test
 	public void getLogin() {
-		Map<String,String> map = new HashMap<String,String>();
+		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("id","ldkkoj111");
 		map.put("pw","123456");
-		UserVo vo = sqlSession.selectOne("com.min.edu.model.mapper.UserDaoImpl.getLogin",map);
-		System.out.println(vo);
+		UserVo loginVo = uDao.getLogin(map);
+//		UserVo vo = sqlSession.selectOne("com.min.edu.model.mapper.UserDaoImpl.getLogin",map);
+		System.out.println(loginVo);
 	}
 	
 //	@Test
 	public void isDuplicateCheck() {
-		int cnt = sqlSession.selectOne("com.min.edu.model.mapper.UserDaoImpl.isDuplicateCheck","ldkkoj1111");
+		String id = "jinro";
+		int cnt = uDao.isDuplicateCheck(id);
 		System.out.println(cnt+"cnt의갯수");
 	}
 	
 //	@Test
 	public void signupMember() {
-		UserVo dto = new UserVo("123","123","123","123");
-		int cnt = sqlSession.insert("com.min.edu.model.mapper.UserDaoImpl.signupMember",dto);
-		assertNotNull(cnt);
+		UserVo vo = new UserVo();
+		vo.setId("GD001");
+		vo.setPassword("GD001");
+		vo.setName("Gold");
+		vo.setEmail("gold@gmail.com");
+		int cnt = uDao.signupMember(vo);
 		System.out.println(cnt+"cnt의갯수");
 	}
+
+		
 	
 }

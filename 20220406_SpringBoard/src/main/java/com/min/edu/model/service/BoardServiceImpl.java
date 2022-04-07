@@ -1,5 +1,6 @@
 package com.min.edu.model.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +28,8 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Override
 	public int delflagBoard(Map<String, String[]> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		logger.info("BoardServiceImpl 게시글 단일/ 다중 삭제 delflagBoard");
+	      return dao.delflagBoard(map);
 	}
 
 	@Override
@@ -39,8 +40,8 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Override
 	public BoardVo getOneBoard(String seq) {
-		// TODO Auto-generated method stub
-		return null;
+		logger.info("BoardServiceImpl 게시글 상세 조회 getOneBoard");
+		return dao.getOneBoard(seq);
 	}
 
 }

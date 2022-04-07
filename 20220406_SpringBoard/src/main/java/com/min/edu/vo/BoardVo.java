@@ -26,5 +26,14 @@ public class BoardVo {
 	private String regdate;
 	
 	
+	public BoardVo(int seq, String id, String title, String content) {
+		this.seq = seq;
+		this.id = id;
+		this.title = title;
+		this.content = content;
+	}
+	
+	
+	
 
 }

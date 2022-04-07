@@ -4,7 +4,7 @@
 
 <select id="getLogin" parameterType="java.util.Map" resultType="UserVo">
 SELECT ID, NAME, AUTH FROM USERINFO
-WHERE ID=#{id} AND PASSWORD=#{pw}
+WHERE ID=#{id} AND PASSWORD=#{password}
 </select>
 
 <select id="isDuplicateCheck" parameterType="String" resultType="int">
@@ -14,7 +14,7 @@ WHERE ID = #{id}
 
 <insert id="signupMember" parameterType="UserVo">
 INSERT INTO USERINFO (ID, NAME, PASSWORD, EMAIL, AUTH, DELFLAG, JOINDATE)
-  VALUES (#{id},#{pw}, #{name}, #{email},'U','N',SYSDATE)
+  VALUES (#{id},#{password}, #{name}, #{email},'U','N',SYSDATE)
 </insert>
 
 

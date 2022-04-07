@@ -24,8 +24,7 @@ public class BoardDaoImpl implements IBoardDao {
 
 	@Override
 	public int delflagBoard(Map<String, String[]> map) {
-		
-		return 0;
+		return sqlSession.update(NS+"delflagBoard",map);
 	}
 
 	@Override
@@ -35,7 +34,7 @@ public class BoardDaoImpl implements IBoardDao {
 
 	@Override
 	public BoardVo getOneBoard(String seq) {
-		return null;
+		return (BoardVo)sqlSession.selectList(NS+"getOneBoard",seq).get(0);
 	}
 
 }

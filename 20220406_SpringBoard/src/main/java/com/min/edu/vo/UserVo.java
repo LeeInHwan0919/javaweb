@@ -17,16 +17,16 @@ public class UserVo {
 
 	private String id;
 	private String name;
-	private String pw;
+	private String password;
 	private String email;
 	private String auth;
 	private String delflag;
 	private String joindate;
 	
-	public UserVo(String id, String name, String pw, String email) {
+	public UserVo(String id, String name, String password, String email) {
 		this.id = id;
 		this.name = name;
-		this.pw = pw;
+		this.password = password;
 		this.email = email;
 	}
 	
