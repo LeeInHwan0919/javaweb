@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,5 +64,25 @@ public class BoardController {
 		return "detailBoard";
 	}
 	
+	@RequestMapping(value="/replyBoard.do",method = RequestMethod.GET)
+	public String replyBoard(HttpServletRequest req, Model model) {
+		logger.info("BoardController 답글 작성폼 가기 replyBoard");
+ 		String seq = req.getParameter("chkVal");
+ 		logger.info("seq의 값은 {}",seq);
+		model.addAttribute("seq",seq);
+		return "replyBoard";
+	}
+	
+	@RequestMapping(value="/replyBoard.do", method=RequestMethod.POST)
+	public String replyBoard(HttpServletRequest req,String seq ,BoardVo vo) {
+		logger.info("BoardController 답글 입력 replyBoard");
+		int cnt = service.replyInsert(seq, vo);
+		if(cnt!=0) {
+		System.out.println("성공");	
+		return "redirect:/boardList.do";	
+		}
+		System.out.println("실패");
+		return "redirect:/replyBoard.do?chkVal="+vo.getSeq();
+	}
 	
 }

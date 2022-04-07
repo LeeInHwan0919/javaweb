@@ -32,6 +32,12 @@
     	var seq = ${vo.seq}
     	location.href='./multiDel.do?chkVal='+seq;
     }
+    
+    function answerOne(){
+    	console.log(${vo.seq});
+    	var seq = ${vo.seq}
+    	location.href="./replyBoard.do?chkVal="+seq;
+    }
   </script>
 </body>
 </html>

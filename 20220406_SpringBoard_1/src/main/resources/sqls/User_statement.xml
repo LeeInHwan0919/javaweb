@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.UserDaoImpl">
+
+<select id="getLogin" parameterType="java.util.Map" resultType="UserVo">
+SELECT ID, NAME, AUTH FROM USERINFO
+WHERE ID=#{id} AND PASSWORD=#{password}
+</select>
+
+<select id="isDuplicateCheck" parameterType="String" resultType="int">
+SELECT COUNT(*) FROM USERINFO
+WHERE ID = #{id}
+</select>
+
+<insert id="signupMember" parameterType="UserVo">
+INSERT INTO USERINFO (ID, NAME, PASSWORD, EMAIL, AUTH, DELFLAG, JOINDATE)
+  VALUES (#{id},#{password}, #{name}, #{email},'U','N',SYSDATE)
+</insert>
+
+
+
+</mapper>

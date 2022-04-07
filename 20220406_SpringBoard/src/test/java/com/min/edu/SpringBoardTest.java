@@ -68,7 +68,7 @@ public class SpringBoardTest {
 		 System.out.println(cnt+"cnt값");
 	}
 	
-	@Test
+//	@Test
 	public void getOneBoard() {
 		BoardVo bVo = bDao.getOneBoard("4");
 		System.out.println(bVo);
@@ -100,6 +100,20 @@ public class SpringBoardTest {
 		vo.setEmail("gold@gmail.com");
 		int cnt = uDao.signupMember(vo);
 		System.out.println(cnt+"cnt의갯수");
+	}
+	
+//	@Test
+	public void replyUpdate() {
+		String seq = "15";
+		int cnt = bDao.replyUpdate(seq);
+		System.out.println(cnt+"cnt의 값입니다.");
+	}
+	
+//	@Test
+	public void replyInsert() {
+		BoardVo vo = new BoardVo(15, "id", "title", "content");
+		int cnt = bDao.replyInsert(vo);
+		System.out.println(cnt+"cnt의 값입니다.");
 	}
 
 		

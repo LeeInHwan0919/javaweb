@@ -44,4 +44,12 @@ public class BoardServiceImpl implements IBoardService {
 		return dao.getOneBoard(seq);
 	}
 
+	@Override
+	public int replyInsert(String seq, BoardVo vo) {
+		logger.info("BoardServiceImpl 답글 작성 replyInsert");
+		int m = dao.replyUpdate(seq);
+		int n = dao.replyInsert(vo);
+		return (n>0&&m>0)?1:0;
+	}
+
 }

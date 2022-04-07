@@ -14,4 +14,6 @@ public interface IBoardService {
 	public int writeBoard(BoardVo vo);
 
 	public BoardVo getOneBoard(String seq);
+	
+	public int replyInsert(String seq, BoardVo vo);
 }

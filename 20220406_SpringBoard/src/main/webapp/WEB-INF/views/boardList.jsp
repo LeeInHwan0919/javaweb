@@ -81,7 +81,7 @@
                 <td><input type="checkbox" name="chkVal" value="${dto.seq}"> </td>
                 <td>${vs.count}</td>
                 <td>${dto.id}</td>
-                <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.title}</a></td>
+                <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.step}${dto.title}</a></td>
                 <td>
                     <fmt:parseDate var="cDate" value="${dto.regdate}" pattern="yyyy-MM-dd"/>
                     <fmt:formatDate value="${cDate}"/>

@@ -37,4 +37,14 @@ public class BoardDaoImpl implements IBoardDao {
 		return (BoardVo)sqlSession.selectList(NS+"getOneBoard",seq).get(0);
 	}
 
+	@Override
+	public int replyUpdate(String seq) {
+		return sqlSession.update(NS+"replyUpdate",seq);
+	}
+
+	@Override
+	public int replyInsert(BoardVo vo) {
+		return sqlSession.insert(NS+"replyInsert", vo);
+	}
+
 }

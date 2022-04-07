@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.BoardDaoImpl">
+<select id="userBoardList" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF, DELFLAG, REGDATE FROM ANSWERBOARD
+WHERE DELFLAG='N'
+</select>
+
+<update id="delflagBoard" parameterType="java.util.Map">
+    UPDATE ANSWERBOARD SET DELFLAG = 'Y'
+    WHERE DELFLAG = 'N'
+    AND SEQ IN
+<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+  #{seq}
+</foreach>
+</update>
+
+<insert id="writeBoard" parameterType="BoardVo">
+  <selectKey keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+    SELECT ANSWERBOARD_SEQ.NEXTVAL AS SEQ FROM DUAL
+  </selectKey>
+  INSERT INTO ANSWERBOARD (SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF, DELFLAG, REGDATE)
+  VALUSE(#{seq}, #{id}, #{title}, #{content}, 0, 0, 
+  (SELECT NVL(MAX(REF),0) FROM ANSWERBOARD )+1, 'N' , SYTSDATE)
+</insert>
+
+<select id="getOneBoard" parameterType="java.lang.String" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF, DELFLAG, REGDATE FROM ANSWERBOARD
+WHERE SEQ = #{seq}
+</select>
+
+<insert id="replyInsert" parameterType="BoardVo">
+INSERT INTO ANSWERBOARD (SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF)
+VALUES(ANSWERBOARD_SEQ.NEXTVAL, #{id},#{title},#{content},
+(SELECT STEP FROM ANSWERBOARD WHERE SEQ=#{seq})+1,
+(SELECT DEPTH FROM ANSWERBOARD WHERE SEQ=#{seq})+1,
+(SELECT REF FROM ANSWERBOARD WHERE SEQ=#{seq}))
+</insert>
+
+<update id="replyUpdate" parameterType="String">
+UPDATE ANSWERBOARD SET STEP = STEP+1 
+WHERE REF = (SELECT REF FROM ANSWERBOARD WHERE SEQ=#{seq})
+AND STEP > (SELECT STEP FROM ANSWERBOARD WHERE SEQ=#{seq})
+</update>
+
+
+
+</mapper>

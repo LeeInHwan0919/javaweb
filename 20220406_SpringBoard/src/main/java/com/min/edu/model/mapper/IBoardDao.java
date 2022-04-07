@@ -14,4 +14,8 @@ public interface IBoardDao {
 	public int writeBoard(BoardVo vo);
 
 	public BoardVo getOneBoard(String seq);
+	
+	public int replyUpdate(String seq);
+	
+	public int replyInsert(BoardVo vo);
 }
