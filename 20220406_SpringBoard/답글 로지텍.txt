@@ -8,7 +8,7 @@
 8. replyBoard.jsp생성 - 부트스트랩으로 생성 (seq(Hidden), id, title, content)
    post처리  Button생성(답글입력, 초기화, 취소javascript:history.back(-1) 
 9. BoardController - replyBoard post 기능 if 성공 boarList.do /실패 redirect:/replyBoard.do?chkVal="+vo.getSeq();
+10. 답글버튼 js > 로그인 세션으로 답글 버튼 처리 ${sessionScope.loginVo.id} 
 
 미완성
-답글버튼 js > 로그인 세션으로 답글 버튼 처리 ${sessionScope.loginVo.id} js내에 작동안됨
 공백처리 > ${dto.depth}이 c:forceach 내에서 형변환 불가 > depth * 공백 불가

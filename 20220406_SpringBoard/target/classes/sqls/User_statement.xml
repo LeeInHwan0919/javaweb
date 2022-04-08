@@ -17,6 +17,40 @@ INSERT INTO USERINFO (ID, NAME, PASSWORD, EMAIL, AUTH, DELFLAG, JOINDATE)
   VALUES (#{id},#{password}, #{name}, #{email},'U','N',SYSDATE)
 </insert>
 
-
-
+<update id="changeAuthToA" parameterType="java.util.Map">
+  UPDATE USERINFO SET AUTH='A'
+  WHERE ID IN
+  <foreach collection="ids" item="id" open="(" separator="," close=")">
+    #{id}
+  </foreach>
+  </update>
+  
+  <update id="changeDelflagToN" parameterType="java.util.Map">
+  UPDATE USERINFO SET AUTH='N'
+  WHERE ID IN
+  <foreach collection="ids" item="id" open="(" separator="," close=")">
+    #{id}
+  </foreach>
+  </update>
+  
+  <update id="changeDelflagToU" parameterType="java.util.Map">
+  UPDATE USERINFO SET AUTH='U'
+  WHERE ID IN
+  <foreach collection="ids" item="id" open="(" separator="," close=")">
+    #{id}
+  </foreach>
+  </update>
+  
+  <update id="changeDelflagToY" parameterType="java.util.Map">
+  UPDATE USERINFO SET AUTH='Y'
+  WHERE ID IN
+  <foreach collection="ids" item="id" open="(" separator="," close=")">
+    #{id}
+  </foreach>
+  </update>
+  
+  <select id="getAllUser" resultType="UserVo">
+    SELECT ID, NAME, EMAIL, AUTH, DELFLAG, JOINDATE
+    FROM USERINFO
+  </select>
 </mapper>

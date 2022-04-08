@@ -1,3 +1,5 @@
+<%@page import="org.springframework.web.context.request.RequestContextHolder"%>
+<%@page import="org.springframework.web.context.request.ServletWebRequest"%>
 <%@page import="com.min.edu.vo.BoardVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,7 +51,20 @@
     color:orange;
   }
 </style>
+<%
+ServletWebRequest servletContainer = (ServletWebRequest)RequestContextHolder.getRequestAttributes();
+HttpServletRequest req = servletContainer.getRequest();
 
+String step = req.getParameter("step");
+int stepCnt = Integer.parseInt(step);
+System.out.println(step+"step의 값");
+String str = "";
+String blank="&nbsp;";
+for (int i = 0; i < stepCnt; i++) {
+  str+=blank;
+}
+// req.setAttribute("str",str);
+%>
 </head>
 <body>
 <div>
@@ -58,13 +73,17 @@
     ${sessionScope.loginVo.id} 님 환영합니다.
     <input type="button" value="로그아웃" onclick="location.href='./logout.do'">
   </c:if>
+  <c:if test="${loginVo.auth=='A'}">
+    <input type="button" value="회원관리" onclick="location.href='./managementUser.do'">
+  </c:if>
 </form>
   <form action="./multiDel.do" method="post" id="frm" name="frm" onsubmit="return chkbox()">
     <input type="submit" value="다중삭제">
     <input type="button" value="새글입력" onclick="location.href='./insertBoard.do'"> 
-
+    </form>
     <c:set var="len" value="${fn:length(lists)}"/>
     Total : ${len}
+    <form action="./boardList.do" method="get">
     <table style="margin:20px">
       <thead>
         <tr>
@@ -77,11 +96,13 @@
       </thead>
       <tbody>
         <c:forEach var="dto" items="${lists}" varStatus="vs">
+        
             <tr>
+            <td><input type="hidden" value="${dto.step}" id="step" name="step" ></td>
                 <td><input type="checkbox" name="chkVal" value="${dto.seq}"> </td>
                 <td>${vs.count}</td>
                 <td>${dto.id}</td>
-                <td><a href="./detailBoard.do?seq=${dto.seq}">${dto.step}${dto.title}</a></td>
+                <td><a href="./detailBoard.do?seq=${dto.seq}"><%=str%>${dto.title}</a></td>
                 <td>
                     <fmt:parseDate var="cDate" value="${dto.regdate}" pattern="yyyy-MM-dd"/>
                     <fmt:formatDate value="${cDate}"/>

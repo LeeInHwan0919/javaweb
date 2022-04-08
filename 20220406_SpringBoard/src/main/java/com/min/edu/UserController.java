@@ -3,6 +3,8 @@ package com.min.edu;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -105,5 +108,51 @@ public class UserController {
 		logger.info("Welcome 아이디 중복 체크 : {}",checkId);
 		int cnt = service.isDuplicateCheck(checkId);
 		return (cnt>0?"true":"false");
+	}
+	@RequestMapping(value="/findIdWindow.do", method=RequestMethod.GET)
+	public String findIdWindow() {
+		
+		return "findId";
+	}
+	
+	@RequestMapping(value="/findId.do", method=RequestMethod.POST)
+	@ResponseBody
+	public String findId(String name, String email) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("email", email);
+		String id = service.findId(map);
+		return (id==null)?"":id;
+	}
+	
+	@RequestMapping(value="/managementUser.do", method=RequestMethod.GET)
+	public String managementUser(Model model) {
+		logger.info("전체 회원 조회");
+		List<UserVo> listsVo = service.getAllUser();
+		model.addAttribute("listsVo",listsVo);
+		return "managementUser";
+	}
+	
+	@RequestMapping(value="/managementUser.do", method=RequestMethod.POST)
+	public String changeUser(String[] chksId, String btnChk)  {
+		logger.info("회원 관리");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ids", chksId);
+		
+		if(btnChk.equals("toAuth")) {
+			service.changeAuthToA(map);
+			return "managementUser";
+		}else if(btnChk.equals("toUser")) {
+			service.changeAuthToU(map);
+			return "managementUser";
+		}else if(btnChk.equals("inactiveUser")) {
+			service.changeAuthToY(map);
+			return "managementUser";
+		}else {
+			service.changeAuthToN(map);
+			return "managementUser";
+		}
+		
 	}
 }

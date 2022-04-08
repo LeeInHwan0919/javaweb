@@ -1,5 +1,6 @@
 package com.min.edu.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,4 +16,13 @@ public interface IUserService {
 	public int signupMember(UserVo vo);
 	
 	public int isDuplicateCheck(String id);
+	
+	public String findId(Map<String, Object> map);
+	
+	public int changeAuthToA(Map<String, Object> map);
+	public int changeAuthToU(Map<String, Object> map);
+	public int changeAuthToY(Map<String, Object> map);
+	public int changeAuthToN(Map<String, Object> map);
+	
+	public List<UserVo> getAllUser();
 }

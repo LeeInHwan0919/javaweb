@@ -52,4 +52,5 @@ public class BoardServiceImpl implements IBoardService {
 		return (n>0&&m>0)?1:0;
 	}
 
+
 }

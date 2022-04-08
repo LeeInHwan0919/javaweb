@@ -115,6 +115,16 @@ public class SpringBoardTest {
 		int cnt = bDao.replyInsert(vo);
 		System.out.println(cnt+"cnt의 값입니다.");
 	}
+	
+	@Test
+	public void findId() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", "Gold");
+		map.put("email", "gold@gmail.com");
+		String id = uDao.findId(map);
+		System.out.println(id);
+		
+	}
 
 		
 	

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +33,18 @@ public class BoardController {
 	private IBoardService service;
 	
 	@RequestMapping(value="/boardList.do", method = RequestMethod.GET)
-	public String boardList(Model model) {
+	public String boardList(Model model, HttpServletRequest req) {
 		logger.info("BoardController 전체조회 boardList");
+//		String step = req.getParameter("step");
+//		int stepCnt = Integer.parseInt(step);
+//		System.out.println(step+"step의 값");
+//		String str = "";
+//		String blank="&nbsp;";
+//		for (int i = 0; i < stepCnt; i++) {
+//			str+=blank;
+//		}
+//		req.setAttribute("str",str);
+		
 		List<BoardVo> lists = service.userBoardList();
 		model.addAttribute("lists",lists);
 		for (BoardVo vo : lists) {
@@ -74,9 +85,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/replyBoard.do", method=RequestMethod.POST)
-	public String replyBoard(HttpServletRequest req,String seq ,BoardVo vo) {
+	public String replyBoard(String seq ,BoardVo vo) {
 		logger.info("BoardController 답글 입력 replyBoard");
 		int cnt = service.replyInsert(seq, vo);
+		
+		
 		if(cnt!=0) {
 		System.out.println("성공");	
 		return "redirect:/boardList.do";	

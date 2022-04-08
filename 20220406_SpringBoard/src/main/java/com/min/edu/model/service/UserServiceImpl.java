@@ -1,5 +1,6 @@
 package com.min.edu.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -35,5 +36,42 @@ public class UserServiceImpl implements IUserService {
 		logger.info("isDuplicateCheck 중복체크 파라미터 값:{}",id);
 		return dao.isDuplicateCheck(id);
 	}
+
+	@Override
+	public String findId(Map<String, Object> map) {
+		return dao.findId(map);
+	}
+
+	@Override
+	public int changeAuthToA(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.changeAuthToA(map);
+	}
+
+	@Override
+	public int changeAuthToU(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.changeAuthToU(map);
+	}
+
+	@Override
+	public int changeAuthToY(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.changeAuthToY(map);
+	}
+
+	@Override
+	public int changeAuthToN(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.changeAuthToN(map);
+	}
+
+	@Override
+	public List<UserVo> getAllUser() {
+		// TODO Auto-generated method stub
+		return dao.getAllUser();
+	}
+	
+	
 
 }

@@ -43,5 +43,19 @@ VALUES(ANSWERBOARD_SEQ.NEXTVAL, #{id}, #{title},#{content},
 (SELECT "DEPTH" FROM ANSWERBOARD a3 WHERE SEQ=#{seq})+1)
 </insert>
 
+<select id="restoreBoard">
+SELECT SEQ, ID, TITLE, CONTENT, STEP, DEPTH, REF, DELFLAG,REFDATE
+FROM ANSWERBOARD
+WHERE DELFLAG='Y'
+</select>
+
+<update id="resotreDelflag">
+ UPDATE ANSWERBOARD SET DELFLAG='N'
+WHERE DELFLAG='Y' AND SEQ IN #{seq}
+</update>
+
+<select id="findId" parameterType="java.util.Map" resultType="String">
+  SELECT ID FROM USERINFO WHERE NAME = #{name} AND EMAIL = #{email}
+</select>
 
 </mapper>

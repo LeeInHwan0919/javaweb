@@ -1,5 +1,6 @@
 package com.min.edu.model.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -29,6 +30,37 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public int isDuplicateCheck(String id) {
 		return sqlSession.selectOne(NS+"isDuplicateCheck",id);
+	}
+
+	@Override
+	public String findId(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"findId",map);
+	}
+
+	@Override
+	public int changeAuthToA(Map<String, Object> map) {
+		return sqlSession.update(NS+"changeAuthToA",map);
+	}
+
+	@Override
+	public int changeAuthToU(Map<String, Object> map) {
+		return sqlSession.update(NS+"changeAuthToU",map);
+	}
+
+	@Override
+	public int changeAuthToY(Map<String, Object> map) {
+		return sqlSession.update(NS+"changeAuthToY",map);
+	}
+
+	@Override
+	public int changeAuthToN(Map<String, Object> map) {
+		return sqlSession.update(NS+"changeAuthToN",map);
+	}
+
+	@Override
+	public List<UserVo> getAllUser() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+"getAllUser");
 	}
 
 }

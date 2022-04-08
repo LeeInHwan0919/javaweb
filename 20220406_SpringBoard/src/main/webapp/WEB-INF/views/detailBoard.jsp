@@ -14,6 +14,7 @@
   <div class="container">
       <h1>게시글 상세</h1>
       <h3>필수 값을 입력해 주세요</h3>
+      <h5>로그인 세션 : ${sessionScope.loginVo.id}</h5>
       <div>
         <div class="form-control">아이디 : ${vo.id}</div> 
         <div class="form-control">제목 : ${vo.title}</div> 
@@ -23,10 +24,20 @@
       <div>
         <input class="btn btn-primary" type="submit" value="삭제" onclick="deleteOne()">
         <input class="btn btn-success" type="button" value="수정" onclick="updateOne()">
-        <input class="btn btn-danger" type="button" value="답글" onclick="answerOne()">
+        <input class="btn btn-danger" type="button" value="답글" id="answer" onclick="answerOne()">
       </div>
   </div>
   <script type="text/javascript">
+    $(function(){
+    	if(${sessionScope.loginVo.id}!=null){
+    		$("#answer").show();
+    	}else{
+    		$("#answer").hide();
+    	}
+    	
+    	
+    })
+  
     function deleteOne(){
     	console.log(${vo.seq});
     	var seq = ${vo.seq}
