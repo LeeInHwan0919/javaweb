@@ -1,6 +1,6 @@
 <%@page import="org.springframework.web.context.request.RequestContextHolder"%>
 <%@page import="org.springframework.web.context.request.ServletWebRequest"%>
-<%@page import="com.min.edu.vo.BoardVo"%>
+<%@page import="com.min.edu.vo.JobsVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

@@ -15,7 +15,7 @@
       </list>
     </property>
   </bean>
-		
+
 		<!-- dataSource 갖고옴 -->
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		  <property name="driverClassName" value="${driver}"/>

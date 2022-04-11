@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- M001 properties 파일을 읽어서 bean으로 만듬-->
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<property name="locations">
+	<list>
+		<value>classpath:properties/db.properties</value>
+	</list>
+</property>
+</bean>
+	
+		<!-- M002 DataSource bean 을 만들어 준다 -->
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${user}"/>
+		<property name="password" value="${pw}"/>
+	</bean>
+	
+		<!-- M003 SqlSessionFactory 를 bean으로 만들어 준다 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis/Configuration.xml"/>
+
+	</bean>
+	
+		<!-- M004 MyBatis의 SqlsessionFactory bean을 spring에서 사용하는 template으로 만들어서 Autowired를 통해 사용하기 위함 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean"></constructor-arg>
+	</bean>
+	
+
+	
+	
+		
+</beans>

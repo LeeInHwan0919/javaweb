@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	
+	<display-name>20220406_Spring_Board</display-name>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- MVC와 상관없이 공유하는 bean을 설정하게 됨 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/appServlet/root-context.xml</param-value>
+	</context-param>
+	
+	<!-- param-name은 같으면 않됨 근데 DispatcherSetvlete이 사용할때 자동으로 context init를 자동선택 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- url-mapping의 해당하는 요청이 들어 오면 Spring DispatcherServlet 클래스가 동작이 되면서 ApplicationContext 로드-->
+	<servlet>
+		<servlet-name>appServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- Servlet 요청과 응답의 처리인 Control View의 기능을 담당한다 -->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+					/WEB-INF/spring/appServlet/servlet-context.xml
+					/WEB-INF/spring/appServlet/aop-context.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>appServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+<!-- 가로채기 기술 server로 접근 하는 모든 요청을 중간에서 확인 및 변경을 해줌 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>loggerFilter</filter-name>
+		<filter-class>com.min.edu.filter.AccessFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loggerFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+</web-app>
