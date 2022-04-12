@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.JobsDaoImpl">
+  	<select id="selectJobAll" resultType="JobsVO">
+  		SELECT JOB_ID, JOB_TITLE, MIN_SALARY,MAX_SALARY
+  			FROM JOBS
+  	</select>
+  	
+  	<insert id="insertJob" parameterType="JobsVO">
+  		INSERT INTO JOBS(JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY) 
+  			VALUES(#{job_id},#{job_title},#{min_salary},#{max_salary}) 
+  	</insert>
+</mapper>

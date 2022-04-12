@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>인덱스 페이지</title>
+<title>Insert title here</title>
 </head>
 <body>
-  <h1>인코딩 테스트 입니다.</h1>
+<h1>미완성입니다!</h1>
 </body>
 </html>

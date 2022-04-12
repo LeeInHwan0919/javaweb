@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.min.edu.model.service.IJobsService;
 import com.min.edu.vo.JobsVo;
+import com.min.edu.vo.UserVo;
 
 @Controller
 public class JobsController {
@@ -26,6 +28,11 @@ public class JobsController {
 	
 	@RequestMapping(value="/allJobs.do" , method = RequestMethod.GET)
 	public String allJobs(Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		List<JobsVo> loginVo = (List<JobsVo>) session.getAttribute("loginVo");
+		session.setAttribute("loginVo", loginVo);
+		
 		logger.info("JobsController allJobs 이동");
 		List<JobsVo> lists = service.JobsAllSelect();
 		model.addAttribute("lists",lists);
@@ -54,6 +61,11 @@ public class JobsController {
 			sb.append("<script>alert('입력이 되지 않았습니다.');</script>");
 			return "redirect:/JobsInsert.do";
 		}
+	}
+	
+	@RequestMapping(value="/jobsDetail.do",method=RequestMethod.GET)
+	public String jobsDetail() {
+		return "jobsDetail";
 	}
 	
 	

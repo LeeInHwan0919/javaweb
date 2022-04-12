@@ -13,6 +13,7 @@
 </head>
 <body>
 <div class="container">
+<h1>로그인 된 사용자 이메일 : ${sessionScope.loginVo.get(0).email}</h1>
 <h1>JOBS 테이블 전체 조회</h1>
 <input type="button" onclick="location.href='./JobsInsert.do'" value="Jobs 등록하기 (Insert)">
 <table class="table">
@@ -29,7 +30,7 @@
         <c:forEach var="dto" items="${lists}" varStatus="vs">
             <tr>
                 <td>${dto.job_id}</td>
-                <td>${dto.job_title}</td>
+                <td><a href="./jobsDetail.do">${dto.job_title}</a></td>
                 <td>${dto.min_salary}</td>
                 <td>${dto.max_salary}</td>
                 <td>${dto.useage}</td>
