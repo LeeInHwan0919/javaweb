@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.min.edu.model.service.IJobsService;
 import com.min.edu.vo.JobsVo;
-import com.min.edu.vo.UserVo;
 
 @Controller
 public class JobsController {
@@ -28,17 +27,13 @@ public class JobsController {
 	
 	@RequestMapping(value="/allJobs.do" , method = RequestMethod.GET)
 	public String allJobs(Model model, HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		
-		List<JobsVo> loginVo = (List<JobsVo>) session.getAttribute("loginVo");
-		session.setAttribute("loginVo", loginVo);
 		
 		logger.info("JobsController allJobs 이동");
 		List<JobsVo> lists = service.JobsAllSelect();
 		model.addAttribute("lists",lists);
-		String url = req.getRequestURI();
-		String qs = req.getQueryString();
-		System.out.println("URL : "+url+", QueryString : " + qs);
+//		String url = req.getRequestURI();
+//		String qs = req.getQueryString();
+//		System.out.println("URL : "+url+", QueryString : " + qs);
 		return "allJobs";
 	}
 	

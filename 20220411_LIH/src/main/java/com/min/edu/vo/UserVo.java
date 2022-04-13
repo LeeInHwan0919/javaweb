@@ -22,13 +22,5 @@ public class UserVo {
 	private String auth;
 	private String delflag;
 	private String joindate;
-	
-	public UserVo(String id, String name, String password, String email) {
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.email = email;
-	}
-	
-	
+
 }

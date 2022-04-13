@@ -9,4 +9,5 @@ public interface IUserDao {
 	public List<UserVo> signIn(UserVo vo);
 		
 	public int signUp(UserVo vo);
+	
 }

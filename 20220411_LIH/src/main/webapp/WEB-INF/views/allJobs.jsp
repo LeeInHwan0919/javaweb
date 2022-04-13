@@ -1,3 +1,5 @@
+<%@page import="com.min.edu.vo.UserVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,7 +15,7 @@
 </head>
 <body>
 <div class="container">
-<h1>로그인 된 사용자 이메일 : ${sessionScope.loginVo.get(0).email}</h1>
+<h1>로그인 된 사용자 이메일 : ${sessionScope.loginVo.get(0).getEmail()}</h1>
 <h1>JOBS 테이블 전체 조회</h1>
 <input type="button" onclick="location.href='./JobsInsert.do'" value="Jobs 등록하기 (Insert)">
 <table class="table">

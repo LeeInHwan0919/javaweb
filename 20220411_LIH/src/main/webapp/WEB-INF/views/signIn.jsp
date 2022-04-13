@@ -14,7 +14,7 @@
 	  <tbody>
 		<tr>
 			<th>E-Mail : </th>
-			<td><input type="text" name="email" id="email" required> </td>
+			<td><input type="email" name="email" id="email" required> </td>
 		</tr>
 		<tr>
 			<th>Password</th>

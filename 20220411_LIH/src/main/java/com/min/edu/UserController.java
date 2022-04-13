@@ -1,6 +1,5 @@
 package com.min.edu;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -34,9 +33,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/signIn.do", method = RequestMethod.POST)
-	public String signIn(UserVo vo, HttpSession session, HttpServletResponse response)
-			throws IOException {
-		logger.info("Welcome 로그인 처리 후 이동 signIn");
+	public String signIn(UserVo vo, HttpSession session, HttpServletResponse response) throws IOException {
+		logger.info("Welcome 로그인 처리 후 이동 signIn{}", vo);
 		response.setContentType("text/html;charset=UTF-8;");
 
 		List<UserVo> loginVo = service.signIn(vo);
@@ -50,7 +48,7 @@ public class UserController {
 			return null;
 		} else {
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert('로그인 정보가 없습니다'); location.href='./signUp.do';</script>");
+			out.print("<script>alert('로그인 정보가 없습니다'); location.href='./signIn.do';</script>");
 			out.flush();
 			return null;
 		}
@@ -69,35 +67,30 @@ public class UserController {
 		return null;
 	}
 
-	@RequestMapping(value="/signUp",method=RequestMethod.GET)
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
 	public String signUp() {
 		logger.info("Welcome 회원가입 화면 이동 signUp get");
 		return "signUp";
 	}
-	
-	@RequestMapping(value="/signUp", method = RequestMethod.POST)
-	public String signUp(UserVo vo, HttpServletResponse resp) throws IOException{
-		logger.info("Welcome 회원가입 입력 signUp post: {}",vo);
+
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	public String signUp(UserVo vo, HttpServletResponse resp) throws IOException {
+		logger.info("Welcome 회원가입 입력 signUp post: {}", vo);
 		int cnt = service.signUp(vo);
-		if(cnt == 1) {
+		if (cnt == 1) {
 			StringBuffer sb = new StringBuffer();
 			sb.append("<script>");
 			sb.append("alert('회원가입이 완료되었습니다.');");
 			sb.append("location.href='./signIn.do'");
 			sb.append("</script>");
 			return null;
-		}else {
+		} else {
 			resp.setContentType("text/html;charset=UTF-8;");
 			PrintWriter out = resp.getWriter();
-			out.println("<script>alert('회원가입에 실패하였습니다. \n 정규화 형식에 맞추어 작성해주세요.'); location.href='./signUp.do';</script>");
+			out.println(
+					"<script>alert('회원가입에 실패하였습니다. \n 정규화 형식에 맞추어 작성해주세요.'); location.href='./signUp.do';</script>");
 			return null;
 		}
 	}
 
-
-	
-
-
-	
-	
 }
