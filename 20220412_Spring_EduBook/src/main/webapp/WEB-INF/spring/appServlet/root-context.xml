@@ -32,11 +32,11 @@
 		<constructor-arg ref="sqlSessionFactoryBean"/>
 	</bean>
 	
-	<bean id="transactionManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	<tx:advice transaction-manager="transactionManager1" id="advice">
+	<tx:advice transaction-manager="transactionManager" id="advice">
 		<tx:attributes>
 			<tx:method name="*" propagation="REQUIRED" rollback-for="exception"/>
 		</tx:attributes>

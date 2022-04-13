@@ -1,6 +1,5 @@
 package com.min.edu.vo;
 
-
 public class JobsVO {
 	private String job_id;
 	private String job_title;
@@ -8,7 +7,6 @@ public class JobsVO {
 	private int max_salary;
 	
 	public JobsVO() {
-		super();
 	}
 	
 	@Override

@@ -22,5 +22,14 @@
 	
 	<context:component-scan base-package="com.min.edu" />
 	
+	<!-- Transaction AOP 처리를 위한 driven -->
 	<tx:annotation-driven/>
+	
+	<!-- Validation 처리를 위한 bean -->
+	<beans:bean id="localValidatorFactoryBean" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	
+	</beans:bean>
+	
+	
+	
 </beans:beans>

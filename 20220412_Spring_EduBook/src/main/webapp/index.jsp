@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring Education Book</title>
+<title>Spring Aducation Book</title>
 </head>
 <body>
-	<h1><a href="./main.do?lang=ko">Spring Education Book 이동</a></h1>
+	<h1><a href="./main.do?lang=ko">Spring Education Book</a></h1>
 </body>
 </html>
