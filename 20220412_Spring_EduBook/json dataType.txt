@@ -1,0 +1,24 @@
+
+■ produces = html/text; charset=UTF-8;
+JSON(String) -> dataType:없음 -> string 
+JSON(String) -> dataType:"json" -> object
+String -> dataType:"json" -> String이 JSON의 객체로 변경이 안되기 때문에 
+
+■ produces = "application/json; charset=UTF-8"
+JSON(String) -> dataType: -> string
+JSON(String) -> dataType:"json" -> object
+
+■ produces = 
+JSON(String) -> dataType :  ->JSON(String)  -> JSON.parse(obj) -> object
+
+■ produces = 
+Map<String, Boolean> -> dataType : -> object
+Map<String, Boolean> -> dataType : "text" -> JSON(String) 
+
+■ produces = html/text; charset=UTF-8;
+Map<String, Boolean> -> dataType : -> 406코드 발생(Map은 jackson-bind에 의해서 반드시 
+JSON 객체 이어야 함 근데 produces의 지원되지 않는 형태인 text로 만들기 때문에 서버에서 
+406 코드를 발생)
+   => 해결
+            1) produce를 지운다 : 전송데이터는 JSON(String)이다. 
+            2) produce를 Jackson에 맞는 JSON타입으로 선언한다 :  전송데이터는 JSON(String)이다.  
