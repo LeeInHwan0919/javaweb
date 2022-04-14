@@ -62,7 +62,7 @@
 					<tr>
 						<th><spring:message code="label.password"/> </th>
 						<td>
-							<input type="password" name="pw" required="required">
+							<input type="password" name="password" required="required">
 						</td>
 					</tr>
 					<tr>
@@ -74,6 +74,10 @@
 					</tr>
 				</table>
 			</form>
+		</div>
+		<hr>
+		<div>
+		  <a href="./init.do">HttpSession과 @SessionAttribute 설명</a>
 		</div>
 		
 	</fieldset>
