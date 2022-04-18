@@ -48,7 +48,7 @@
     <div class="contentArea">
       콘텐트 메뉴
       <ol>
-        <li><a href="./sessionValue.do">HttpSession의 값을 사용해 보자</a></li>
+      	<li><a href="./sessionValue.do">HttpSession의 값을 사용해 보자</a></li>
       </ol>
     </div>
   </div>

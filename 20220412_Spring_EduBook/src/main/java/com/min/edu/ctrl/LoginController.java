@@ -1,6 +1,5 @@
 package com.min.edu.ctrl;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +18,7 @@ import com.min.edu.model.service.IUserService;
 import com.min.edu.vo.UserVo;
 
 @Controller
-@SessionAttributes("loginVo") //현재 컨트롤러의 모든 곳에서 사용이 가능
+@SessionAttributes("loginVo") //현재 컨트롤러의 모든 곳에서 사용이 가능하다 
 public class LoginController {
 
 	private static final Logger logger=LoggerFactory.getLogger(LoginController.class);
@@ -35,68 +34,55 @@ public class LoginController {
 			return "redirect:/main.do";
 		}else {
 			logger.info("$$$$ 로그인 loginVo 값 : {}",loginVo);
-//          model은 Spring Container의 request 객체이다. @RequestMapping과는 값을 공유
-//			model.addAttribute("loginVo",loginVo);
+//			model.addAttribute("loginVo",loginVo); // model은 spring Container의 rquest 객체이다 
+			//@ReqyestMapping과는 값을 공유할수잇다 
 //			session.setAttribute("loginVo", loginVo);
 			
-			model.addAttribute("loginVo",loginVo);
+			model.addAttribute("loginVo", loginVo);
 			
 			return "boardList";
 		}
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping(value="/logout.do",method=RequestMethod.GET)
-	public String logout(HttpSession session, SessionStatus sessionStatus) {
-//		logger.info("session의 삭제 session.invalidate()"); //세션의 사용이 무효화 된다, 해당메소드를 사용할 수 없음(언바운드됨)
-//		session.invalidate();
-//		UserVo vo = (UserVo)session.getAttribute("loginVo");
-//		logger.info("$$invalidate된 세션 {}",session);
-		
-//		logger.info("session의 삭제 session.removeAttribute()");
-//		session.removeAttribute("loginVo");
-//		UserVo vo = (UserVo)session.getAttribute("loginVo");
-//		logger.info("삭제된$$ remove after 세션 {}",vo);
-		
+	@RequestMapping(value = "/logout.do",method = RequestMethod.GET)
+	public String logout(HttpSession session,SessionStatus sessionStatus) {
+		logger.info("session의 삭제 session.invalidate() ");
+
 		sessionStatus.setComplete();
-		UserVo vo = (UserVo)session.getAttribute("loginVo");
-		logger.info("$$invalidate된 세션 {}",vo);
+		UserVo vo =(UserVo) session.getAttribute("loginVo");
+		logger.info("삭제된 session{}",session);
 		
 		return "redirect:/main.do";
 	}
 	
-	// 시나리오
-	// 로그인이 된 상태에서 세션의 정보를 사용하여 값을 사용한다. ex) 새글 입력
-	@RequestMapping(value="/sessionValue.do",method=RequestMethod.GET)
-	public String sessionValue(HttpSession session, @ModelAttribute("loginVo")UserVo uVo) {
+	//시나리오 
+	//로그인이 된 상태에서 세션의 정보를 사용하여 값을 사용한다 ex) 새글입력
+	@RequestMapping(value = "/sessionValue", method = RequestMethod.GET )
+	public String sessionValue(HttpSession session, @ModelAttribute("loginVo") UserVo uVo) {
 		/*
-		 * Model 객체는 Request scope의 영역이다. 따라서 Session scope를 사용하기 위해서는
-		 * @Controller에 @SessionAttribute("이름B")을 설정하고
-		 * 				model.addAttribute("이름B","값")을 통해서 입력하면 얘는
-		 * Model의 request가 아닌 SessionScope에 담는다 . 
-		 *   사용방법:
-		 *     1) HttpSession을 Parameter로 선언하고 session.getAttribute("이름B")를 한 후  캐스팅하여 사용가능
-		 *     2) 같은 Controller이라면 @ModelAttribute("이름B")타입 변수명을 Parameter에 사용하면 자동으로 캐스팅된 session을 사용할 수 있다.
-		 *     
-		 *   삭제방법:
-		 *     1) Spring Annotation이기 때문에 sessiosn.invalidate()가아닌 SessionStatus의 sessionStatus.setComplete()를 통해 cleanup 할 수 있다.   
-		 */    
+		 * Model 객체를 Request scope 영역이다 따라서 session에 scope를 사용하기 위해서는 
+		 * @Controller에 @SessionAttribute("이름B")을 설정하고 
+		 * 							model.addAttribute("이름B","값")을 통해서 입력하면 
+		 * 	Model의 Request가 아닌 Session에 담기게 된다 
+		 * 사용 방법:
+		 * 	 1. HttpSession을 파라미터로 선언하고 session.getAttribute("이름B")를 통해서  캐스팅하여 사용 가능 
+		 *  2. 같은 컨트롤러 내부라면 @ModelAttribute("이름B") 타입 변수명을 파라미터에 사용하면 자동으로 캐스팅 된 session을 사용 할 수 있다 
+		 *  
+		 *  삭제 방법 : 
+		 *  1) Spring Annotation이기 때문에 session.invalidate()가 아닌 (완전삭제되기떄문)sessionStaus의 sessionStaus.cooplste()를 통해서 cleanup 할 수있다
+		 */
 		
 		
+		UserVo loginVo =(UserVo) session.getAttribute("loginVo");
+		logger.info("session에 담겨있는 정보 가져오기{}",loginVo.getId());
 		
-		UserVo vo = (UserVo)session.getAttribute("loginVo");
-		logger.info("session에 담겨 있는 정보 가져오기 : {}",vo.getId());
-		
-		logger.info("@SessionAttribute에 담겨 있는 정보 가져오기 : {}",uVo);
+		logger.info("sessiontAttribut에 담겨있는 정보 가져오기{}",uVo.getId());
 		
 		return "boardList";
 	}
+	
+	
+	
 	
 	
 }

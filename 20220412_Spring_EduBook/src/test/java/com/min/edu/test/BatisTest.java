@@ -28,7 +28,7 @@ public class BatisTest {
 		assertNotNull(sqlSession);
 	}
 
-//	@Test
+	@Test
 	public void login() {
 //		UserVo vo = new UserVo();
 //		vo.setId("GD001");
@@ -42,7 +42,7 @@ public class BatisTest {
 		System.out.println("쿼리의결과:" + uVo);
 	}
 	
-	@Test
+//	@Test
 	public void resultValueTest() {
 		Object o = sqlSession.selectOne(NS+"resultValue");
 		System.out.println("쿼리의결과"+o);
