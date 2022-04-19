@@ -46,6 +46,7 @@
 		<hr>
 		<div>
 			<a href="./socketOpen.do">채팅하기</a><br>
+			<a href="./groupChat.do">(그룹)채팅하기</a><br>
 			<a href="./mailForm.do">이메일 보내기</a>
 		</div>
 		
@@ -77,9 +78,8 @@
 		</div>
 		<hr>
 		<div>
-		  <a href="./init.do">HttpSession과 @SessionAttribute 설명</a>
+				<a href="./init.do">HttpSession과 @SessionAttribue 설명</a>
 		</div>
-		
 	</fieldset>
 </body>
 </html>

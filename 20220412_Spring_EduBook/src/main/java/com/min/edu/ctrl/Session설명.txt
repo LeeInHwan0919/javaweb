@@ -1,13 +1,9 @@
-※
-@SessionAttribute는 HttpSession을 사용할 때 @ModelAttribute 와 이름을 같게 하여 
-request scope가 아닌 session scope에 값을 저장 할 수 있도록 해줌
+※ @SessionAttribute는 HttpSession을 사용할 때 @ModelAttribute 와 이름을 같게 하여 requestScope가 아닌 sessionScope에 값을 저장 할 수 있도록 해줌
+※ @SessionAttribute는 4.3버전 이상에서 추가된 bind Annotation HttpSession에 저장 값을 타입 컨버팅을 쉽게 할 수 있도록 해줌
 
-※
-@SessionAttribute는 4.3버전 이상에서 추가된 bind Annotation HttpSession에 저장 값을 타입 컨버팅을 쉽게 할 수 있도록 해줍니다.
-
-
-■ 공통
+▶공통
 1) init.do에 의해서 HttpSession(:httpsessionTest), @SessionAttribute(:sessionTest)
+<<<<<<< HEAD
   -> sessionCheck.jsp에 출력
   
   
@@ -41,3 +37,42 @@ request scope가 아닌 session scope에 값을 저장 할 수 있도록 해줌
     최종 결론 : 생성된 클래스가 아닌 다른 Controller에서는 HttpSession의 session.invalidate()를 통해서
      모든 HttpSession과 @SessionAttribute로 생성된 객체를 삭제 할 수 있다.
   <===========================>
+=======
+	→ sessionCheck.jsp에 출력
+
+▶ 같은 Controller 의 HttpSession과 @SessionAttribute 
+2) [ test01 ] @SessionAttribute를 삭제하는 sessionStatus.setComplete();
+			test01.do
+			
+3) [ test02 ] HttpSession를 삭제하는 session.invalidate();
+			test02.do
+			
+▶ 다른 Controller 의 HttpSession과 @SessionAttribute 
+3) [ test03 ] @SessionAttribute를 삭제하는 sessionStatus.setComplete();
+			test03.do
+			
+4) [ test04 ] HttpSession를 삭제하는 session.invalidate();
+			test04.do
+			
+▶ 시나리오(HttpSession : h, @SessionAttribute : @)
+1. 같은 Controller	
+	1) init.do(h/@생성) > result01, result02 확인 > h/@모두 사용가능하다		
+	2) init.do(h/@생성) > test01을 통해서 @만을 삭제 > result01: @ name오류 "@sessionAttribute가 없습니다" / result02:정상출력
+	3) init.do(h/@생성) > test02을 통해서 @만을 삭제 > result01: @ 정상출력 / result02:null
+	→ 결론 : 같은 컨트롤러에서 생성된 h와 @는 h/@의 명령어를 통해서 삭제가 된다
+	
+2. 다른 Controller	
+	1) init.do(h/@생성) > result03, result04 확인 > h/@는 다른 Controller에서도 같은 호출 방법으로 사용이 가능하다	
+	2) init.do(h/@생성) > test03을 통해서 @만을 삭제 > result03: @ name 정상출력 / result04:정상출력
+	3) init.do(h/@생성) > test04을 통해서 @만을 삭제 > result03: @ name 삭제 / result02:정상 삭제
+	
+	→ 최종 결론 : 생성된 클래스가 아닌 다른 Controller에서는 HttpSession의 session.invalidate()를 통해서 모든 
+				HttpSession과 @SessionAttribute로 생성된 객체를 삭제 할 수 있다.
+	
+	
+	
+	
+	
+	
+	
+>>>>>>> 1ed9e8b3e37ac328ef04c9b846ef627e284f9f81
