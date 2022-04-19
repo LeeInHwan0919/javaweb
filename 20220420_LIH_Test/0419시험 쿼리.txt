@@ -1,0 +1,46 @@
+CREATE TABLE SPRINGMEMBER(
+	ID VARCHAR2(50),
+	PW VARCHAR2(300) NOT NULL,
+	AUTH CHAR(1) NOT NULL,
+	DELFLAG CHAR(1) NOT NULL,
+	REFDATE DATE NOT NULL,
+	CONSTRAINT "SPRINGMEMBER_PK" PRIMARY KEY(ID),
+	CONSTRAINT "SPRINGMEMBER_CK" CHECK("AUTH" IN('U','A'))
+	
+);
+
+CREATE TABLE SPRINGBOARD(
+	SEQ NUMBER,
+	ID VARCHAR2(50) NOT NULL,
+	TITLE VARCHAR2(200) NOT NULL,
+	CONTENT VARCHAR2(4000),
+	STEP NUMBER NOT NULL,
+	DEPTH NUMBER NOT NULL,
+	REFER NUMBER NOT NULL,
+	READCOUNT NUMBER,
+	DELFLAG CHAR(1) NOT NULL,
+	REGDATE DATE NOT NULL,
+	CONSTRAINT "SPRINGBOARD_PK" PRIMARY KEY (SEQ),
+	CONSTRAINT "SPRINGBOARD_FK" FOREIGN KEY ("ID") REFERENCES SPRINGMEMBER("ID")
+);
+
+CREATE SEQUENCE SPRINGBOARD_SEQ START WITH 1 INCREMENT BY 1;
+
+// 다오로 테스트하기
+
+1) 샘플 데이터 입력
+2) 회원전체조회(등록일순 내림차순)
+3) 회원가입
+4) 로그인(아이디, 비밀번호, 사용여부N)
+5) 비밀번호 확인(아이디입력받아서 비밀번호 확인)
+6) 새글쓰기
+7) 답글(업데이트, 답글입력)
+8) 상세글 보기
+9) 조회수
+10) 글수정(제목, 내용)
+11) 글삭제(삭제여부 변경, 다중삭제, [], DYNAMIC)
+12) 글삭제(DB삭제, 방법은 위와 동일)
+13) 하위 삭제 대상 찾기
+14) 게시글 전체조회(삭제된 글을 볼수없는 사용자, 삭제된 글볼수있는 관리자 ) : TEST LPAD로 작성을 하고 DAO는 그냥 작성
+15) 게시글 페이징 (쿼리만들어 적용) + 전체글 조회(사용자와 관리자로 나뉨)
+

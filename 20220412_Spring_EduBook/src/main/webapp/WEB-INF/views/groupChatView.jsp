@@ -158,9 +158,29 @@
 			ws = null;
 		}
 		
-		function viewList(grId){
-			
-		}
+	    function viewList(grId){
+	         $(".memList").children().remove();
+	         $.ajax({
+	            type:"POST",
+	            url:"./viewChatList.do",
+	            data:"mem_id="+$("#nickName"),
+	            async:false,
+	            success:function(result){
+	               for(var k in result.list){
+	                  if(result.list[k]==grId){
+	                     $(".memList").prepend("<p style='border-bottom:0.5px soild #b4b4b4;'>"+k+"</p>")
+	                  }
+	               }
+	            }
+	         });
+	      }
+		
+		window.addEventListener("beforeunload", function(event){
+			$.ajax({
+				type:"get",
+				
+			})
+		})
 		
 		
 		

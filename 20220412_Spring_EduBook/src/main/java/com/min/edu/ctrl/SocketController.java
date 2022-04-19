@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletConfigAware;
 
 @Controller
@@ -31,17 +32,17 @@ public class SocketController implements ServletConfigAware {
 		
 	}
 	
-	//---------------그룹채팅----------------//
+	//---------------洹몃９梨꾪똿----------------//
 	@RequestMapping(value = "/groupChat.do",method = RequestMethod.GET)
 	public String groupChat() {
-		logger.info("그룹 채팅 이동");
+		logger.info("洹몃９ 梨꾪똿 �씠�룞");
 		return "groupChat";
 	}
 	
-	//WebSocket 채팅 접속 했을 때
+	//WebSocket 梨꾪똿 �젒�냽 �뻽�쓣 �븣
 	@RequestMapping(value = "/socketOpenGr.do",method = RequestMethod.GET)
 	public String socketOpenGr(HttpSession session, String mem_id, String gr_id, Model model) {
-		logger.info("socketOpenGr 소켓화면 이동 1) 리스트에 접속자 넣기");
+		logger.info("socketOpenGr �냼耳볧솕硫� �씠�룞 1) 由ъ뒪�듃�뿉 �젒�냽�옄 �꽔湲�");
 		
 		session.setAttribute("mem_id", mem_id);
 		session.setAttribute("gr_id", gr_id);
@@ -50,32 +51,41 @@ public class SocketController implements ServletConfigAware {
 		if(chatList==null) {
 			chatList = new HashMap<String, String>();
 			chatList.put(mem_id, gr_id);
-			servletContext.setAttribute("chatList", chatList); //로그인 되는 객체마다 map에 담기고 session에 담긴다.
+			servletContext.setAttribute("chatList", chatList); //濡쒓렇�씤 �릺�뒗 媛앹껜留덈떎 map�뿉 �떞湲곌퀬 session�뿉 �떞湲대떎.
 		}else {
 			chatList.put(mem_id, gr_id);
-			servletContext.setAttribute("chatList", chatList); //map의 특징 마지막의 값을 인정? 
+			servletContext.setAttribute("chatList", chatList); //map�쓽 �듅吏� 留덉�留됱쓽 媛믪쓣 �씤�젙? 
 			
 		}
-		logger.info("socketOpenGr 소켓화면 이동 2) 리스트값 전달");
+		logger.info("socketOpenGr �냼耳볧솕硫� �씠�룞 2) 由ъ뒪�듃媛� �쟾�떖");
 		return "groupChatView";
 	}
 	
-	//WebSocket 채팅이 종료됐을때 
+	//WebSocket 梨꾪똿�씠 醫낅즺�릱�쓣�븣 
 	@RequestMapping(value = "/socketOut.do",method = {RequestMethod.GET,RequestMethod.POST})
 	public void socketOut(HttpSession session) {
-		logger.info("socketOut 소켓에서 나오기");
+		logger.info("socketOut �냼耳볦뿉�꽌 �굹�삤湲�");
 		String mem_id = (String)session.getAttribute("mem_id");
 		HashMap<String, String> chatList = (HashMap<String, String>)servletContext.getAttribute("chatList");
 		
-		System.out.println("기존 접속 회원 리스트 : "+chatList);
+		System.out.println("湲곗〈 �젒�냽 �쉶�썝 由ъ뒪�듃 : "+chatList);
 		
 		if(chatList!=null) {
 			chatList.remove(mem_id);
 		}
 		
-		System.out.println("갱신 후 접속 회원 리스트 : "+chatList);
+		System.out.println("媛깆떊 �썑 �젒�냽 �쉶�썝 由ъ뒪�듃 : "+chatList);
 		servletContext.setAttribute("chatList", chatList);
 	}
+	
+	   @RequestMapping(value = "/viewChatList.do",method = RequestMethod.POST)
+	   @ResponseBody
+	   public Map<String, Map<String, String>>viewChatList(){
+	      Map<String, Map<String, String>> map = new HashMap<String, Map<String,String>>();
+	      HashMap<String, String>chatList= (HashMap<String, String>)servletContext.getAttribute("chatList");
+	      map.put("list", chatList);
+	      return map;
+	   }
 
 
 }

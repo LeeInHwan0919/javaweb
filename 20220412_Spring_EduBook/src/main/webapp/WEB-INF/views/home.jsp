@@ -47,7 +47,8 @@
 		<div>
 			<a href="./socketOpen.do">채팅하기</a><br>
 			<a href="./groupChat.do">(그룹)채팅하기</a><br>
-			<a href="./mailForm.do">이메일 보내기</a>
+			<a href="./mailForm.do">이메일 보내기</a><br>
+			<a href="./uploadForm.do">파일 업로드</a>
 		</div>
 		
 		<hr>
