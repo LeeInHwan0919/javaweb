@@ -41,6 +41,7 @@ VALUES(SPRINGBOARD_SEQ.NEXTVAL, #{id}, #{title}, #{content}
 
 <!-- tansaction 상세조회 + 조회수 -->
 <!-- 상세글 보기 -->
+
 <select id="selectDetail" parameterType="BoardVo" resultType="BoardVo">
 SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, REGDATE 
 	FROM SPRINGBOARD s 
