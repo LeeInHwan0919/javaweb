@@ -29,13 +29,13 @@ request scope가 아닌 session scope에 값을 저장 할 수 있도록 해줌
 1. 같은 Controller 
   1) init.do(Hs / @s 생성) -> result01, result02확인 -> Hs와 @s가 모두 사용 가능하다.
   2) init.do(Hs / @s 생성) -> test01을 통해서 @s만을 삭제 -> result01 : @name오류(name이 없기떄문에) / result02 : 정상출력 
-  3) init.do(Hs / @s 생성) -> test02을 통해서 Hs만을 삭제 -> result : @s 정상출력 / result02 : null
+  3) init.do(Hs / @s 생성) -> test02을 통해서 Hs만을 삭제 -> result01 : @s 정상출력 / result02 : null
      ===> 결론 : 같은 컨트롤러에서 생성된 Hs와 @s 는 Hs/@s의 명령어를 통해서 삭제가 된다.
   
 2. 다른 Controller
   1) init.do(Hs / @s 생성) -> result03, result04확인 -> Hs와/@s는 다른 컨트롤러에서도 같은 호출 방법으로 사용이 가능하다. 
   2) init.do(Hs / @s 생성) -> test03 통해서 @s 만을 삭제 -> result03 : @name 정상출력 / result04 : 정상출력
-  3) init.do(Hs / @s 생성) -> test04를 통해서 Hs만을 삭제 -> result03 : @name삭제 / result04 : 정상삭제
+  3) init.do(Hs / @s 생성) -> test04를 통해서 Hs 만을 삭제 -> result03 : @name삭제 / result04 : 정상삭제
   
   <===========================>
     최종 결론 : 생성된 클래스가 아닌 다른 Controller에서는 HttpSession의 session.invalidate()를 통해서

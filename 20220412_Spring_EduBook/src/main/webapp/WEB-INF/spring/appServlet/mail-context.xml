@@ -7,12 +7,16 @@
 <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
   <property name="host" value="smtp.naver.com"/>
   <property name="port" value="587"/>
-  <property name="username" value="lucifer0203_2@naver.com"/>
-  <property name="password">
-    <value>
-      <![CDATA["$-EJM/I}]]>
-    </value>
-  </property>
+  <property name="username" value="ldkkoj777@naver.com"/>
+  <property name="password" value="poii1111!"/>
+ 
+ 
+<!-- 비밀번호에 특수문자가 있는 경우사용하세요 -->
+<!--   <property name="password"> -->
+<!--     <value> -->
+<!--       <![CDATA["$-EJM/I}]]> -->
+<!--     </value> -->
+<!--   </property> -->
   <property name="javaMailProperties">
     <props>
 	    <prop key="mail.smtp.debug">true</prop>

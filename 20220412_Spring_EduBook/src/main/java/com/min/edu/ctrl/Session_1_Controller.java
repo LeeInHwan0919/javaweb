@@ -20,7 +20,7 @@ public class Session_1_Controller {
 	@GetMapping(value="/init.do")
 	public String init(Model model, HttpSession session) {
 		logger.info("Session_1_Controller init get 세션 + @세션 값 입력");
-		model.addAttribute("sessionTest","init.do에서 추가된 @SessionAttribute");
+//		model.addAttribute("sessionTest","init.do에서 추가된 @SessionAttribute");
 		session.setAttribute("httpsessionTest", "init.do에서 추가된 HttpSession");
 		return "sessionCheck";
 	}
@@ -38,14 +38,14 @@ public class Session_1_Controller {
 	public String test02(HttpSession session) {
 		//HttpSession을 삭제
 		System.out.println("########### HttpSession을 삭제 ########");
-		session.invalidate();
+//		session.invalidate();
 		return "sessionCheck";
 	}
 	
 	@GetMapping(value="/result01.do")
 	public String result01(HttpSession session, @SessionAttribute("sessionTest") String sessionTest) {
 		logger.info("HttpSession과 @SessionAttribute를 출력");
-		System.out.println("--------------HttpSession--------------"+session.getAttribute("httpsessionTest"));
+//		System.out.println("--------------HttpSession--------------"+session.getAttribute("httpsessionTest"));
 		System.out.println("--------------@SessionAttribute--------------"+sessionTest);
 		
 		return "sessionCheck";
