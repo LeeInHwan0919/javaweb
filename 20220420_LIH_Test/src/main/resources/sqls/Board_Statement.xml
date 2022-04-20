@@ -62,29 +62,54 @@ UPDATE SPRINGBOARD
 	WHERE SEQ = #{seq}
 </update>
 
-	
-
-<!-- 글삭제 > [] 로 쓸 쿼리 -->
-<update id="BoardUpdateDelflag" parameterType="BoardVo">
-UPDATE SPRINGBOARD SET DELFLAG ='Y' WHERE DELFLAG='N' AND SEQ = #{seq}
+<!-- 글삭제1 > dinamic 쿼리 -->	
+<update id="delfalgUpdate" parameterType="java.util.Map">
+  UPDATE SPRINGBOARD SET DELFLAG ='Y'
+	WHERE DELFLAG = 'N'
+	AND SEQ IN
+	<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+	   #{seq}
+	</foreach>
 </update>
 
 
-<!-- 글삭제 2 > [] 로 쓸 쿼리 -->
-<delete id="BoardDelete" parameterType="BoardVo">
-DELETE FROM SPRINGBOARD WHERE SEQ = #{seq}
+
+<!-- 글삭제2 > dinamic 쿼리 -->
+<delete id="MultipleDelete" parameterType="java.util.Map">
+  DELETE FROM SPRINGBOARD s 
+	WHERE SEQ IN
+	<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+	   #{seq}
+	</foreach>
 </delete>
 
 
-<!-- 일반 게시글 전체조회 -->
+<!-- 게시글 전체조회-->
 <select id="selectAllBoard" resultType="BoardVo">
 SELECT SEQ, ID, TITLE, STEP, "DEPTH" , REFER, READCOUNT, DELFLAG, REGDATE
 	FROM SPRINGBOARD s
 		ORDER BY REFER DESC, STEP
 </select>
 
+<!-- 하위글 삭제대상 조회 -->
+<select id="selectDown" parameterType="BoardVo" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, STEP, "DEPTH" , REFER, READCOUNT, DELFLAG, REGDATE
+	FROM SPRINGBOARD s
+	WHERE REFER = (SELECT REFER FROM SPRINGBOARD WHERE SEQ=#{seq})
+	ORDER BY REFER DESC, STEP
+</select>
 
+<select id="boardPaging" parameterType="int" resultType="BoardVo">
+<![CDATA[SELECT SEQ, ID, TITLE,  STEP, "DEPTH", REFER,  READCOUNT, DELFLAG, REGDATE
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY REFER DESC, STEP ASC)AS RNUM, SEQ, ID, TITLE,  STEP, "DEPTH", REFER,  READCOUNT, DELFLAG, REGDATE
+	FROM SPRINGBOARD s )
+		WHERE RNUM>#{page} AND ROWNUM <=10]]>
+</select>
 
+<select id="rowCount" resultType="int">
+SELECT COUNT(*) 
+	FROM SPRINGBOARD s 
+</select>
 
     
 </mapper>

@@ -34,23 +34,23 @@ public class BoardTest {
 
 //	@Test
 	public void insertBoard() {
-		BoardVo vo = new BoardVo(1, "USER", "junit 제목테스트", null, 0, 0, 0, 0, null, null);
+		BoardVo vo = new BoardVo(1, "USER", "insertBoard테스트", null, 0, 0, 0, 0, null, null);
 		int cnt = dao.insertBoard(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 	
 //	@Test
 	public void replyUpdate() {
 		BoardVo vo = new BoardVo(4, null, null, null, 0, 0, 0, 0, null, null);
 		int cnt = dao.replyUpdate(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 	
 //	@Test
 	public void replyInsert() {
-		BoardVo vo = new BoardVo(4, "USER", "junit 답글작성테스트", "답글내용입니다.", 0, 0, 0, 0, null, null);
+		BoardVo vo = new BoardVo(4, "USER", "replyInsert 답글작성테스트", "답글내용입니다.", 0, 0, 0, 0, null, null);
 		int cnt = dao.replyInsert(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 	
 //	@Test
@@ -63,34 +63,28 @@ public class BoardTest {
 	public void ReadCount() {
 		BoardVo vo = new BoardVo(4, null, null, null, 0, 0, 0, 0, null, null);
 		int cnt = dao.ReadCount(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 //	@Test
 	public void BoardUpdate() {
-		BoardVo vo = new BoardVo(4, null, "junit 답글작성테스트(수정)", "답글내용입니다.(수정)", 0, 0, 0, 0, null, null);
+		BoardVo vo = new BoardVo(4, null, "BoardUpdate 답글작성테스트", "답글내용입니다.", 0, 0, 0, 0, null, null);
 		int cnt = dao.BoardUpdate(vo);
 		System.out.println("cnt의 값은:"+cnt);
 	}
 	
-//	@Test
-//	public void DyBoardUpdateDelflag() {
-//		BoardVo vo = new BoardVo(2, null, null, null, 0, 0, 0, 0, null, null);
-//		int cnt = dao.DyBoardUpdateDelflag(vo);
-//		System.out.println("cnt의 값은:"+cnt);
-//	}
 	
 //	@Test
 	public void BoardUpdateDelflag() {
 		BoardVo vo = new BoardVo(2, null, null, null, 0, 0, 0, 0, null, null);
 		int cnt = dao.BoardUpdateDelflag(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 	
 //	@Test
 	public void BoardDelete() {
 		BoardVo vo = new BoardVo(2, null, null, null, 0, 0, 0, 0, null, null);
 		int cnt = dao.BoardDelete(vo);
-		System.out.println("cnt의 값은:"+cnt);
+		System.out.println("cnt:"+cnt);
 	}
 	
 //	@Test
@@ -98,5 +92,44 @@ public class BoardTest {
 		List<BoardVo> lists = dao.selectAllBoard();
 		System.out.println(lists);
 	}
+	
+//	@Test
+	public void selectDown() {
+		BoardVo vo = new BoardVo(2, null, null, null, 0, 0, 0, 0, null, null);
+		List<BoardVo> lists = dao.selectDown(vo);
+		System.out.println(lists);
+	}
+	
+//	@Test
+	public void delfalgUpdate(){
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		String[] seqs = {"1","2"};
+		map.put("seqs",seqs);
+		int cnt = dao.delfalgUpdate(map);
+		System.out.println("cnt:"+cnt);
+		}
+	
+//	@Test
+	public void MultipleDelete(){
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		String[] seqs = {"1","2"};
+		map.put("seqs",seqs);
+		int cnt = dao.MultipleDelete(map);
+		System.out.println("cnt:"+cnt);
+		}
+	
+//	@Test
+	public void boardPaging() {
+		int page = 0;
+		List<BoardVo> lists = dao.boardPaging(page);
+		System.out.println(lists);
+	}
+	
+//	@Test
+	public void rowCount() {
+		int cnt = dao.rowCount();
+		System.out.println(cnt);
+	}
+	
 	
 }

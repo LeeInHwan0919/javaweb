@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.MemberVo;
 
-
 @Repository
 public class MamberDaoImpl implements IMemberDao {
 

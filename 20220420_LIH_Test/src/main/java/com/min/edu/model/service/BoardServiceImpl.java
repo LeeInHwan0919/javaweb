@@ -1,6 +1,7 @@
 package com.min.edu.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.mapper.IBoardDao;
-import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.BoardVo;
 
 @Service
@@ -66,6 +66,36 @@ public class BoardServiceImpl implements IBoardService {
 	public List<BoardVo> selectAllBoard() {
 		logger.info("BoardServiceImpl selectAllBoard");
 		return dao.selectAllBoard();
+	}
+
+	@Override
+	public List<BoardVo> selectDown(BoardVo vo) {
+		logger.info("BoardServiceImpl selectDown 파라미터 값:{}",vo);
+		return dao.selectDown(vo);
+	}
+
+	@Override
+	public int delfalgUpdate(Map<String, String[]> map) {
+		logger.info("BoardServiceImpl delfalgUpdate 선택한 seq값:{}",map);
+		return dao.delfalgUpdate(map);
+	}
+
+	@Override
+	public int MultipleDelete(Map<String, String[]> map) {
+		logger.info("BoardServiceImpl MultipleDelete 선택한 seq값:{}",map);
+		return dao.MultipleDelete(map);
+	}
+
+	@Override
+	public List<BoardVo> boardPaging(int page) {
+		logger.info("BoardServiceImpl boardPaging 페이지값:{}",page);
+		return dao.boardPaging(page);
+	}
+
+	@Override
+	public int rowCount() {
+		logger.info("BoardServiceImpl rowCount");
+		return dao.rowCount();
 	}
 	
 	

@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-	<bean id="daoLogger" class="com.min.edu.aop.DaoAop"/>
+	<bean id="daoLogger" class="com.min.edu.aop.DaoAopLogger"/>
 	<aop:config>
 		<aop:pointcut expression="execution(public * com.min.edu.model.mapper.*Dao*.*(..))" id="daoPoint"/>
 		<aop:aspect ref="daoLogger">				 

@@ -169,6 +169,10 @@
     <build>
     <finalName>20220420_LIH_Test</finalName>
         <plugins>
+           	<plugin>
+	          <artifactId>maven-war-plugin</artifactId>
+	          <version>3.2.2</version>
+	        </plugin>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>
                 <version>2.9</version>

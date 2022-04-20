@@ -1,6 +1,7 @@
 package com.min.edu.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
 
@@ -24,5 +25,13 @@ public interface IBoardDao {
 	
 	public List<BoardVo> selectAllBoard();
 	
+	public List<BoardVo> selectDown(BoardVo vo);
 	
+	public int delfalgUpdate(Map<String, String[]> map);
+	
+	public int MultipleDelete(Map<String, String[]> map);
+	
+	public List<BoardVo> boardPaging(int page);
+	
+	public int rowCount();
 }

@@ -12,6 +12,7 @@ public class BoardVo {
 	private int readcount;
 	private String delflag;
 	private String regdate;
+	
 	public int getSeq() {
 		return seq;
 	}

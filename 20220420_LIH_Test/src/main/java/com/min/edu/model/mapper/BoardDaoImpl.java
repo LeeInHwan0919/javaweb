@@ -1,6 +1,7 @@
 package com.min.edu.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,6 @@ public class BoardDaoImpl implements IBoardDao {
 		return sqlSession.update(NS+"BoardUpdateDelflag",vo);
 	}
 	
-//	@Override
-//	public int DyBoardUpdateDelflag(BoardVo vo) {
-//		return sqlSession.update(NS+"DyBoardUpdateDelflag",vo);
-//	}
 
 	@Override
 	public int BoardDelete(BoardVo vo) {
@@ -66,6 +63,31 @@ public class BoardDaoImpl implements IBoardDao {
 	@Override
 	public List<BoardVo> selectAllBoard() {
 		return sqlSession.selectList(NS+"selectAllBoard");
+	}
+
+	@Override
+	public List<BoardVo> selectDown(BoardVo vo) {
+		return sqlSession.selectList(NS+"selectDown",vo);
+	}
+
+	@Override
+	public int delfalgUpdate(Map<String, String[]> map) {
+		return sqlSession.update(NS+"delfalgUpdate",map);
+	}
+
+	@Override
+	public int MultipleDelete(Map<String, String[]> map) {
+		return sqlSession.delete(NS+"MultipleDelete",map);
+	}
+
+	@Override
+	public List<BoardVo> boardPaging(int page) {
+		return sqlSession.selectList(NS+"boardPaging",page);
+	}
+
+	@Override
+	public int rowCount() {
+		return sqlSession.selectOne(NS+"rowCount");
 	}
 
 	
