@@ -7,16 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.MemberVo;
 
 @Service
-@Transactional
 public class MemberServiceImpl implements IMemberService {
 
 	@Autowired
-	private IMemberService dao;
+	private IMemberDao dao;
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	
 	@Override
@@ -41,6 +40,18 @@ public class MemberServiceImpl implements IMemberService {
 	public int passwordCheck(String pw) {
 		logger.info("MemberServiceImpl passwordCheck : {]",pw);
 		return dao.passwordCheck(pw);
+	}
+
+	@Override
+	public MemberVo enLogin(String id) {
+		logger.info("MemberServiceImpl enLogin : {]",id);
+		return dao.enLogin(id);
+	}
+
+	@Override
+	public int changeUser(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

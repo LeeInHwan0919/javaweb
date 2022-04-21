@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.edu.model.mapper.IBoardDao;
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.RowNumVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/*.xml" })
@@ -49,7 +50,7 @@ public class BoardTest {
 		System.out.println(result);
 	}
 
-	@Test
+//	@Test
 	public void updateBoardAnswerTest() {
 		logger.info("IBoardDao updateBoardAnswerTest ");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -90,7 +91,9 @@ public class BoardTest {
 	public void updateBoardDelflagTest() {
 		logger.info("IBoardDao updateBoardDelflagTest ");
 		String[] seqs = { "3", "5" };
-		int result = dao.updateBoardDelflag(seqs);
+		Map<String, String[]> map = new HashMap<String, String[]>();
+		map.put("seqs",seqs);
+		int result = dao.updateBoardDelflag(map);
 		System.out.println(result);
 
 	}
@@ -98,9 +101,9 @@ public class BoardTest {
 //	@Test
 	public void deleteBoardTest() {
 		logger.info("IBoardDao deleteBoardTest ");
-		String seq = "5";
-		int result = dao.deleteBoard(seq);
-		System.out.println(result);
+//		List<String> seqs;
+//		int result = dao.deleteBoard(seqs);
+//		System.out.println(result);
 	}
 
 //	@Test
@@ -116,5 +119,42 @@ public class BoardTest {
 		List<BoardVo> lists = dao.selectBoardAllUser();
 		System.out.println(lists);
 	}
-
+	
+//	public List<BoardVo> adminBoardListRow();
+//	public int adminBoardListTotal(RowNumVo vo);
+//	public List<BoardVo> userBoardListRow();
+//	public int userBoardListTotal(RowNumVo vo);
+	
+	
+	@Test
+	public void adminBoardListRow() {
+		logger.info("IBoardDao adminBoardListRow");
+		List<BoardVo> lists = dao.adminBoardListRow();
+		System.out.println(lists);
+	}
+	
+//	@Test
+//	public void adminBoardListTotal() {
+//		logger.info("IBoardDao adminBoardListTotal");
+//		RowNumVo vo = new RowNumVo("1","5");
+//		BoardVo cnt = dao.adminBoardListTotal(vo);
+//		System.out.println(cnt);
+//	}
+	
+	@Test
+	public void userBoardListRow() {
+		logger.info("IBoardDao userBoardListRow");
+		List<BoardVo> lists = dao.userBoardListRow();
+		System.out.println(lists);
+	}
+	
+//	@Test
+//	public void userBoardListTotal() {
+//		logger.info("IBoardDao userBoardListTotal");
+//		RowNumVo vo = new RowNumVo(0,1,5);
+//		BoardVo cnt = dao.userBoardListTotal(vo);
+//		System.out.println(cnt);
+//	}
+	
+	
 }

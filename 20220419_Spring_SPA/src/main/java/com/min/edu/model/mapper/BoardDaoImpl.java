@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.RowNumVo;
 
 @Repository
 public class BoardDaoImpl implements IBoardDao {
@@ -74,6 +75,26 @@ public class BoardDaoImpl implements IBoardDao {
 	@Override
 	public List<BoardVo> deleteBoardSel(String seq) {
 	  return sqlSession.selectList(NS+"deleteBoardSel",seq);
+	}
+
+	@Override
+	public List<BoardVo> adminBoardListRow() {
+		return sqlSession.selectList(NS+"adminBoardListRow");
+	}
+
+	@Override
+	public int adminBoardListTotal(RowNumVo vo) {
+		return sqlSession.selectOne(NS+"adminBoardListTotal",vo);
+	}
+
+	@Override
+	public List<BoardVo> userBoardListRow() {
+		return sqlSession.selectList(NS+"userBoardListRow");
+	}
+
+	@Override
+	public int userBoardListTotal(RowNumVo vo) {
+		return sqlSession.selectOne(NS+"userBoardListTotal",vo);
 	}
 
 }

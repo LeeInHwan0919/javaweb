@@ -74,13 +74,33 @@ SELECT SEQ, ID, LPAD(TITLE, 10+"DEPTH"*4) TITLE ,  REFER, STEP, DEPTH, DELFLAG,R
  ORDER BY REFER DESC, STEP
 </select>
 
+<!-- 관리자의 페이징 처리 -->
+<select id="adminBoardListRow" parameterType="RowNumVo" resultType="BoardVo">
+   SELECT SEQ,ID,TITLE ,CONTENT ,REFER ,STEP ,"DEPTH" ,DELFLAG ,REGDATE ,READCOUNT,ROWNUM
+FROM(
+SELECT ROW_NUMBER() OVER(ORDER BY REFER DESC,STEP)RM, SEQ,ID,TITLE ,CONTENT ,REFER ,STEP ,"DEPTH" ,DELFLAG ,REGDATE ,READCOUNT,ROWNUM
+   FROM SPRINGBOARD
+      )
+   WHERE RM BETWEEN #{start} AND #{last}
+</select>
+      
+<select id="adminBoardListTotal" resultType="int">
+SELECT COUNT(*) FROM SPRINGBOARD s 
+</select>
+   
+ <!-- 사용자의 페이징 처리 -->   
 
+<select id="userBoardListRow" parameterType="RowNumVo" resultType="BoardVo">
+   SELECT SEQ,ID,TITLE ,CONTENT ,REFER ,STEP ,"DEPTH" ,DELFLAG ,REGDATE ,READCOUNT,ROWNUM
+FROM(
+SELECT ROW_NUMBER() OVER(ORDER BY REFER DESC,STEP)RM, SEQ,ID,TITLE ,CONTENT ,REFER ,STEP ,"DEPTH" ,DELFLAG ,REGDATE ,READCOUNT,ROWNUM
+   FROM SPRINGBOARD
+      WHERE DELFLAG ='N'
+      )
+   WHERE RM BETWEEN #{start} AND #{last}
+</select>
 
-
-
-
-
-
-
-
+<select id="userBoardListTotal" resultType="int">
+SELECT COUNT(*) FROM SPRINGBOARD s WHERE DELFLAG ='N'
+</select>
 </mapper>
