@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.mapper.IBoardDao;
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
 
 @Service
-@Transactional
+//@Transactional
 public class BoardServiceImpl implements IBoardService {
 
 	@Autowired
@@ -59,6 +60,11 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl deleteBoard ; {}",seqs);
 		return dao.deleteBoard(seqs);
 	}
+	
+	@Override
+	public List<BoardVo> selectBoardAll(MemberVo mVo) {
+		return dao.selectBoardAll(mVo);
+	}
 
 	@Override
 	public List<BoardVo> selectBoardAllAdmin() {
@@ -77,5 +83,7 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl deleteBoardSel");
 		return dao.deleteBoardSel(seq);
 	}
+
+	
 
 }

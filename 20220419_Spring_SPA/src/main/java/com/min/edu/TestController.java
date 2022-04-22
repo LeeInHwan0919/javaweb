@@ -23,11 +23,11 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.min.edu.model.service.IMemberService;
 import com.min.edu.vo.MemberVo;
 
-@Controller
-@SessionAttributes("mem")
-public class MemberController {
+//@Controller
+//@SessionAttributes("mem")
+public class TestController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 	
 	@Autowired
 	private IMemberService service;

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
 import com.min.edu.vo.RowNumVo;
 
 public interface IBoardDao {
@@ -18,10 +19,11 @@ public interface IBoardDao {
 	public int updateBoardDelflag(Map<String, String[]> seqs);
 	public int deleteBoard(List<String> seqs);
 	
+	public List<BoardVo> selectBoardAll(MemberVo mVo);
 	public List<BoardVo> selectBoardAllAdmin();
 	public List<BoardVo> selectBoardAllUser();
-	public List<BoardVo> deleteBoardSel(String seq);
 	
+	public List<BoardVo> deleteBoardSel(String seq);
 	public List<BoardVo> adminBoardListRow();
 	public int adminBoardListTotal(RowNumVo vo);
 	public List<BoardVo> userBoardListRow();

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
 
 public interface IBoardService {
 	/*새글쓰기*/
@@ -22,6 +23,8 @@ public interface IBoardService {
 	/*글삭제*/
 	public int deleteBoard(List<String> seqs);
 	
+	/* 게시글 전체보기( 다이나믹 처리) */
+	public List<BoardVo> selectBoardAll(MemberVo mVo);
 	/*관리자 게시글 전체 보기*/
 	public List<BoardVo> selectBoardAllAdmin();
 	/*사용자 게시글 전체 보기*/

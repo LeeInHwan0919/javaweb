@@ -26,25 +26,25 @@ public class MemberServiceImpl implements IMemberService {
 
 	@Override
 	public int insertMember(Map<String, Object> map) {
-		logger.info("MemberServiceImpl insertMember : {]",map);
+		logger.info("MemberServiceImpl insertMember : {}",map);
 		return dao.insertMember(map);
 	}
 
 	@Override
 	public MemberVo loginMember(Map<String, Object> map) {
-		logger.info("MemberServiceImpl loginMember : {]",map);
+		logger.info("MemberServiceImpl loginMember : {}",map);
 		return dao.loginMember(map);
 	}
 
 	@Override
 	public int passwordCheck(String pw) {
-		logger.info("MemberServiceImpl passwordCheck : {]",pw);
+		logger.info("MemberServiceImpl passwordCheck : {}",pw);
 		return dao.passwordCheck(pw);
 	}
 
 	@Override
 	public MemberVo enLogin(String id) {
-		logger.info("MemberServiceImpl enLogin : {]",id);
+		logger.info("MemberServiceImpl enLogin : {}",id);
 		return dao.enLogin(id);
 	}
 
@@ -53,5 +53,13 @@ public class MemberServiceImpl implements IMemberService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int idCheck(String id) {
+		
+		return dao.idCheck(id);
+	}
+	
+	
 
 }

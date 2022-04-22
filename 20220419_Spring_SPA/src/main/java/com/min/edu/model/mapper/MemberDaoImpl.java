@@ -72,4 +72,9 @@ public class MemberDaoImpl implements IMemberDao {
 		return 0;
 	}
 
+	@Override
+	public int idCheck(String id) {
+		return sqlSession.selectOne(NS+"idCheck",id);
+	}
+
 }

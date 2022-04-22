@@ -7,6 +7,7 @@
 	
 	<display-name>20220419_Spring_SPA</display-name>
 	<welcome-file-list>
+		<welcome-file>loginForm.do</welcome-file>
 		<welcome-file>home.do</welcome-file>
 	</welcome-file-list>
 	

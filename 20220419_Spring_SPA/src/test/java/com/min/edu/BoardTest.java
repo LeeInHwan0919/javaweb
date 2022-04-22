@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.edu.model.mapper.IBoardDao;
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.MemberVo;
 import com.min.edu.vo.RowNumVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -126,7 +127,7 @@ public class BoardTest {
 //	public int userBoardListTotal(RowNumVo vo);
 	
 	
-	@Test
+//	@Test
 	public void adminBoardListRow() {
 		logger.info("IBoardDao adminBoardListRow");
 		List<BoardVo> lists = dao.adminBoardListRow();
@@ -141,7 +142,7 @@ public class BoardTest {
 //		System.out.println(cnt);
 //	}
 	
-	@Test
+//	@Test
 	public void userBoardListRow() {
 		logger.info("IBoardDao userBoardListRow");
 		List<BoardVo> lists = dao.userBoardListRow();
@@ -155,6 +156,14 @@ public class BoardTest {
 //		BoardVo cnt = dao.userBoardListTotal(vo);
 //		System.out.println(cnt);
 //	}
+	
+	@Test
+	public void selectBoardAllTest() {
+		MemberVo mVo = new MemberVo();
+		mVo.setAuth("A");
+		List<BoardVo> vo = dao.selectBoardAll(mVo);
+		System.out.println(vo);
+	}
 	
 	
 }

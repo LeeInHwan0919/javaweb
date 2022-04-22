@@ -10,6 +10,9 @@
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
+<p>
+  <a href="./loginForm.do">처음 페이지</a>
+</p>
 <fieldset>
   <legend>회원관리 TEST</legend>
   <div>
@@ -17,7 +20,7 @@
       <li><a href="./memberList.do">회원전체조회</a></li>
       <li>
         <b>회원가입</b><br>
-        <form action="./signUp.do" method="post">
+        <form action="./signup.do" method="post">
           <input type="text" name="id">
           <input type="text" name="pw">
           <input type="submit" value="가입테스트">

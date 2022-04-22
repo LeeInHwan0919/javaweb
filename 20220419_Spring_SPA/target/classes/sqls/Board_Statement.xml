@@ -52,11 +52,24 @@ DELETE FROM SPRINGBOARD WHERE SEQ IN
 </foreach>
 </delete>
 
+<select id="selectBoardAll" resultType="BoardVo">
+   SELECT SEQ, ID, TITLE, REFER, STEP, DEPTH, DELFLAG,READCOUNT , REGDATE
+ FROM SPRINGBOARD s
+<!-- 	<if test='auth=="U"'> -->
+<!-- 	<if test="auth == &quot;U&quot;"> -->
+	<if test="auth=='U'.toString()">
+		WHERE DELFLAG = 'N'
+	</if>  
+	ORDER BY REFER DESC, STEP ASC  
+</select>
+
 <select id="selectBoardAllAdmin" resultType="BoardVo">
-   SELECT SEQ, ID, TITLE,  REFER, STEP, DEPTH, DELFLAG,READCOUNT , REGDATE
+   SELECT SEQ, ID, TITLE, REFER, STEP, DEPTH, DELFLAG,READCOUNT , REGDATE
  FROM SPRINGBOARD s 
     ORDER BY REFER DESC, STEP ASC
 </select>
+
+
 
 <select id="selectBoardAllUser" resultType="BoardVo">
 SELECT SEQ, ID, LPAD(TITLE, 10+"DEPTH"*4) TITLE ,  REFER, STEP, DEPTH, DELFLAG,READCOUNT , REGDATE
@@ -103,4 +116,5 @@ SELECT ROW_NUMBER() OVER(ORDER BY REFER DESC,STEP)RM, SEQ,ID,TITLE ,CONTENT ,REF
 <select id="userBoardListTotal" resultType="int">
 SELECT COUNT(*) FROM SPRINGBOARD s WHERE DELFLAG ='N'
 </select>
+
 </mapper>
