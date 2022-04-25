@@ -12,6 +12,6 @@ public interface IMemberService {
 	public MemberVo loginMember(Map<String, Object> map);
 	public int passwordCheck(String pw);
 	public MemberVo enLogin(String id);
-	public int changeUser(Map<String, Object> map);
+	public boolean changeUser(Map<String, Object> map);
 	public int idCheck(String id);
 }

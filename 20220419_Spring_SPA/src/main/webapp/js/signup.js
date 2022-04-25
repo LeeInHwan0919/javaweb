@@ -37,8 +37,9 @@ $(document).ready(function(){
 		  $("#result").html("아이디는 5~20사이의 길이를 입력해 주세요.");
 		  $("#chkval").val(0);
 		}else{
-		$("#result").html();
-		  console.log("아이디 중복 Ajax 실행");	
+		$("#result").html("");
+		  console.log("아이디 중복 Ajax 실행");
+		  $("#chkval").val("1");	
 		}
 		
 		

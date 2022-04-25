@@ -82,26 +82,30 @@ public class BoardDaoImpl implements IBoardDao {
 	public List<BoardVo> deleteBoardSel(String seq) {
 	  return sqlSession.selectList(NS+"deleteBoardSel",seq);
 	}
+	
+	
 
 	@Override
-	public List<BoardVo> adminBoardListRow() {
-		return sqlSession.selectList(NS+"adminBoardListRow");
+	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
+		return sqlSession.selectList(NS+"adminBoardListRow",vo);
 	}
 
 	@Override
-	public int adminBoardListTotal(RowNumVo vo) {
-		return sqlSession.selectOne(NS+"adminBoardListTotal",vo);
+	public int adminBoardListTotal() {
+		return sqlSession.selectOne(NS+"adminBoardListTotal");
 	}
 
 	@Override
-	public List<BoardVo> userBoardListRow() {
-		return sqlSession.selectList(NS+"userBoardListRow");
+	public List<BoardVo> userBoardListRow(RowNumVo vo) {
+		return sqlSession.selectList(NS+"userBoardListRow",vo);
 	}
 
 	@Override
-	public int userBoardListTotal(RowNumVo vo) {
-		return sqlSession.selectOne(NS+"userBoardListTotal",vo);
+	public int userBoardListTotal() {
+		return sqlSession.selectOne(NS+"userBoardListTotal");
 	}
+
+	
 
 	
 

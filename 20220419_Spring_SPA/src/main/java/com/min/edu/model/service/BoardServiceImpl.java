@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.min.edu.model.mapper.IBoardDao;
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @Service
 //@Transactional
@@ -82,6 +83,33 @@ public class BoardServiceImpl implements IBoardService {
 	public List<BoardVo> deleteBoardSel(String seq) {
 		logger.info("BoardServiceImpl deleteBoardSel");
 		return dao.deleteBoardSel(seq);
+	}
+
+	/*
+	 * 페이징 처리
+	 */
+	@Override
+	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
+		logger.info("BoardServiceImpl adminBoardListRow");
+		return dao.adminBoardListRow(vo);
+	}
+
+	@Override
+	public int adminBoardListTotal() {
+		logger.info("BoardServiceImpl adminBoardListTotal");
+		return dao.adminBoardListTotal();
+	}
+
+	@Override
+	public List<BoardVo> userBoardListRow(RowNumVo vo) {
+		logger.info("BoardServiceImpl userBoardListRow");
+		return dao.userBoardListRow(vo);
+	}
+
+	@Override
+	public int userBoardListTotal() {
+		logger.info("BoardServiceImpl userBoardListTotal");
+		return dao.userBoardListTotal();
 	}
 
 	

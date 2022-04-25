@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 public interface IBoardService {
 	/*새글쓰기*/
@@ -37,4 +38,10 @@ public interface IBoardService {
 	/*관리자 전체글 갯수*/
 	/*사용자 게시글 페이징*/
 	/*사용자 전체글 갯수*/
+	
+	public List<BoardVo> adminBoardListRow(RowNumVo vo);
+	public int adminBoardListTotal();
+	
+	public List<BoardVo> userBoardListRow(RowNumVo vo);
+	public int userBoardListTotal();
 }

@@ -49,9 +49,9 @@ public class MemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public int changeUser(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean changeUser(Map<String, Object> map) {
+		logger.info("MemberServiceImpl enLogin : {}",map);
+		return dao.changeUser(map);
 	}
 
 	@Override

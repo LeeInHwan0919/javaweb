@@ -17,7 +17,40 @@ private static final long serialVersionUID = -4952496656952478771L;
    private int listNum;//출력한 리스트의 갯수 5
    private int total;//리스트의 총 갯수 123..
    
-   {
+   
+   
+   public int getPageList() {
+	return pageList;
+}
+public void setPageList(int pageList) {
+	this.pageList = pageList;
+}
+public int getIndex() {
+	return index;
+}
+public void setIndex(int index) {
+	this.index = index;
+}
+public int getPageNum() {
+	return pageNum;
+}
+public void setPageNum(int pageNum) {
+	this.pageNum = pageNum;
+}
+public int getListNum() {
+	return listNum;
+}
+public void setListNum(int listNum) {
+	this.listNum = listNum;
+}
+public int getTotal() {
+	return total;
+}
+public void setTotal(int total) {
+	this.total = total;
+}
+
+{
       pageList = 5;
       index = 0; 
       pageNum=1;

@@ -23,7 +23,7 @@
 	  
 	  <input type="hidden" id="chkval" value="0">
 	  
-	  <form action="./singUp.do" method="post" onsubmit="return check()">
+	  <form action="./signup.do" method="post" onsubmit="return check()">
 	    <div id="info">
 	      <div id="leftInfo">정보입력</div>
 	      <div id="centerInfo">

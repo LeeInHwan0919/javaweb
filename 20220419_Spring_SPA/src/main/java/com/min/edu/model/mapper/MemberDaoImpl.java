@@ -67,9 +67,8 @@ public class MemberDaoImpl implements IMemberDao {
 	}
 
 	@Override
-	public int changeUser(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+	public boolean changeUser(Map<String, Object> map) {
+		return sqlSession.update(NS+"changeUser",map) > 0 ?true:false;
 	}
 
 	@Override

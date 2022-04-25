@@ -4,7 +4,7 @@
 
 <!-- 회원 전체 조회 -->
 <select id="selectMemberAll" resultType="MemberVo">
-  SELECT ID,PW, AUTH, DELFLAG, REGDATE FROM SPRINGMEMBER 
+  SELECT ID, AUTH, ID||'님' AS NAME, DELFLAG, REGDATE FROM SPRINGMEMBER 
   ORDER BY REGDATE DESC
 </select>
 
@@ -32,7 +32,9 @@
 
 <!-- 상태 변경 -->
 <update id="changeUser" parameterType="java.util.Map">
-  UPDATE SPRINGMEMBER SET DELFALG=#{delflag} WHERE ID = #{id}
+   UPDATE SPRINGMEMBER 
+           SET DELFLAG = CASE DELFLAG WHEN 'N' THEN 'Y'ELSE 'N'END 
+           WHERE ID=#{id}
 </update>
 
 <!-- 아이디 중복 검사 -->

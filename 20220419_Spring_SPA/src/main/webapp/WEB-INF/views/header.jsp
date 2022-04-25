@@ -14,7 +14,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script type="text/javascript" src="./js/boardList.js"></script>
+<script type="text/javascript" src="./js/boardList.js" defer="defer"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -34,7 +34,7 @@
           <li><a href="#">글작성</a></li>
         </c:if>
         <c:if test="${mem2.auth eq 'A'}">
-          <li><a href="#">회원리스트</a></li>
+          <li><a href="./memberListMAV.do">회원리스트</a></li>
         </c:if>
 <!--         <li class="dropdown"> -->
 <!--           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1</a> -->

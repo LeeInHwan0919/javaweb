@@ -1,6 +1,7 @@
 package com.min.edu;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.min.edu.model.service.IMemberService;
 import com.min.edu.vo.MemberVo;
@@ -76,7 +78,7 @@ public class Member_Controller {
 	public String logout(SessionStatus sessionStatus, @SessionAttribute("mem2") MemberVo mVo) {
 		logger.info("Welcome! Member_Controller logout전:{}",mVo);
 		sessionStatus.setComplete();
-		logger.info("Welcome! Member_Controller logout 후  : {} ",mVo);
+		logger.info("Welcome! Member_Controller logout 후 :{} ",mVo);
 		return "redirect:/loginForm.do";
 	}
 	
@@ -98,4 +100,41 @@ public class Member_Controller {
 	  return map;
 	}
 	
+	//TODO 009 회원가입
+	@RequestMapping(value="/signup.do", method=RequestMethod.POST)
+	public String signup(@RequestParam Map<String, Object> map) {
+		logger.info("Welcome! Member_Controller signup map:{}",map);
+		int n = iService.insertMember(map);
+		return (n==1)?"redirect:/loginForm.do":"redirect:/signupForm.do";
+	}
+	
+	//TODO 010 관리자가 회원전체의 정보를 조회 하는 기능
+	// ModelAndView 객체를 사용해 본다
+	@RequestMapping(value="/memberListMAV.do",method=RequestMethod.GET)
+	public ModelAndView memberListMAV() {
+		ModelAndView mav = new ModelAndView();
+		logger.info("Welcome! Member_Controller memberListMAV");
+		List<MemberVo> mLists = iService.selectMemberAll();
+		// ModelAndView 객체를 = Model(전달값) + View(페이지)을 한 객체에 담아서 DispatcherServlet 보내줌
+		mav.addObject("mLists", mLists);
+		mav.setViewName("memberList");
+		return mav;
+	}
+	
+	//TODO 011 회원상태 변경 Ajax
+	// 값은 id Map
+	// SQL 문 Simple CASE 사용해서 N->Y, Y->N 변경되게 만듬
+	// 반환 값은 Map -> Jaskson databind -> JSON
+	   @RequestMapping(value ="/changeUser.do", method = RequestMethod.POST)
+	   @ResponseBody
+	   public Map<String, String> changeUser(@RequestParam Map<String, Object> map){
+	      logger.info("Welcome Member_Controller changeUser : {}",map);
+	      Map<String, String> rmap = new HashMap<String, String>();
+	      boolean isc =  iService.changeUser(map);
+	      rmap.put("isc", String.valueOf(isc));
+	      return rmap;
+	   }
+	   
+	
+	   
 }

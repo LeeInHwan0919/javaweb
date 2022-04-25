@@ -130,8 +130,8 @@ public class BoardTest {
 //	@Test
 	public void adminBoardListRow() {
 		logger.info("IBoardDao adminBoardListRow");
-		List<BoardVo> lists = dao.adminBoardListRow();
-		System.out.println(lists);
+//		List<BoardVo> lists = dao.adminBoardListRow();
+//		System.out.println(lists);
 	}
 	
 //	@Test
@@ -145,8 +145,8 @@ public class BoardTest {
 //	@Test
 	public void userBoardListRow() {
 		logger.info("IBoardDao userBoardListRow");
-		List<BoardVo> lists = dao.userBoardListRow();
-		System.out.println(lists);
+//		List<BoardVo> lists = dao.userBoardListRow();
+//		System.out.println(lists);
 	}
 	
 //	@Test

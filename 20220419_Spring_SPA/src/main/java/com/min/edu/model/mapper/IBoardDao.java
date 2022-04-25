@@ -24,8 +24,15 @@ public interface IBoardDao {
 	public List<BoardVo> selectBoardAllUser();
 	
 	public List<BoardVo> deleteBoardSel(String seq);
-	public List<BoardVo> adminBoardListRow();
-	public int adminBoardListTotal(RowNumVo vo);
-	public List<BoardVo> userBoardListRow();
-	public int userBoardListTotal(RowNumVo vo);
+	
+	/*
+	 * 페이징 처리
+	 */
+	
+	public List<BoardVo> adminBoardListRow(RowNumVo vo);
+	public int adminBoardListTotal();
+	
+	public List<BoardVo> userBoardListRow(RowNumVo vo);
+	public int userBoardListTotal();
+	
 }
