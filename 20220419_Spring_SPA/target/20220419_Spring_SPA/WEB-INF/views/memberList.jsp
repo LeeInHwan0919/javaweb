@@ -9,6 +9,7 @@
 <%@ include file="./header.jsp" %>
 
 <body>
+<form action="./changeUser.do" method="post">
   <div id="container" class="container">
     <table class="table table-hover">
       <thead>
@@ -36,6 +37,7 @@
       <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)">
     </div>
   </div>
+</form>
   <script type="text/javascript">
     window.onload = function(){
       var buttons = document.getElementsByTagName("button");
@@ -58,10 +60,9 @@
 					console.log(msg.isc);
 					console.log(tmp);
 					if(msg.isc){
-					tmp.parentNode.parentNode.childNodes[3].innerHTML
-					= (tmp.parentNode.parentNode.childNodes[3].innerHTML=="Y")?"N":"Y";
-					tmp.innerHTML = (tmp.innerHTML == "복구")?"탈퇴":"복구";
-					alert("기모띠");
+					tmp.parentNode.parentNode.childNodes[3].innerHTML 
+					= (tmp.parentNode.parentNode.childNodes[3].innerHTML=="Y"?"N":"Y");
+					tmp.innerHTML = (tmp.innerHTML == "복구"?"탈퇴":"복구");
 					}
 					
 				},

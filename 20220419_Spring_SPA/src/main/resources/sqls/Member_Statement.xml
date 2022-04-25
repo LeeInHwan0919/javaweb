@@ -32,8 +32,8 @@
 
 <!-- 상태 변경 -->
 <update id="changeUser" parameterType="java.util.Map">
-   UPDATE SPRINGMEMBER 
-           SET DELFLAG = CASE DELFLAG WHEN 'N' THEN 'Y'ELSE 'N'END 
+   UPDATE SPRINGMEMBER
+           SET DELFLAG = CASE DELFLAG WHEN 'N' THEN 'Y' ELSE 'N' END 
            WHERE ID=#{id}
 </update>
 
