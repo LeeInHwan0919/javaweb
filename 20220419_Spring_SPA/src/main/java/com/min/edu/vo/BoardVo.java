@@ -12,6 +12,7 @@ public class BoardVo {
 	 private int readcount    ;
 	 private String delflag   ;
 	 private String regdate   ;
+	 
 	public int getSeq() {
 		return seq;
 	}
@@ -72,17 +73,9 @@ public class BoardVo {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
-	@Override
-	public String toString() {
-		return "BoardVo [seq=" + seq + ", id=" + id + ", title=" + title + ", content=" + content + ", step=" + step
-				+ ", depth=" + depth + ", refer=" + refer + ", readcount=" + readcount + ", delflag=" + delflag
-				+ ", regdate=" + regdate + "]";
-	}
-	public BoardVo() {
-		// TODO Auto-generated constructor stub
-	}
 	public BoardVo(int seq, String id, String title, String content, int step, int depth, int refer, int readcount,
 			String delflag, String regdate) {
+		super();
 		this.seq = seq;
 		this.id = id;
 		this.title = title;
@@ -94,7 +87,17 @@ public class BoardVo {
 		this.delflag = delflag;
 		this.regdate = regdate;
 	}
+	@Override
+	public String toString() {
+		return "BoardVo [seq=" + seq + ", id=" + id + ", title=" + title + ", content=" + content + ", step=" + step
+				+ ", depth=" + depth + ", refer=" + refer + ", readcount=" + readcount + ", delflag=" + delflag
+				+ ", regdate=" + regdate + "]";
+	}
 	 
+	 
+	 public BoardVo() {
+		// TODO Auto-generated constructor stub
+	}
 	 
 	 
 }

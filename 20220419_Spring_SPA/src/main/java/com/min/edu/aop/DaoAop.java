@@ -15,6 +15,8 @@ public class DaoAop {
 		Object[] obj = j.getArgs();
 
 		if (obj != null) {
+			logger.warn("-------- {} --------", j.getSignature().getName());
+
 			for (int i = 0; i < obj.length; i++) {
 				logger.warn(i + "번째 args : " + String.valueOf(obj[i]));
 			}

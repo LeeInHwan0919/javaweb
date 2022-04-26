@@ -4,13 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
-	
-	<display-name>20220419_Spring_SPA</display-name>
+
+<display-name>20220419_Spring_SPA</display-name>
 	<welcome-file-list>
 		<welcome-file>loginForm.do</welcome-file>
 		<welcome-file>home.do</welcome-file>
 	</welcome-file-list>
-	
+
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -33,7 +33,6 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
 				/WEB-INF/spring/appServlet/servlet-context.xml
-				/WEB-INF/spring/appServlet/aop-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>

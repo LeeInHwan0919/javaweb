@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
@@ -10,13 +9,13 @@
 		</layout>
 	</appender>
 	
-	<!-- 파일 Appenders %p로그레벨 -->
+	<!-- 파일 Appenders -->
 	<appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
-	  <param name="File" value="C:/eclipse_web_2020_09/Spring_log/spring_spa.log"/>
-	  <param name="DatePattern" value=",yyyy-MM-dd"/>
-	  <layout class="org.apache.log4j.EnhancedPatternLayout">
-		<param name="ConversionPattern" value="[%p] %d %c %M - %m%n" />
-	  </layout>
+		<param name="File" value="C:/eclipse_web_2020_09/Spring_log/spring_spa.log"/>
+		<param name="DatePattern" value=".yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.EnhancedPatternLayout">
+			<param name="ConversionPattern" value="[%p] %d %c %M - %m%n"/>
+		</layout>
 	</appender>
 	
 	<!-- Application Loggers -->
@@ -26,26 +25,26 @@
 	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
-		<level value="info" />
+		<level value="TRACE" />
 	</logger>
 	
 	<logger name="org.springframework.beans">
-		<level value="info" />
+		<level value="TRACE" />
 	</logger>
 	
 	<logger name="org.springframework.context">
-		<level value="info" />
+		<level value="TRACE" />
 	</logger>
 
 	<logger name="org.springframework.web">
-		<level value="info" />
+		<level value="TRACE" />
 	</logger>
 
 	<!-- Root Logger -->
 	<root>
 		<priority value="trace" />
 		<appender-ref ref="console" />
-		<appender-ref ref="fileAppender"/>
+		<appender-ref ref="fileAppender" />
 	</root>
 	
 </log4j:configuration>

@@ -26,11 +26,15 @@ public class BoardDaoImpl implements IBoardDao {
 	public int insertBoardRoot(Map<String, Object> map) {
 		return sqlSession.insert(NS+"insertBoardRoot",map);
 	}
-
+	
 	@Override
 	public int insertBoardAnswer(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert(NS+"insertBoardAnswer",map);
+	}
+	
+	@Override
+	public int updateBoardAnswer(Map<String, Object> map) {
+		return sqlSession.insert(NS+"updateBoardAnswer",map);
 	}
 
 	@Override
@@ -57,7 +61,7 @@ public class BoardDaoImpl implements IBoardDao {
 	public int deleteBoard(List<String> seqs) {
 		return sqlSession.delete(NS+"deleteBoard",seqs);
 	}
-	
+
 	@Override
 	public List<BoardVo> selectBoardAll(MemberVo mVo) {
 		return sqlSession.selectList(NS+"selectBoardAll",mVo);
@@ -74,16 +78,9 @@ public class BoardDaoImpl implements IBoardDao {
 	}
 
 	@Override
-	public int updateBoardAnswer(Map<String, Object> map) {
-		return sqlSession.update(NS+"updateBoardAnswer",map);
-	}
-
-	@Override
 	public List<BoardVo> deleteBoardSel(String seq) {
-	  return sqlSession.selectList(NS+"deleteBoardSel",seq);
+		return sqlSession.selectList(NS+"deleteBoardSel",seq);
 	}
-	
-	
 
 	@Override
 	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
@@ -105,8 +102,9 @@ public class BoardDaoImpl implements IBoardDao {
 		return sqlSession.selectOne(NS+"userBoardListTotal");
 	}
 
-	
 
-	
 
-}
+
+
+	}
+

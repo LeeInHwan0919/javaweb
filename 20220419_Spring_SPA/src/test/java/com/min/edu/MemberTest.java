@@ -32,7 +32,7 @@ public class MemberTest {
 		List<MemberVo> lists =  dao.selectMemberAll();
 		System.out.println(lists);
 	}
-//	@Test
+	@Test
 	public void insertMemberTest() {
 		logger.info("MemberTest insertMemberTest");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,7 +42,7 @@ public class MemberTest {
 		System.out.println(result);
 		
 	}
-//	@Test
+	@Test
 	public void loginMemberTest() {
 		logger.info("MemberTest loginMemberTest");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -61,13 +61,6 @@ public class MemberTest {
 //	public void Test() {
 //		logger.info("MemberTest ");
 //	}
-	
-	@Test
-	public void idCheck() {
-		logger.info("MemberTest idCheck");
-		int cnt = dao.idCheck("GD004");
-		System.out.println(cnt);
-	}
 
 
 }

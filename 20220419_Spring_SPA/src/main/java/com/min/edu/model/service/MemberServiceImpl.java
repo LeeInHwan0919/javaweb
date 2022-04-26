@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.MemberVo;
@@ -49,17 +50,15 @@ public class MemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public boolean changeUser(Map<String, Object> map) {
-		logger.info("MemberServiceImpl enLogin : {}",map);
-		return dao.changeUser(map);
+	public int idCheck(String id) {
+		logger.info("MemberServiceImpl idCheck : {}",id);
+		return dao.idCheck(id);
 	}
 
 	@Override
-	public int idCheck(String id) {
-		
-		return dao.idCheck(id);
+	public boolean changeUser(Map<String, Object> map) {
+		logger.info("MemberServiceImpl changeUser : {}",map);
+		return dao.changeUser(map);
 	}
-	
-	
 
 }

@@ -1,4 +1,11 @@
 @charset "UTF-8";
+
+.usm-agree input[type="checkbox"] { cursor: pointer; }
+.usm-agree label { padding: 0 0 0 7px; cursor: pointer; }
+
+.usm-member-join label { font-size:14px; }
+.usm-member-join label strong { font-weight:bold; color:#EB3941; }
+
 .usm-join-box { height:120px; margin-top:3px; margin-bottom: 30px; padding:10px; border:1px solid #E1E1E3; overflow-y:scroll; background-color: #fff; }
 .usm-join-box p.tit { font-size:20px;  font-weight: bold; }
 .usm-join-box dl dt { font-size:16px;  font-weight: bold; margin-top:20px; color:#054180; }
@@ -13,9 +20,10 @@
 }
 
 #title{
-	position:relative;
+	position: relative;
 	text-align: center;
 	width: 100%;
+	opacity: 40%;
 }
 
 #info{
@@ -23,30 +31,29 @@
 	margin-top: 10px;
 	width: 750px;
 }
-
 #leftInfo{
 	float: left;
-	width:200px;
-	height: 120px;
+	width: 200px;
+	height: 130px;
+	margin-top:15px;
 	margin-left: 20px;
 	margin-right: 50px;
-	margin-top:15px;
-	font-weight:bold;
-	font-size: 40px;
+	font-weight: bold;
+	font-size: 25px;
+	color: #191970;
 }
-
 #centerInfo{
-	width: 500px;
+	width: 600px;
 }
 
 #name, #id, #password, #passOk{
 	margin-top: 15px;
-	width:200px;
+	width: 200px;
 	height: 20px;
 }
 
 #bottomInfo{
-	width:800px;
+	width: 800px;
 	position: relative;
 	font-size: 10px;
 }
@@ -56,3 +63,5 @@
 	position: relative;
 	text-align: center;
 }
+
+

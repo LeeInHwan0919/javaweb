@@ -1,53 +1,58 @@
 @charset "UTF-8";
 
 #container{
-  border : 10px solid #408080;
-  position: relative;
-  margin: auto;
-  
-  width: 400px;
-  height: 200px;
-  
-  padding:50px;
-  padding-top:0px;
-  
-  top:100px;
+	border: 8px solid #F08080;
+	position: relative;
+	margin: auto;
+	
+	width: 400px;
+	height: 200px;
+	
+	padding: 50px;
+	padding-top: 0px;
+	
+	top: 100px;
 }
 
 #title{
 	text-align: center;
 	
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: bold;
 	
-	margin-top:10px;
-	margin-bottom:40px;
+	margin-top: 10px;
+	margin-bottom: 40px;
 }
 
 .inputWord{
 	width: 100px;
 	font-weight: bold;
-	float:left;
+	float: left;
 	display: flex;
-	justify-content:space-around;
+	justify-content: space-around;
 }
 
 input[type='text']{
-	width:70%;
+	width: 70%;
 	box-sizing: border-box;
 }
 
 #login{
 	position: relative;
-	
-	margin: 10p auto;
+	margin: 10px auto;
 	
 	width: 100px;
 	height: 40px;
-	font-weight: bold;	
+	font-weight: bold;
 }
 
-#bottom{
-	text-align: center;
+#bottom>input{
+	width: 100px;
 }
+
+
+
+
+
+
 
