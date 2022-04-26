@@ -65,8 +65,7 @@ function pageNext(pNum,total,listNum,pageList){
 	console.log("다음 페이지");
 	var idx = Math.ceil(total/listNum); //31/5 = 7
 	var max = Math.ceil(idx/pageList); //2그룹
-	
-	if(max*pageList > pNum+pageList){
+	 
 		pNum += pageList;
 		
 		var index = document.getElementById("index");
@@ -91,8 +90,8 @@ function pageLast(pNum,total,listNum,pageList){
 	var index = document.getElementById("index");
 	var pageNum = document.getElementById("pageNum");
 	
-	index.value="idx-1";
-	pageNum.value="1";
+	index.value=idx-1;
+	pageNum.value=1;
 	pageNum.value =pNum;
 	
 	pageAjax();

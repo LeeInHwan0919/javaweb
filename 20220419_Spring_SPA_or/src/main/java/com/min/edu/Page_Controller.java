@@ -100,7 +100,7 @@ public class Page_Controller {
       jRow.put("total", rowVo.getTotal());
       jRow.put("count", rowVo.getCount());
       
-      json.put("mLists", jList);
+      json.put("lists", jList);
       json.put("row", jRow);
       
       return json;
