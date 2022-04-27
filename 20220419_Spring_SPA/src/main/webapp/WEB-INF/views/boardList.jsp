@@ -20,16 +20,14 @@
 				</select>
 				</span>
 				<c:if test="${mem2.auth eq 'A'}">
-					<span><input type="submit" class="btn btn-danger"
-						value="다중삭제"></span>
+					<span><input type="submit" class="btn btn-danger"value="다중삭제"></span>
 				</c:if>
 			</div>
 			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<c:if test="${mem2.auth eq 'A'}">
-							<th><input type="checkbox" id="checkAll"
-								onclick="checkAlls(this.checked)"></th>
+							<th><input type="checkbox" id="checkAll" onclick="checkAlls(this.checked)"></th>
 						</c:if>
 						<th>글번호</th>
 						<th>제목</th>
@@ -42,8 +40,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<jsp:useBean id="boardList" class="com.min.edu.bean.ListBean"
-						scope="page" />
+					<jsp:useBean id="boardList" class="com.min.edu.bean.ListBean" scope="page" />
 					<jsp:setProperty property="lists" name="boardList" value="${lists}" />
 					<jsp:setProperty property="mem" name="boardList" value="${mem2}" />
 					<jsp:getProperty property="listForm" name="boardList" />

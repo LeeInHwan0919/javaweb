@@ -68,8 +68,8 @@ function chkBox(){
 		
 }
 
-	function del(val){
-		console.log("삭제 :",val);
-		location.href="./multiDel.do?chk="+val;
+function del(seq){
+		console.log("seq의 값 : ",seq);
 	}
+	
 
