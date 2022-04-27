@@ -70,6 +70,7 @@ function chkBox(){
 
 function del(seq){
 		console.log("seq의 값 : ",seq);
+		location.href="./multiDel.do?seq="+seq;
 	}
 	
 

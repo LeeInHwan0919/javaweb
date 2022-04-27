@@ -63,7 +63,7 @@
   <div id="title">Spring Single Page</div>
     <form method="post">
       <div class="inputWord">아 이 디</div>
-        <input type="text" name="id" id="inputId" placeholder="아이디 입력" value="GD004"> <br>
+        <input type="text" name="id" id="inputId" placeholder="아이디 입력" value="USER"> <br>
       <div class="inputWord">비밀번호</div>
         <input type="text" name="pw" id="inputPw" placeholder="비밀번호 입력" value="1234" onkeyup="enterKey()"> <br>
       <div style="text-align: center">

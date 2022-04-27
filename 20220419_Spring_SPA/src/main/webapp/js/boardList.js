@@ -266,7 +266,7 @@ function modify(seq){
 	console.log("선택된 글번호"+"글수정 : "+seq);
 	var id = "[href*=collapse22]";
 	$(id).css("background","yellow");
-	showModify();
+	showModify(seq);
 	$("#modify").modal({backdrop: 'static', keyboard: false});
 }
 
@@ -274,7 +274,7 @@ function modalHide(){
 	$("#modify").modal("hide");
 }
 
-var showModify = function(){
+var showModify = function(seq){
 	mhtml = "";
 	mhtml += " <div class='form-group'>                                      ";
 	mhtml += "   <label for='id'>아이디:</label>                   ";
@@ -289,18 +289,17 @@ var showModify = function(){
 	mhtml += "   <textarea class='form-control' row='5' id='content' name='content'></textarea>          ";
 	mhtml += " </div>";
 	mhtml += " <div class='modal-footer'> ";
-	mhtml += " <input type='button' class='btn btn-success' value='수정 글 입력' onclick='modifyVal()'>";                                                        
+	mhtml += " <input type='button' class='btn btn-success' value='수정 글 입력' onclick='modifyVal("+seq+")'>";   
 	mhtml += " <input type='reset' class='btn btn-info' value='초기화'>";                                                        
 	mhtml += " <button type='button' class='btn btn-default' data-dismiss='modal'>수정 취소</button>";                                                        
 	mhtml += " </div>       ";                                       
 	 $("#frmModify").html(mhtml);          
 }
 
-function modifyVal(){
-	var frmModify = document.getElementById("frmModify");
-	frmModify.action="./modify.do";
-	console.log("글 수정 버튼 클릭");
+function modifyVal(seq){
+	console.log("새글작성 버튼 클릭");
 	var title = document.getElementById("title");
+	var content = document.getElementById("content");
 	
 	const extractTextPattern = /(<([^>]+)>)/gi;
 	let convertTitle = title.value.replace(extractTextPattern, '');
@@ -308,14 +307,38 @@ function modifyVal(){
 	console.log("변경된 title 값 :"+convertTitle);
 	
 	if(title.value.trim()==""){
-		swal("수정 글 작성 오류","제목은 필수 값 입니다. ");
+		swal("새글작성 오류","제목은 필수 값 입니다. ");
 		title.value="";
 	}else{
-		frmModify.submit();
+		$.ajax({
+			url:"./modify.do",
+			type:"post",
+			data:{"title":title.value,"content":content.value,"seq":seq},
+			dataType:"json",
+			success:function(msg){
+				console.log("msg값은 : ",msg);
+				if(msg>0){
+					console.log("성공");
+					swal("수정 성공");
+					modalHide();
+					pageAjax();
+				}else{
+					swal("수정 실패");
+					modalHide();
+					pageAjax();
+				}
+			}
+				
+			,
+			error:function(err){
+				console.log("실패");
+			}
+				
+			
+			
+		});
 	}
 }
-
-
 
 
 
