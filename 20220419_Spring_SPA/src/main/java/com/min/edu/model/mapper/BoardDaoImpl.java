@@ -26,15 +26,16 @@ public class BoardDaoImpl implements IBoardDao {
 	public int insertBoardRoot(Map<String, Object> map) {
 		return sqlSession.insert(NS+"insertBoardRoot",map);
 	}
-	
+
 	@Override
 	public int insertBoardAnswer(Map<String, Object> map) {
+		// TODO Auto-generated method stub
 		return sqlSession.insert(NS+"insertBoardAnswer",map);
 	}
 	
 	@Override
 	public int updateBoardAnswer(Map<String, Object> map) {
-		return sqlSession.insert(NS+"updateBoardAnswer",map);
+		return sqlSession.update(NS+"updateBoardAnswer",map);
 	}
 
 	@Override
@@ -61,10 +62,10 @@ public class BoardDaoImpl implements IBoardDao {
 	public int deleteBoard(List<String> seqs) {
 		return sqlSession.delete(NS+"deleteBoard",seqs);
 	}
-
+	
 	@Override
 	public List<BoardVo> selectBoardAll(MemberVo mVo) {
-		return sqlSession.selectList(NS+"selectBoardAll",mVo);
+		return sqlSession.selectList(NS + "selectBoardAll", mVo);
 	}
 
 	@Override
@@ -76,35 +77,33 @@ public class BoardDaoImpl implements IBoardDao {
 	public List<BoardVo> selectBoardAllUser() {
 		return sqlSession.selectList(NS+"selectBoardAllUser");
 	}
-
+	
 	@Override
 	public List<BoardVo> deleteBoardSel(String seq) {
-		return sqlSession.selectList(NS+"deleteBoardSel",seq);
+		return sqlSession.selectList(NS+"deleteBoardSel", seq);
 	}
-
+	
+	/*
+	 * 페이징 처리
+	 */
 	@Override
 	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
-		return sqlSession.selectList(NS+"adminBoardListRow",vo);
+		return sqlSession.selectList(NS+"adminBoardListRow", vo);
 	}
-
+	
 	@Override
 	public int adminBoardListTotal() {
 		return sqlSession.selectOne(NS+"adminBoardListTotal");
 	}
-
+	
 	@Override
 	public List<BoardVo> userBoardListRow(RowNumVo vo) {
-		return sqlSession.selectList(NS+"userBoardListRow",vo);
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+"userBoardListRow", vo);
 	}
-
+	
 	@Override
 	public int userBoardListTotal() {
 		return sqlSession.selectOne(NS+"userBoardListTotal");
 	}
-
-
-
-
-
-	}
-
+}

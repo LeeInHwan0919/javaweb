@@ -15,6 +15,15 @@
 		<org.aspectj-version>1.9.6</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
+	
+	<repositories>
+	  <repository>
+		<id>local.repository</id>
+		<name>local repository</name>
+		<url>file://${project.basedir}/repository</url>	  
+	  </repository>
+	</repositories>
+	
 	<dependencies>
 	<!-- Spring -->
 		<dependency>
@@ -137,6 +146,7 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+			<!-- scope 가 test 면 배포가 되지않는다 충돌나도 상관 x -->
 		</dependency>
 
 
@@ -178,26 +188,30 @@
 			<version>3.9</version>
 		</dependency>
 		
-		<!-- Spring Framework 비동기식 처리방법의 반환 타입 자동으로 JSON으로 처리해주는 것 -->
+		
+		
+		
+		
+		
+		
+		<!--  SpringFramework 비동기식 처리 방법의 반환타입을 자동으로 JSON 으로 처리해주는 것 -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.13.2.2</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-core</artifactId>
 		    <version>2.13.2</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.codehaus.jackson</groupId>
 		    <artifactId>jackson-core-asl</artifactId>
 		    <version>1.9.13</version>
 		</dependency>
 		
-		<!-- XML, HTML 등의 MarkUp Language를 JAVA로 파싱해주는 라이브러리 : 공공데이터 -->
+		<!-- XML, HTML 등의 MarkUp Language를 자바로 파싱해주는 라이브러리 Jsoup : 공공데이터 쓰려면 무조건 필요 -->
 		<dependency>
 		    <groupId>org.jsoup</groupId>
 		    <artifactId>jsoup</artifactId>
@@ -217,13 +231,19 @@
 		    <artifactId>spring-security-web</artifactId>
 		    <version>${org.springframework-security}</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
 		    <version>${org.springframework-security}</version>
 		</dependency>
 		
+		
+		<!-- 사용자 jar파일 -->
+		<dependency>
+		  <groupId>com.min</groupId>
+		  <artifactId>servletalter</artifactId>
+		  <version>1.0</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
@@ -241,7 +261,6 @@
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
-			
 		</plugins>
 	</build>
 </project>

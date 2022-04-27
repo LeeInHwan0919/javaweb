@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/*.xml" })
@@ -27,9 +28,9 @@ public class MemberTest {
 	private final Logger logger = LoggerFactory.getLogger(MemberTest.class);
 	
 	@Test
-	public void selectMemberAllTest() {
+	public void selectMemberAllTest(RowNumVo vo) {
 		logger.info("MemberTest selectMemberAllTest");
-		List<MemberVo> lists =  dao.selectMemberAll();
+		List<MemberVo> lists =  dao.selectMemberAll(vo);
 		System.out.println(lists);
 	}
 	@Test

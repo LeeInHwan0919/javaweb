@@ -19,8 +19,8 @@
 <!-- 			</list> -->
 <!-- 		</property> -->
 <!-- 	</bean> -->
-
-	<context:property-placeholder location="classpath:properties/db.properties" />
+	<context:property-placeholder location="classpath:properties/db.properties"/>
+	
 	
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
 		<property name="driverClassName" value="${driver}"/>
@@ -50,9 +50,9 @@
 		</tx:attributes>
 	</tx:advice>
 	
-<!-- 	<aop:config> -->
-<!-- 		<aop:advisor advice-ref="advice" pointcut="execution(public * com.min.edu.model.service.*Service*.*(..))"/> -->
-<!-- 	</aop:config> -->
+	<aop:config>
+		<aop:advisor advice-ref="advice" pointcut="execution(public * com.min.edu.model.service.*Service*.*(..))"/>
+	</aop:config>
 	
 	
 	

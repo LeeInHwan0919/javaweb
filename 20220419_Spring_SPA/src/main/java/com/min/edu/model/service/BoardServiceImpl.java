@@ -34,7 +34,7 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl insertBoardAnswer : {}",map);
 		int n = dao.insertBoardAnswer(map);
 		int m = dao.updateBoardAnswer(map);
-		return (n>0||m>0)?1:0;
+		return (n>0 || m>0) ? 1 : 0 ;
 	}
 
 	@Override
@@ -61,12 +61,12 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl deleteBoard ; {}",seqs);
 		return dao.deleteBoard(seqs);
 	}
-
+	
 	@Override
 	public List<BoardVo> selectBoardAll(MemberVo mVo) {
 		return dao.selectBoardAll(mVo);
 	}
-	
+
 	@Override
 	public List<BoardVo> selectBoardAllAdmin() {
 		logger.info("BoardServiceImpl selectBoardAllAdmin");
@@ -78,13 +78,16 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl selectBoardAllUser");
 		return dao.selectBoardAllUser();
 	}
-
+	
 	@Override
 	public List<BoardVo> deleteBoardSel(String seq) {
 		logger.info("BoardServiceImpl deleteBoardSel");
 		return dao.deleteBoardSel(seq);
 	}
 
+	/*
+	 * 페이징 처리
+	 */
 	@Override
 	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
 		logger.info("BoardServiceImpl adminBoardListRow");
@@ -108,7 +111,6 @@ public class BoardServiceImpl implements IBoardService {
 		logger.info("BoardServiceImpl userBoardListTotal");
 		return dao.userBoardListTotal();
 	}
-
-
-
+	
+	
 }

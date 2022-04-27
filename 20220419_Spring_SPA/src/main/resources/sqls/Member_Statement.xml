@@ -2,12 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.edu.model.mapper.MemberDaoImpl">
 
-<!-- 회원 전체 조회 -->
-<select id="selectMemberAll" resultType="MemberVo">
-	SELECT ID, AUTH, ID||'님' AS NAME, DELFLAG, REGDATE FROM SPRINGMEMBER 
-		ORDER BY REGDATE DESC
+<!-- 회원전체 조회 --> <!-- 페이징 -->
+<select id="selectMemberAll" parameterType="RowNumVo" resultType="MemberVo">
+	SELECT ID, NAME, AUTH, DELFLAG,REGDATE
+	FROM (
+		SELECT ROW_NUMBER() OVER(ORDER BY REGDATE DESC) RN, ID, ID||'님' NAME, AUTH, DELFLAG ,REGDATE 
+		FROM SPRINGMEMBER s 
+<!-- 		WHERE DELFLAG = 'N' -->
+	)
+	WHERE RN BETWEEN #{start} AND #{last}
 </select>
-
 <!-- 회원 가입 -->
 <insert id="insertMember" parameterType="java.util.Map">
 	INSERT INTO SPRINGMEMBER (ID,PW,AUTH,DELFLAG,REGDATE) VALUES (#{id},#{pw},'U','N',SYSDATE)
@@ -20,31 +24,43 @@
 
 <!-- 비밀번호 확인 -->
 <select id="passwordCheck" parameterType="java.lang.String" resultType="java.lang.String">
-	SELECT PW
-		FROM SPRINGMEMBER WHERE ID=#{id}
+	SELECT PW FROM SPRINGMEMBER WHERE ID = #{id}
 </select>
 
-<!--  ID로 로그인 -->
+<!-- id로그인 -->
 <select id="enLogin" parameterType="java.lang.String" resultType="MemberVo">
-	SELECT ID, AUTH, DELFLAG,REGDATE FROM SPRINGMEMBER WHERE ID=#{id}
+	SELECT ID, AUTH,REGDATE FROM SPRINGMEMBER WHERE ID = #{id}
 </select>
 
-<!-- 상태 변경 -->
+<!-- 회원 상태 변경 -->
+<!-- <update id="changeUser" parameterType="java.util.Map"> -->
+<!-- 	UPDATE SPRINGMEMBER SET DELFLAG = #{delflag} WHERE ID = #{id}  -->
+<!-- </update> -->
+
 <update id="changeUser" parameterType="java.util.Map">
-   UPDATE  SPRINGMEMBER 
-   		SET  DELFLAG = CASE DELFLAG WHEN 'N' THEN 'Y' ELSE 'N' END
-   		WHERE ID = #{id}
+	UPDATE SPRINGMEMBER 
+	SET DELFLAG = CASE DELFLAG WHEN 'N' THEN 'Y' ELSE 'N' END
+	WHERE ID = #{id}
 </update>
 
 <!-- 아이디 중복검사 -->
 <select id="idCheck" parameterType="java.lang.String" resultType="java.lang.Integer">
-	SELECT COUNT(*)
-		FROM SPRINGMEMBER WHERE ID=#{id}
+	SELECT COUNT(*) FROM SPRINGMEMBER WHERE ID = #{id}
 </select>
 
+<select id="memberListRow" parameterType="RowNumVo" resultType="MemberVo">
+	SELECT ID, AUTH, DELFLAG,REGDATE 
+	FROM (
+		SELECT ROW_NUMBER() OVER(ORDER BY REGDATE DESC) RN, ID, AUTH, DELFLAG,REGDATE 
+		FROM SPRINGMEMBER s 
+		WHERE DELFLAG = 'N'
+	)
+	WHERE RN BETWEEN #{start} AND #{last}
+</select>
 
-
-
-
+<select id="memberTotal" resultType="java.lang.Integer">
+	SELECT COUNT(*) FROM SPRINGMEMBER
+	WHERE DELFLAG = 'N'
+</select>
 
 </mapper>

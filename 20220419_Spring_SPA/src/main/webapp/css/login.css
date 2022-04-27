@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 #container{
-	border: 8px solid #F08080;
+	border: 10px solid cornflowerblue;
 	position: relative;
 	margin: auto;
 	
@@ -11,15 +11,13 @@
 	padding: 50px;
 	padding-top: 0px;
 	
-	top: 100px;
+	top: 200px;
 }
 
 #title{
 	text-align: center;
-	
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: bold;
-	
 	margin-top: 10px;
 	margin-bottom: 40px;
 }
@@ -32,7 +30,7 @@
 	justify-content: space-around;
 }
 
-input[type='text']{
+input[type="text"]{
 	width: 70%;
 	box-sizing: border-box;
 }
@@ -40,19 +38,15 @@ input[type='text']{
 #login{
 	position: relative;
 	margin: 10px auto;
-	
 	width: 100px;
 	height: 40px;
 	font-weight: bold;
 }
 
+#bottom{
+	text-align: center;
+}
+
 #bottom>input{
 	width: 100px;
 }
-
-
-
-
-
-
-

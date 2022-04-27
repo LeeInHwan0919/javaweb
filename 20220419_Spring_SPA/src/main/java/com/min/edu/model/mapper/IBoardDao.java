@@ -19,24 +19,22 @@ public interface IBoardDao {
 	public int updateBoardDelflag(Map<String, String[]> seqs);
 	public int deleteBoard(List<String> seqs);
 	
-	public List<BoardVo> selectBoardAll(MemberVo mVo); //session에 들어오는애가 들어오는구나
-	
-	
+	public List<BoardVo> selectBoardAll(MemberVo mVo);
 	public List<BoardVo> selectBoardAllAdmin();
 	public List<BoardVo> selectBoardAllUser();
 	
 	public List<BoardVo> deleteBoardSel(String seq);
 	
-/*
- * 페이징 처리
- */
+	/*
+	 * 페이징 처리
+	 */
 	public List<BoardVo> adminBoardListRow(RowNumVo vo);
 	public int adminBoardListTotal();
-	
 	public List<BoardVo> userBoardListRow(RowNumVo vo);
 	public int userBoardListTotal();
 	
 	
 	
-
+	
+	
 }

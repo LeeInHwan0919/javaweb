@@ -11,8 +11,12 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- aop 동작 할때 잡아주는 -->
 
 	
+	<!-- 트랜잭션 동작할때 잡아주는 --> 
+
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -20,9 +24,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.min.edu" />
-		<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
-	<tx:annotation-driven/>
-	
+		<annotation-driven />
+		<tx:annotation-driven/>
 	
 </beans:beans>

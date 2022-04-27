@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @Service
 public class MemberServiceImpl implements IMemberService {
@@ -20,9 +21,9 @@ public class MemberServiceImpl implements IMemberService {
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 	
 	@Override
-	public List<MemberVo> selectMemberAll() {
+	public List<MemberVo> selectMemberAll(RowNumVo vo) {
 		logger.info("MemberServiceImpl selectMemberAll");
-		return dao.selectMemberAll();
+		return dao.selectMemberAll(vo);
 	}
 
 	@Override
@@ -31,6 +32,12 @@ public class MemberServiceImpl implements IMemberService {
 		return dao.insertMember(map);
 	}
 
+	@Override
+	public int memberTotal() {
+		logger.info("MemberServiceImpl memberTotal");
+		return dao.memberTotal();
+	}
+	
 	@Override
 	public MemberVo loginMember(Map<String, Object> map) {
 		logger.info("MemberServiceImpl loginMember : {}",map);
@@ -54,11 +61,15 @@ public class MemberServiceImpl implements IMemberService {
 		logger.info("MemberServiceImpl idCheck : {}",id);
 		return dao.idCheck(id);
 	}
-
+	
+//	@Override
+//	public int changeUser(Map<String, Object> map) {
+//		return dao.changeUser(map);
+//	}
+	
 	@Override
 	public boolean changeUser(Map<String, Object> map) {
-		logger.info("MemberServiceImpl changeUser : {}",map);
+		logger.info("MemberServiceImpl changeUser : {}", map);
 		return dao.changeUser(map);
 	}
-
 }
