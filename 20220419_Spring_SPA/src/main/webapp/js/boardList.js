@@ -264,84 +264,242 @@ function writeVal(){
 //글 수정하기
 function modify(seq){
 	console.log("선택된 글번호"+"글수정 : "+seq);
+	//DOM탐색을 ID나 class를 가지고 하는게 아니라 속성의 값(글자)를 탐색하여 선택함
+	// ~= : 일치값, *= 포함값 
 	var id = "[href*=collapse22]";
 	$(id).css("background","yellow");
-	showModify(seq);
+	ajaxModify(seq);
+	
+	//뒤 에 눌리면 닫히는것이 싫은 규철
 	$("#modify").modal({backdrop: 'static', keyboard: false});
 }
 
+//규철이가 하고싶은거
 function modalHide(){
 	$("#modify").modal("hide");
 }
 
-var showModify = function(seq){
-	mhtml = "";
-	mhtml += " <div class='form-group'>                                      ";
-	mhtml += "   <label for='id'>아이디:</label>                   ";
-	mhtml += "   <input type='text' class='form-control' id='id' name='id' placeholder='Enter id' readonly>        ";
-	mhtml += " </div>                                                        ";
-	mhtml += " <div class='form-group'>                                      ";
-	mhtml += "   <label for='title'>수정 할 제목:</label>                          ";
-	mhtml += "   <input type='text' class='form-control' name='title' id='title' required>       ";
-	mhtml += " </div>                                                        ";
-	mhtml += " <div class='form-group'>                                        ";
-	mhtml += "   <label for='content'>수정 할 내용</label>          ";
-	mhtml += "   <textarea class='form-control' row='5' id='content' name='content'></textarea>          ";
-	mhtml += " </div>";
-	mhtml += " <div class='modal-footer'> ";
-	mhtml += " <input type='button' class='btn btn-success' value='수정 글 입력' onclick='modifyVal("+seq+")'>";   
-	mhtml += " <input type='reset' class='btn btn-info' value='초기화'>";                                                        
-	mhtml += " <button type='button' class='btn btn-default' data-dismiss='modal'>수정 취소</button>";                                                        
-	mhtml += " </div>       ";                                       
-	 $("#frmModify").html(mhtml);          
+var ajaxModify = function(seq){
+	console.log("ajaxModify",seq);
+	
+	$.ajax({
+		url:"./modifyForm.do",
+		method:"post",
+		data:"seq="+seq,
+		success:function(msg){
+			console.log(msg,typeof msg);
+			var json = JSON.parse(msg);
+			console.log(json,typeof json);
+			
+	html = "";
+	html += " <div class='form-group'>                                      ";
+	html += "   <label for='id'>아이디:</label>                   ";
+	html += "   <input type='hidden' name='seq' value='"+json.seq+"'>       ";
+	html += "   <b class='form-control'>"+json.id+"</b>       ";
+	html += " </div>                                                        ";
+	
+	html += " <div class='form-group'>                                      ";
+	html += "   <label for='regdate'>작성일:</label>                   ";
+	html += "   <b class='form-control'>"+json.regdate+"</b>       ";
+	html += " </div>                                                        ";
+	
+	html += " <div class='form-group'>                                      ";
+	html += "   <label for='title'>제목:</label>                   ";
+	html += "   <input type='text' class='form-control' id='title' name='title' required value='"+json.title+"'>       ";
+	html += " </div>  ";
+	
+	html += " <div class='form-group'>                                        ";
+	html += "   <label for='content'>:내용</label>          ";
+	html += "   <textarea class='form-control' row='5' id='content' name='content'>"+json.content+"</textarea>          ";
+	html += " </div>";
+	
+	html += " <div class='modal-footer'> ";
+	html += " <input type='button' class='btn btn-success' value='글수정' onclick='modifyVal("+seq+")'>";   
+	html += " <input type='reset' class='btn btn-info' value='초기화'>";                                                        
+	html += " <button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>";                                                        
+	html += " </div>       "; 
+	                                 
+	 $("#frmModify").html(html);          
+			
+		},
+		error:function(){
+			alert("잘못된 요청처리");
+		}
+	})
+	
+	
 }
 
-function modifyVal(seq){
-	console.log("새글작성 버튼 클릭");
-	var title = document.getElementById("title");
-	var content = document.getElementById("content");
+function modifyVal(){
+	var frm = $("#frmModify");
+	var idx = document.getElementById("index").value;
 	
-	const extractTextPattern = /(<([^>]+)>)/gi;
-	let convertTitle = title.value.replace(extractTextPattern, '');
-	title.value = convertTitle;
-	console.log("변경된 title 값 :"+convertTitle);
-	
-	if(title.value.trim()==""){
-		swal("새글작성 오류","제목은 필수 값 입니다. ");
-		title.value="";
-	}else{
+	console.log(frm.serialize());
+	console.log(idx);
 		$.ajax({
 			url:"./modify.do",
 			type:"post",
-			data:{"title":title.value,"content":content.value,"seq":seq},
-			dataType:"json",
+			data:frm.serialize(),
 			success:function(msg){
 				console.log("msg값은 : ",msg);
-				if(msg>0){
-					console.log("성공");
-					swal("수정 성공");
-					modalHide();
-					pageAjax();
+				if(msg.isc=="true"){
+					$("#modify").modal("hide");
+					pageIndex(idx+1);
 				}else{
-					swal("수정 실패");
-					modalHide();
-					pageAjax();
+					location.href="./logout.do";
 				}
+			},
+			error:function(){
+				console.log("잘못된 요청 처리");
 			}
-				
-			,
-			error:function(err){
-				console.log("실패");
-			}
-				
-			
-			
 		});
+	
+
+}
+
+
+//========================답글 달기===========================//
+//글 수정하기
+function reply(seq){
+	console.log("선택된 글번호"+"글수정 : "+seq);
+	ajaxReply(seq);
+	$("#reply").modal();
+}
+
+
+
+var ajaxReply = function(seq){
+	console.log("ajaxReply",seq);
+	
+	$.ajax({
+		url:"./replyForm.do",
+		type:"post",
+		data:{"seq":seq},
+		dataType:"json",
+		success:function(r){
+			console.log("RRRR:",r);
+	 	$("#frmReply").html("");
+//	 	html += " <div class='form-group'>                                      ";
+//		html += "   <label for='id'>아이디:</label>                   ";
+//		html += "   <input type='hidden' name='seq' value='"+json.seq+"'>       ";
+//		html += "   <b class='form-control'>"+json.id+"</b>       ";
+//		html += " </div>                                                        ";
+
+
+
+//	 	var div = $("<div>").attr("class","form-group");
+//	 	var input = $("<input>").attr({"type":"hidden","name":"seq","value":r.obj.seq});
+//	 	var label = $("<label></label>").text("부모글 정보("+r.obj.seq+")");
+//		var p = $("<p>").attr("class","form-control").text("조회수/"+r.obj.readcount+"작성일/"+r.obj.regdate+"작성자/"+r.obj.id);
+//		
+//		div.append(input).append(label).append(p);
+//		
+//		$("#frmReply").append(div);
+		
+		html = "";
+		html += "<div class='form-group'>";
+		html += "<input type='hidden' name='seq' value='"+r.obj.seq+"'>";
+		html += "<label>부모글의 정보("+r.obj.seq+")</label>";
+		html += "<b>조회수:"+r.obj.readcount+" / 작성일:"+r.obj.regdate+" / 작성자:"+r.obj.id+" </b>";
+		html += "</div>";
+		
+		html += "<div class='form-group'>";
+		html += "<label>작성자</label>";
+		html += "<b>"+r.sessionId+"</b>";
+		html += "</div>";
+		
+		html += "<div class='form-group'>";
+		html += "<label id='tit'>제목(원본)</label>";
+		html += "<input type='text' class='form-control' id='title' name='title' value='"+r.obj.title+"'>";
+		html += "</div>";
+		
+		html += "<div class='form-group'>";
+		html += "<input type='hidden' id='hiddenContent' name='title' value='"+r.obj.content+"'>";
+		html += "<label id='con'>내용(원본)</label>";
+		html += "<textarea rows='5' class='form-control' id='Textarea' name='content' onclick='chk()'>"+r.obj.content+"</textarea>";
+		html += "</div>";
+		
+		html += " <div class='modal-footer'> ";
+		html += " <input type='button' class='btn btn-success' value='답글 작성' onclick='replyVal()'>";   
+		html += " <sapn onclick='reset()'><input type='reset' class='btn btn-info' value='초기화'></sapn>";                                                        
+		html += " <button type='button' class='btn btn-default' data-dismiss='modal'>취소</button>";                                                        
+		html += " </div>       "; 
+		
+		$("#frmReply").html(html);		
+		},
+		error:function(){
+			alert("잘못된 요청처리 값");
+		}
+	})
+	
+	
+}
+
+function reset(){
+	console.log("reset consple.log입니다.");
+	document.getElementById("tit").innerHTML="제목(원본)";
+	document.getElementById("con").textContent="내용(원본)";
+}
+
+
+function chk(){
+	var tit =document.getElementById("tit");
+	var con = document.getElementById("con");
+	var title = document.getElementById("title");
+	var Textarea = document.getElementById("Textarea");
+	
+	var hiddenContent = document.getElementById("hiddenContent");
+	
+	console.log(tit, con, title, Textarea, hiddenContent);
+	
+	if(Textarea.value==hiddenContent.value){
+		con.innerHTML="답글";
+		tit.innerHTML="답글내용";
+		Textarea.value="";
+		title.value="";
 	}
 }
 
 
+function replyVal(){
+	
+	var tit =document.getElementById("tit").textContent; //제목(원본) -> 답글 제목
+	console.log(tit);
+	if(tit=="제목(원본)"){
+		swal("답글 작성 오류","제목과 내용을 작성해 주세요.");
+		return;
+	}
+	
+	var parentSeq = document.getElementsByName("seq")[0].value;
+	var title = document.getElementById("title");
+	var content = document.getElementsByName("content")[0];
+	const extractTextPattern = /(<([^>]+)>)/gi;
+	let convertTitle = title.value.replace(extractTextPattern, '');
+	let convertContent = content.value.replace(extractTextPattern, '');
+	console.log(convertTitle,convertContent);	
+	
+	$.ajax({
+		url:"./reply.do",
+		type:"post",
+		data:{"seq":parentSeq,"title":convertTitle,"content":convertContent},
+		success:function(msg){
+			console.log(msg)
+			if(msg.isc=="true"){
+				pageAjax();
+				$("#reply").modal("hide");
+			}else{
+				swal("답글 작성 오류","다시 작성해 주세요.");
+			}
+		},
+		error:function(){
+			alert("잘못된 요청 처리");
+		}
+		
+	});
+	
+	
 
+}
 
 
 

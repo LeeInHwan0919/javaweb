@@ -17,4 +17,7 @@ public interface IMemberService {
 	public int idCheck(String id);
 //	public int changeUser(Map<String, Object> map);
 	public boolean changeUser(Map<String, Object> map);
+	
+	//아이디 찾기 비밀번호 찾기
+	
 }

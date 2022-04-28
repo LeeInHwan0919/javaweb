@@ -106,16 +106,34 @@
 						<h4 class="modal-title">게시글 수정</h4>
 					</div>
 					<div class="modal-body">
-						<form method="post" id="frmModify"></form>
-						<input type="text">
+						<form method="post" id="frmModify">
+  						  <input type="text">
+						</form>
 					</div>
-					        <div class="modal-footer">
-					          <button type="button" class="btn btn-default" onclick="modalHide()">감취기</button>
-					        </div>
+<!-- 					        <div class="modal-footer"> -->
+<!-- 					          <button type="button" class="btn btn-default" onclick="modalHide()">감취기</button> -->
+<!-- 					        </div> -->
 				</div>
 			</div>
 		</div>
 		<!-- 모달 영역 끝 -->
+		
+		
+		<!-- 답글 모달 -->
+		<div class="modal fade" id="reply" role="dialog">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">답글 모달</h4>
+					</div>
+					<div class="modal-body">
+						<form method="post" id="frmReply"></form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--  답글 모달 영역 끝 -->
 
 
 

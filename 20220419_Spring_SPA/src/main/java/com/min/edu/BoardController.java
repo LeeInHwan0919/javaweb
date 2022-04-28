@@ -1,6 +1,8 @@
 package com.min.edu;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,9 +11,11 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.min.edu.model.service.IBoardService;
 import com.min.edu.vo.BoardVo;
@@ -35,11 +40,19 @@ public class BoardController {
 
 	@Autowired
 	private IBoardService iService;
+	
+	//TODO 018 로그아웃 이동
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/loginForm.do";
+	}
 
 	// TODO 005 MemberController.java 64번째 줄(004)에서 Redirect 로 요청한 페이지
 	// TODO 012 페이징 처리되는 BoardList
 	@RequestMapping(value = "/boardList.do", method = RequestMethod.GET)
-	public String boardList(HttpSession session, @SessionAttribute("mem2") MemberVo mVo, Model model) {
+	public String boardList(HttpSession session, /* @SessionAttribute("mem2") MemberVo mVo, */ Model model) {
+		MemberVo mVo = (MemberVo)session.getAttribute("mem2");
 		logger.info("BoardController boardList");
 		logger.info("BoardController 세션 확인 {}", mVo);
 
@@ -92,17 +105,75 @@ public class BoardController {
 		}
 
 	}
-//	boolean 기본타입 
-//	Boolean 참조타입
-//	JCF는 참조타입만 제네릭으로 사용 가능
-	@PostMapping(value="/modify.do")
-	@ResponseBody
-    public int modify(@RequestParam Map<String, Object> map){
-//		map.put("", value)
-		logger.info("BoardController modify : {}", map);
-		int n = iService.updateBoardDetail(map);
-    	return n;
-    }
-   
 
+
+	
+   //TODO 015 글 수정을 위한 값 ajax 구현
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/modifyForm.do", method=RequestMethod.POST,produces = "application/text;charset=UTF-8;")
+	@ResponseBody
+	public String modifyForm(String seq, @SessionAttribute("mem2") MemberVo mVo) {
+		logger.info("BoardController modifyForm seq값 : {}", seq);
+		BoardVo vo = iService.selectBoardDetail(seq);
+		JSONObject json = new JSONObject();
+		
+		//문자열의 객체를 Date 타입 객체로 변경
+		DateTimeFormatter fomatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime date = LocalDateTime.parse(vo.getRegdate(),fomatter);
+		System.out.println(date.toLocalDate());
+		
+		
+		if(mVo.getId().equals(vo.getId())) {
+			json.put("isc", "true");
+			json.put("id", vo.getId());
+			json.put("seq", vo.getSeq()+"");
+			json.put("title", vo.getTitle());
+			json.put("content", vo.getContent());
+			json.put("regdate", date.toLocalDate().toString());
+		}else {
+			json.put("isc", "false");
+		}
+			return json.toString();
+			//toString과 toJSONString은 같다.
+	}
+	
+	//TODO 016 글 수정 값을 DB에 저장
+	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String, String> modify(@RequestParam Map<String, Object> map){
+		Map<String, String> rMap = new HashMap<String, String>();
+		int n = iService.updateBoardDetail(map);
+		rMap.put("isc", (n==1)?"true":"false");
+		return rMap;
+	}//수정 모달
+	
+	
+	//==========답글 모달============
+	//TODO 017 답글 모달에 부모글 값을 전달
+		@RequestMapping(value="/replyForm.do", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, Object> replyForm(String seq, @SessionAttribute("mem2") MemberVo mVo) {
+			logger.info("BoardController replyForm seq값 : {}", seq);
+			Map<String, Object> map = new HashMap<String, Object>();
+			BoardVo vo = iService.selectBoardDetail(seq);
+			
+			map.put("obj", vo);
+			map.put("sessionId", mVo.getId());
+			
+				return map;
+				//toString과 toJSONString은 같다.
+		}
+		
+		@RequestMapping(value="/reply.do", method=RequestMethod.POST)
+		@ResponseBody
+		public Map<String, String> reply(@RequestParam Map<String, Object> map, @SessionAttribute("mem2") MemberVo mVo){
+			Map<String, String> rMap = new HashMap<String, String>();
+   		    map.put("id", mVo.getId());
+   		    int n = iService.boardAnswer(map);
+   		    rMap.put("isc", (n>0)?"true":"false");
+			logger.info("RMAP"+rMap);
+			return rMap;
+		}
+	
+	
 }

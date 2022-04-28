@@ -80,14 +80,15 @@ public class Member_Controller {
 	}
 	
 	//TODO 006 로그아웃
-	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-	public String logout(HttpSession session, SessionStatus sessionStatus, @SessionAttribute("mem2") MemberVo mVo) {
-		logger.info("Welcome! Member_Controller login 로그아웃 전 : {}", mVo);
-		sessionStatus.setComplete();
-		session.invalidate();
-		logger.info("Welcome! Member_Controller login 로그아웃 후 : {}", mVo);
-		return "redirect:/loginForm.do";
-	}
+	//TODO 018 로그아웃 mem2 오류로 다른 외부 Controller로 이동
+//	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+//	public String logout(HttpSession session, SessionStatus sessionStatus, @SessionAttribute("mem2") MemberVo mVo) {
+//		logger.info("Welcome! Member_Controller login 로그아웃 전 : {}", mVo);
+//		sessionStatus.setComplete();
+//		session.invalidate();
+//		logger.info("Welcome! Member_Controller login 로그아웃 후 : {}", mVo);
+//		return "redirect:/loginForm.do";
+//	}
 	
 	//TODO 007 회원가입 화면 이동
 	@GetMapping(value = "/signupForm.do")
@@ -114,21 +115,9 @@ public class Member_Controller {
 		return (n==1)?"redirect:/loginForm.do":"redirect:/signupForm.do";
 	}
 	
-	//TODO 010 관리자가 회원전체의 정보를 조회하는 기능
-	//ModelAndView 객체를 사용해본다.
-//	@RequestMapping(value = "/memberListMAV.do", method = RequestMethod.GET)
-//	public ModelAndView memberListMAV() {
-//		ModelAndView mav = new ModelAndView();
-//		logger.info("Welcome! Member_Controller signup");
-//		List<MemberVo> mLists = iService.selectMemberAll();
-//		// ModelAndView 객체는 Model(전달 값) + View(바인딩이 될 페이지)를 한객체에 담아서 DispatcherServlet 으로 보내줌
-//		mav.addObject("mLists", mLists);
-//		mav.setViewName("memberList");
-//		return mav;
-//	}
-	
+
 	// -------------------------------------------------------------------------------------
-	
+	//TODO 010 관리자가 회원전체의 정보를 조회하는 기능
 	@RequestMapping(value = "/memberListMAV.do", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView memberListMAV(RowNumVo row) {
 		ModelAndView mav = new ModelAndView();
