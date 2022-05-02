@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.MemberDaoImpl">
+
+<!--  회원 전체 조회 (등록일순 내림차순) -->
+<select id="selectAllMember" resultType="MemberVo">
+SELECT ID, AUTH, DELFLAG , REGDATE 
+	FROM SPRINGMEMBER s 
+	ORDER BY REGDATE DESC
+</select>
+
+
+<!-- 회원가입 -->
+<insert id="signUp" parameterType="java.util.Map">
+INSERT INTO GD.SPRINGMEMBER
+(NAME, ID, EMAIL, PW, AUTH, DELFLAG, REGDATE)
+VALUES(#{name}, #{id},#{email},#{pw}, 'U', 'N', SYSDATE)
+</insert>
+
+
+<!-- 로그인 -->
+<select id="login" parameterType="java.util.Map" resultType="int">
+SELECT COUNT(ID)
+	FROM SPRINGMEMBER s 
+		WHERE ID=#{id} AND PW = #{pw}
+</select>
+
+		
+<!-- 비밀번호 확인 -->
+<select id="confirmPw" parameterType="String" resultType="String">
+SELECT PW 
+	FROM SPRINGMEMBER s 
+		WHERE ID = #{id}
+</select>
+
+<select id="findID" parameterType="java.util.Map" resultType="String">
+  SELECT ID
+	FROM SPRINGMEMBER s 
+	WHERE NAME =#{name} AND EMAIL =#{email}
+</select>
+
+
+
+</mapper>

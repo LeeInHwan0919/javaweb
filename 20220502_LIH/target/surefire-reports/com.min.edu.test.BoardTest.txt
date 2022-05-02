@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.min.edu.test.BoardTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.178 sec <<< FAILURE! - in com.min.edu.test.BoardTest
+initializationError(com.min.edu.test.BoardTest)  Time elapsed: 0.004 sec  <<< ERROR!
+java.lang.Exception: No runnable methods
+

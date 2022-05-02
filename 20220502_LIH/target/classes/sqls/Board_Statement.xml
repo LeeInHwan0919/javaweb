@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.BoardDaoImpl">
+
+
+<!-- 새글 쓰기 -->
+<insert id="insertBoard" parameterType="java.util.Map">
+<selectKey keyProperty="seq" resultType="int" order="BEFORE">
+	SELECT  SPRINGBOARD_SEQ.NEXTVAL SEQ FROM DUAL
+</selectKey>
+INSERT INTO SPRINGBOARD
+	(SEQ, ID, TITLE,
+	<if test="content != null">
+		CONTENT,
+	</if>
+		STEP, "DEPTH", REFER, READCOUNT, DELFLAG, REGDATE)
+		VALUES(#{seq} , #{id}, #{title}, 
+	<if test="content != null">
+		#{content},
+	</if>
+		0,0,(SELECT NVL(MAX(REFER),0) FROM SPRINGBOARD s)+1, 0, 'N', SYSDATE)
+</insert>
+
+	
+<!--답글 쓰기(업데이트, 답글입력 Transaction) -->
+<update id="replyUpdate" parameterType="java.util.Map">
+UPDATE  SPRINGBOARD SET STEP = STEP +1
+WHERE REFER = (SELECT REFER FROM SPRINGBOARD s WHERE SEQ=#{seq})
+AND STEP > (SELECT STEP FROM SPRINGBOARD s2 WHERE SEQ=#{seq})
+</update>
+
+<insert id="replyInsert" parameterType="java.util.Map">
+INSERT INTO GD.SPRINGBOARD
+(SEQ, ID, TITLE, CONTENT, STEP, "DEPTH", REFER, READCOUNT, DELFLAG, REGDATE)
+VALUES(SPRINGBOARD_SEQ.NEXTVAL, #{id}, #{title}, #{content}
+		,(SELECT STEP+1 FROM SPRINGBOARD s2 WHERE SEQ=#{seq})
+		,(SELECT "DEPTH"+1 FROM SPRINGBOARD s3 WHERE SEQ=#{seq})
+		,(SELECT REFER FROM SPRINGBOARD s WHERE SEQ=#{seq})
+		, 0, 'N', SYSDATE)
+</insert>
+
+<!-- tansaction 상세조회 + 조회수 -->
+<!-- 상세글 보기 -->
+
+<select id="selectDetail" parameterType="java.util.Map" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, CONTENT, READCOUNT, REGDATE 
+	FROM SPRINGBOARD s 
+		WHERE SEQ = #{seq}
+</select>
+<!--조회수(상세조회와 동시 진행) -->
+<update id="ReadCount" parameterType="java.util.Map">
+UPDATE SPRINGBOARD 
+	SET READCOUNT = READCOUNT+1
+		WHERE SEQ = #{seq}
+</update>
+
+
+<!-- 글수정  -->
+<update id="BoardUpdate" parameterType="java.util.Map">
+UPDATE SPRINGBOARD 
+  SET TITLE = #{title}, CONTENT = #{content}
+	WHERE SEQ = #{seq}
+</update>
+
+
+
+<!-- 글삭제2 > dinamic 쿼리 -->
+<delete id="MultipleDelete" parameterType="java.util.Map">
+  DELETE FROM SPRINGBOARD s 
+	WHERE SEQ IN
+	<foreach collection="seqs" item="seq" open="(" separator="," close=")">
+	   #{seq}
+	</foreach>
+</delete>
+
+
+<!-- 게시글 전체조회-->
+<select id="selectAllBoard" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, STEP, "DEPTH" , REFER, READCOUNT, DELFLAG, REGDATE
+	FROM SPRINGBOARD s
+		ORDER BY REFER DESC, STEP
+</select>
+
+<!-- 하위글 삭제대상 조회 -->
+<select id="selectDown" parameterType="java.util.Map" resultType="BoardVo">
+SELECT SEQ, ID, TITLE, STEP, "DEPTH" , REFER, READCOUNT, DELFLAG, REGDATE
+	FROM SPRINGBOARD s
+	WHERE REFER = (SELECT REFER FROM SPRINGBOARD WHERE SEQ=#{seq})
+	ORDER BY REFER DESC, STEP
+</select>
+
+<select id="boardPaging" parameterType="int" resultType="BoardVo">
+<![CDATA[SELECT SEQ, ID, TITLE,  STEP, "DEPTH", REFER,  READCOUNT, DELFLAG, REGDATE
+FROM(SELECT ROW_NUMBER() OVER(ORDER BY REFER DESC, STEP ASC)AS RNUM, SEQ, ID, TITLE,  STEP, "DEPTH", REFER,  READCOUNT, DELFLAG, REGDATE
+	FROM SPRINGBOARD s )
+		WHERE RNUM>#{page} AND ROWNUM <=10]]>
+</select>
+
+<select id="rowCount" resultType="int">
+SELECT COUNT(*) 
+	FROM SPRINGBOARD s 
+</select>
+
+    
+</mapper>
