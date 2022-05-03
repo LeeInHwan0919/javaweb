@@ -31,7 +31,5 @@ public class BoardDetailServlet extends HttpServlet {
 		req.setAttribute("dto", resultDto);
 		req.getRequestDispatcher("/WEB-INF/views/boardDetail.jsp").forward(req, resp);
 		
-//		req.setAttribute("dto", resultDto);
-//		req.getRequestDispatcher("/WEB-INF/views/boardDetail.jsp").forward(req, resp);
 	}
 }

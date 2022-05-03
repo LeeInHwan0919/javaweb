@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.edu.model.mapper.IBoardDao;
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.RowNumVo;
 
 @Service
 public class BoardServiceImpl implements IBoardService {
@@ -37,10 +38,10 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Transactional
 	@Override
-	public BoardVo DetailBoard(Map<String, Object> map) {
-		logger.info("BoardServiceImpl DetailBoard 파라미터 값 map:{}",map);
-		BoardVo list = dao.selectDetail(map);
-		dao.ReadCount(map);
+	public BoardVo selectDetail(String chk) {
+		logger.info("BoardServiceImpl DetailBoard 파라미터 값 chk:{}",chk);
+		BoardVo list = dao.selectDetail(chk);
+		dao.ReadCount(chk);
 		return list;
 	}
 
@@ -51,11 +52,6 @@ public class BoardServiceImpl implements IBoardService {
 	}
 
 
-	@Override
-	public int BoardDelete(Map<String, Object> map) {
-		logger.info("BoardServiceImpl BoardDelete 파라미터 값 vo:{}",map);
-		return dao.BoardDelete(map);
-	}
 
 	@Override
 	public List<BoardVo> selectAllBoard() {
@@ -76,16 +72,31 @@ public class BoardServiceImpl implements IBoardService {
 		return dao.MultipleDelete(map);
 	}
 
+	/*
+	 * 페이징 처리
+	 */
 	@Override
-	public List<BoardVo> boardPaging(int page) {
-		logger.info("BoardServiceImpl boardPaging 페이지값:{}",page);
-		return dao.boardPaging(page);
+	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
+		logger.info("BoardServiceImpl adminBoardListRow");
+		return dao.adminBoardListRow(vo);
 	}
 
 	@Override
-	public int rowCount() {
-		logger.info("BoardServiceImpl rowCount");
-		return dao.rowCount();
+	public int adminBoardListTotal() {
+		logger.info("BoardServiceImpl adminBoardListTotal");
+		return dao.adminBoardListTotal();
+	}
+
+	@Override
+	public List<BoardVo> userBoardListRow(RowNumVo vo) {
+		logger.info("BoardServiceImpl userBoardListRow");
+		return dao.userBoardListRow(vo);
+	}
+
+	@Override
+	public int userBoardListTotal() {
+		logger.info("BoardServiceImpl userBoardListTotal");
+		return dao.userBoardListTotal();
 	}
 	
 	

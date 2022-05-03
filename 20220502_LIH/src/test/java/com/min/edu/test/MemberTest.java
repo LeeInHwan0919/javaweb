@@ -55,15 +55,10 @@ public class MemberTest {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", "Member");
 		map.put("pw", "1234");
-		int cnt = dao.login(map);
-		System.out.println("cnt의 값은:"+cnt);
+		MemberVo vo = dao.loginMember(map);
+		System.out.println("cnt의 값은:"+vo);
 	}
 	
-//	@Test
-	public void confirmPw() {
-		String pw = dao.confirmPw("Member");
-		System.out.println("password의 값은 :"+pw);
-	}
 	
 	//아이디 찾기
 //	@Test

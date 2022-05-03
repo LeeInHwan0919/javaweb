@@ -66,7 +66,7 @@ public class BoardController {
          //두번째 요청부터는 Session의 값을 사용
          rowVo = (RowNumVo)session.getAttribute("row");
       }
-      //각 사용자의 권한에 따라서 실행되는 SErvice를 분기
+      //각 사용자의 권한에 따라서 실행되는 Service를 분기
       if(mVo.getAuth().equals("U")) {
          //TODO 012페이징 BoardList User
          rowVo.setTotal(iService.userBoardListTotal());

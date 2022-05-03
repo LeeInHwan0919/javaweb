@@ -10,13 +10,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.min.edu.model.service.IMemberService;
+import com.min.edu.vo.MemberVo;
 
 @Controller
+@SessionAttributes("member")
 public class MemberController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -46,20 +50,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/login.do",method = RequestMethod.POST)
-	public void login(@RequestParam Map<String, Object> map, HttpServletResponse response) throws IOException {
+	public String login(@RequestParam Map<String, Object> map, Model model){
 		logger.info("!!!!MemberController login.do map의 값 {}",map);
-		int cnt = iService.login(map);
-		logger.info("!!!cnt의 값 {}",cnt);
-		if(cnt>0) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인에 성공하였습니다. 메인페이지로 이동합니다.'); location.href='./boardList.do'</script>;");
-			out.flush();
+		MemberVo mVo = iService.loginMember(map);
+		model.addAttribute("member", mVo);
+		logger.info("!!!cnt의 값 {}",mVo);
+		if(mVo!=null) {
+			return "redirect:/boardList.do";
 		}else {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('로그인에 실패하였습니다. 아이디 또는 비밀번호를 다시 확인해 주세요.'); location.href='./loginForm.do'; </script>");
-			out.flush();
+			return "redirect:/loginForm.do";
 		}
 	}
 	

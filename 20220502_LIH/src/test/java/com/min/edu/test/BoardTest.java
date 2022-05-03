@@ -64,16 +64,14 @@ public class BoardTest {
 	
 //	@Test
 	public void selectDetail() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("seq", 278);
-		BoardVo list = dao.selectDetail(map);
+		String seq = "278";
+		BoardVo list = dao.selectDetail(seq);
 		System.out.println(list);
 	}
 //	@Test
 	public void ReadCount() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("seq", 278);
-		int cnt = dao.ReadCount(map);
+		String seq = "278";
+		int cnt = dao.ReadCount(seq);
 		System.out.println("cnt:"+cnt);
 	}
 //	@Test
@@ -111,22 +109,6 @@ public class BoardTest {
 		}
 	
 	
-	/*
-	 * 페이징
-	 */
-	
-//	@Test
-	public void boardPaging() {
-		int page = 0;
-		List<BoardVo> lists = dao.boardPaging(page);
-		System.out.println(lists);
-	}
-	
-//	@Test
-	public void rowCount() {
-		int cnt = dao.rowCount();
-		System.out.println(cnt);
-	}
 	
 	
 }

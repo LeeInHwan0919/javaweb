@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.RowNumVo;
 
 public interface IBoardDao {
 
@@ -13,14 +14,13 @@ public interface IBoardDao {
 	
 	public int replyInsert(Map<String, Object> map);
 	
-	public BoardVo selectDetail(Map<String, Object> map);
+	public BoardVo selectDetail(String chk);
 	
-	public int ReadCount(Map<String, Object> map);
+	public int ReadCount(String chk);
 	
 	public int BoardUpdate(Map<String, Object> map);
 	
 	
-	public int BoardDelete(Map<String, Object> map);
 	
 	public List<BoardVo> selectAllBoard();
 	
@@ -29,7 +29,11 @@ public interface IBoardDao {
 	
 	public int MultipleDelete(Map<String, String[]> map);
 	
-	public List<BoardVo> boardPaging(int page);
-	
-	public int rowCount();
+	/*
+	 * 페이징 처리
+	 */
+	public List<BoardVo> adminBoardListRow(RowNumVo vo);
+	public int adminBoardListTotal();
+	public List<BoardVo> userBoardListRow(RowNumVo vo);
+	public int userBoardListTotal();
 }

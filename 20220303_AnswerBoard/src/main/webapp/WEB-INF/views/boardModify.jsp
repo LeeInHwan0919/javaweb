@@ -15,7 +15,7 @@
 <body>
 <div id="container">
 	<form action="./boardModify.do" method="post">
-		<input type="hidden" value="<%=dto.getSeq()%>" name="seq";>
+		<input type="hidden" value="<%=dto.getSeq()%>" name="seq">
 		<table class="table">
 		<tbody>
 			<tr>

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.MemberVo;
@@ -16,6 +17,9 @@ public class MamberDaoImpl implements IMemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<MemberVo> selectAllMember() {
@@ -24,22 +28,36 @@ public class MamberDaoImpl implements IMemberDao {
 
 	@Override
 	public int signUp(Map<String, Object> map) {
+		String enPw = passwordEncoder.encode((String)map.get("pw"));
+		map.put("pw", enPw);
+		System.out.println("암호화된 비밀번호 : " + map.get("pw"));
 		return sqlSession.insert(NS+"signUp",map);
 	}
 
 	@Override
-	public int login(Map<String, Object> map) {
-		return sqlSession.selectOne(NS+"login",map);
+	public MemberVo loginMember(Map<String, Object> map) {
+		MemberVo vo = null;
+		String dbPw = sqlSession.selectOne(NS + "passwordCheck", map.get("id"));
+		if(passwordEncoder.matches((String)map.get("pw"), dbPw)) {
+			vo = sqlSession.selectOne(NS+"enLogin", map.get("id"));
+		}
+		return vo;
 	}
 
-	@Override
-	public String confirmPw(String id) {
-		return sqlSession.selectOne(NS+"confirmPw",id);
-	}
 
 	@Override
 	public String findID(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"findID",map);
+	}
+
+	@Override
+	public String passwordCheck(String id) {
+		return sqlSession.selectOne(NS+"passwordCheck",id);
+	}
+
+	@Override
+	public MemberVo enLogin(String id) {
+		return sqlSession.selectOne(NS+"enLogin",id);
 	}
 
 	

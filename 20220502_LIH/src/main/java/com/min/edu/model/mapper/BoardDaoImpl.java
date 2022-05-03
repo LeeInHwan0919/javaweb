@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.BoardVo;
+import com.min.edu.vo.RowNumVo;
 
 
 @Repository
@@ -34,13 +35,13 @@ public class BoardDaoImpl implements IBoardDao {
 	}
 
 	@Override
-	public BoardVo selectDetail(Map<String, Object> map) {
-		return sqlSession.selectOne(NS+"selectDetail",map);
+	public BoardVo selectDetail(String chk) {
+		return sqlSession.selectOne(NS+"selectDetail",chk);
 	}
 
 	@Override
-	public int ReadCount(Map<String, Object> map) {
-		return sqlSession.update(NS+"ReadCount",map);
+	public int ReadCount(String chk) {
+		return sqlSession.update(NS+"ReadCount",chk);
 	}
 
 	@Override
@@ -48,12 +49,6 @@ public class BoardDaoImpl implements IBoardDao {
 		return sqlSession.update(NS+"BoardUpdate",map);
 	}
 
-	
-
-	@Override
-	public int BoardDelete(Map<String, Object> map) {
-		return sqlSession.delete(NS+"BoardDelete",map);
-	}
 
 
 	@Override
@@ -69,17 +64,30 @@ public class BoardDaoImpl implements IBoardDao {
 
 	@Override
 	public int MultipleDelete(Map<String, String[]> map) {
-		return sqlSession.delete(NS+"MultipleDelete",map);
+		return sqlSession.update(NS+"MultipleDelete",map);
 	}
 
+	/*
+	 * 페이징 처리
+	 */
 	@Override
-	public List<BoardVo> boardPaging(int page) {
-		return sqlSession.selectList(NS+"boardPaging",page);
+	public List<BoardVo> adminBoardListRow(RowNumVo vo) {
+		return sqlSession.selectList(NS+"adminBoardListRow", vo);
 	}
-
+	
 	@Override
-	public int rowCount() {
-		return sqlSession.selectOne(NS+"rowCount");
+	public int adminBoardListTotal() {
+		return sqlSession.selectOne(NS+"adminBoardListTotal");
+	}
+	
+	@Override
+	public List<BoardVo> userBoardListRow(RowNumVo vo) {
+		return sqlSession.selectList(NS+"userBoardListRow", vo);
+	}
+	
+	@Override
+	public int userBoardListTotal() {
+		return sqlSession.selectOne(NS+"userBoardListTotal");
 	}
 
 	

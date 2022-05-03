@@ -32,21 +32,28 @@ public class MemberServiceImpl implements IMemberService {
 	}
 
 	@Override
-	public int login(Map<String, Object> map) {
-		logger.info("MemberServiceImpl login 파라미터 값 map: {}",map);
-		return dao.login(map);
+	public MemberVo loginMember(Map<String, Object> map) {
+		logger.info("MemberServiceImpl loginMember 파라미터 값 map: {}",map);
+		return dao.loginMember(map);
 	}
 
-	@Override
-	public String confirmPw(String id) {
-		logger.info("MemberServiceImpl confirmPw 파라미터 값 id : {}",id);
-		return dao.confirmPw(id);
-	}
 
 	@Override
 	public String findID(Map<String, Object> map) {
 		logger.info("MemberServiceImpl findID 파라미터 값 map : {}",map);
 		return dao.findID(map);
+	}
+
+	@Override
+	public String passwordCheck(String id) {
+		logger.info("MemberServiceImpl passwordCheck 파라미터 값  : {}",id);
+		return dao.passwordCheck(id);
+	}
+
+	@Override
+	public MemberVo enLogin(String id) {
+		logger.info("MemberServiceImpl enLogin 파라미터 값  : {}",id);
+		return dao.enLogin(id);
 	}
 	
 	

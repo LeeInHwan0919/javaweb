@@ -11,9 +11,10 @@ public List<MemberVo> selectAllMember();
 	
 	public int signUp(Map<String, Object> map);
 	
-	public int login(Map<String, Object> map);
+	public MemberVo loginMember(Map<String, Object> map);
 	
-	public String confirmPw(String id);
+	public String passwordCheck(String id);
+	public MemberVo enLogin(String id);
 	
 	//아이디 찾기
 	public String findID(Map<String, Object> map);

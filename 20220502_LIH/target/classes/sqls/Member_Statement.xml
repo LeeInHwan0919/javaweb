@@ -19,19 +19,20 @@ VALUES(#{name}, #{id},#{email},#{pw}, 'U', 'N', SYSDATE)
 
 
 <!-- 로그인 -->
-<select id="login" parameterType="java.util.Map" resultType="int">
-SELECT COUNT(ID)
-	FROM SPRINGMEMBER s 
-		WHERE ID=#{id} AND PW = #{pw}
+<select id="loginMember" parameterType="java.util.Map" resultType="MemberVo">
+	SELECT ID, AUTH,REGDATE FROM SPRINGMEMBER WHERE ID=#{id} AND PW=#{pw} AND DELFLAG ='N'
 </select>
 
-		
 <!-- 비밀번호 확인 -->
-<select id="confirmPw" parameterType="String" resultType="String">
-SELECT PW 
-	FROM SPRINGMEMBER s 
-		WHERE ID = #{id}
+<select id="passwordCheck" parameterType="java.lang.String" resultType="java.lang.String">
+	SELECT PW FROM SPRINGMEMBER WHERE ID = #{id}
 </select>
+
+<!-- id로그인 -->
+<select id="enLogin" parameterType="java.lang.String" resultType="MemberVo">
+	SELECT ID, AUTH,REGDATE FROM SPRINGMEMBER WHERE ID = #{id}
+</select>
+		
 
 <select id="findID" parameterType="java.util.Map" resultType="String">
   SELECT ID

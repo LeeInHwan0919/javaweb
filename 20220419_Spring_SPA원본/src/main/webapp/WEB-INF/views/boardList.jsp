@@ -48,7 +48,6 @@
           <jsp:getProperty property="listForm" name="boardList"/>
         </tbody>
       </table>
-      
       <input type="text" name="index" id="index" value="${row.index}">
       <input type="text" name="pageNum" id="pageNum" value="${row.pageNum}">
       <input type="text" name="listNum" id="listNum" value="${row.listNum}">
@@ -66,6 +65,7 @@
       </div>
       
     </form>
+      </div>
     
     <!-- 새글 쓰기 Modal  -->
   <!-- Modal -->
