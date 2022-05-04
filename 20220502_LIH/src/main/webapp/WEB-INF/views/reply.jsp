@@ -29,6 +29,8 @@
 			<label for="content">답글 내용:</label>
 			<textarea class="form-control" rows="7" id="content" name="content" required="required">답글의 내용을 입력하세요.</textarea>
 		</div>
+		<input type="hidden" name="id" id="id" value="${member.id}">
+		<input type="hidden" value="${seq}" name="seq">
 		<div>
 		  <input class="btn btn-success" type="submit" value="답글 입력">
 		  <input class="btn btn-primary" type="button" value="취소" onclick="javascript:history.back(-1)">

@@ -44,9 +44,7 @@ public class BoardTest {
 	
 //	@Test
 	public void replyUpdate() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("seq", 1);
-		int cnt = dao.replyUpdate(map);
+		int cnt = dao.replyUpdate("1");
 		System.out.println("cnt:"+cnt);
 	}
 	

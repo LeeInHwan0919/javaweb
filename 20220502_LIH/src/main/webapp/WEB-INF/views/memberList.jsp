@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인 페이지(게시판)</title>
+<title>회원 관리</title>
 </head>
 <%@ include file="./header.jsp" %>
 <body>
@@ -12,47 +12,28 @@
    
     <div id="board-list">
         <div class="container">
-        <form action="#" method="post" id="frm" onsubmit="return chkBox()">
-		        <div id="select">
-		      	<c:if test="${member.auth eq 'A'}">
-		          <span><input type="submit" class="btn btn-danger" value="다중삭제"></span>      
-		      	</c:if>
-		      </div>
             <table class="board-table">
                 <thead>
                 <tr>
-                	<c:if test="${member.auth eq 'A'}">
-		              <th>
-		                <input type="checkbox" id="checkAll" onclick="checkAlls(this.checked)">
-		              </th>
-		            </c:if>
-                    <th scope="col" class="th-num">글번호</th>
-                    <th scope="col" class="th-title">작성자</th>
-                    <th scope="col" class="th-content">제목</th>
-                    <th scope="col" class="th-content">조회수</th>
-                    <c:if test="${member.auth eq 'A'}">
-                      <th scope="col" class="th-content">삭제여부</th>
-                    </c:if>
+                    <th scope="col" class="th-num">아이디</th>
+                    <th scope="col" class="th-title">이름</th>
+                    <th scope="col" class="th-content">이메일</th>
+                    <th scope="col" class="th-content">권한</th>
+                    <th scope="col" class="th-content">삭제여부</th>
                     <th scope="col" class="th-content">작성날짜</th>
+                    <th scope="col" class="th-num">삭제/복구</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${lists}" var="list">
+                <c:forEach items="${memberLists}" var="list">
 	 			<tr>
-	 				 <c:if test="${member.auth eq 'A'}">
-		               <td>
-		                 <input type="checkbox" name="chk" value="${list.seq}">
-		               </td>
-		             </c:if>
-	 				 <td>${list.seq}</td>
 	 			 	 <td>${list.id}</td>
-	 			 	 <td><a href="./boardDetail.do?seq=${list.seq}">${list.title}</a>
-	 			 	 <input type="hidden" name="seq" id="seq" value="${list.seq}"></td>
-	 			 	 <td>${list.readcount}</td>
-	 			 	 <c:if test="${member.auth eq 'A'}">
-	 			 	   <td>${list.delflag}</td>
-	 			 	 </c:if>
+	 			 	 <td>${list.name}</td>
+	 			 	 <td>${list.email}</td>
+	 			 	 <td>${list.auth}</td>
+	 			 	 <td>${list.delflag}</td>
 	 			 	 <td>${list.regdate}</td>
+	 			 	 <td><button>삭제/복구</button></td>
 				</tr>
 			</c:forEach>
                 </tbody>
@@ -72,7 +53,6 @@
 		      	 	<li><a href="#" onclick="pageLast()"><span class="glyphicon glyphicon-fast-forward"></span></a></li>    
 				  </ul>
 		      </div>
-		      </form>
         </div>
     </div>
 

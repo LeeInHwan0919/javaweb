@@ -4,7 +4,9 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
@@ -27,5 +29,17 @@
 	
 	<!-- AOP 동작을 위해서 설정 만약 Annotation 방법으로 한다면 transactionManager 속서을 작성 -->
 	<tx:annotation-driven/>
+	
+	<!-- scheduler 기능을 통해서 반복적인 작업으로 일정기간에 맞춰 자동 동작 -->
+	<task:annotation-driven scheduler="scheduler"/>
+	<task:scheduler id="scheduler" pool-size="10"/>
+	<!-- 반복할 메소드가 있는 bean을 ref로 넣어 준다. -->
+	<!-- 반복할 메소드의 이름을 작성한다. -->
+	<!-- 반복 주기를 CRON 표현식으로 작성한다. -->
+	<!-- http://www.cronmaker.com 를 통해서 작성후 입력 -->
+	<task:scheduled-tasks>
+	  <task:scheduled ref="cronDaoImpl" method="test" cron="0/6 * * * * *"/>
+	  <task:scheduled ref="cronServiceImpl" method="new_item" cron="0/11 * * * * *"/>
+	</task:scheduled-tasks>
 	
 </beans:beans>

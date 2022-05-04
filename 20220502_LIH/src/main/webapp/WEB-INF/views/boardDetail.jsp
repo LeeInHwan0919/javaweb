@@ -35,11 +35,31 @@
 		</div>
 		<input type="hidden" name="seq" id="seq" value="${list.seq}">
 		<div>
-		  <input class="btn btn-success" type="button" value="답글" onclick="location.href='./reply.do?seq=${list.seq}'">
-		  <input class="btn btn-primary" type="button" value="수정" onclick="location.href='./updateBoard.do?seq=${list.seq}'">
-		  <input class="btn btn-danger" type="button" value="삭제" onclick="location.href='./multiDel.do?chk=${list.seq}'">
+		  <input class="btn btn-success" type="button" value="답글" onclick="replyBoard()">
+		  <c:if test="${member.id eq list.id}">
+		    <input class="btn btn-primary" type="button" value="수정" onclick="updateBoard()">
+		    <input class="btn btn-danger" type="button" value="삭제" onclick="deleteBoard()">
+		  </c:if>
 		  <input class="btn btn-primary" type="button" value="취소" onclick="javascript:history.back(-1)">
 		</div>
 	</div>
+	<script type="text/javascript">
+		function replyBoard(){
+			console.log(${list.seq});
+			var seq = ${list.seq};
+			location.href="./reply.do?seq="+seq;
+		}
+		
+		function updateBoard(){
+			console.log(${list.seq});
+			var seq = ${list.seq};
+			location.href="./updateBoard.do?seq="+seq;
+		}
+		
+		function deleteBoard(){
+			console.log(${list.seq});
+			location.href="./Delete.do";
+		}
+	</script>
 </body>
 </html>

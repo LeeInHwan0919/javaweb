@@ -29,9 +29,9 @@ public class BoardServiceImpl implements IBoardService {
 
 	@Transactional
 	@Override
-	public int reply(Map<String, Object> map) {
+	public int reply(String seq, Map<String, Object> map) {
 		logger.info("BoardServiceImpl reply 파라미터 값 map:{}",map);
-		int n = dao.replyUpdate(map);
+		int n = dao.replyUpdate(seq);
 		int m = dao.replyInsert(map);
 		return (m>0||n>0)?1:0;
 	}
@@ -97,6 +97,12 @@ public class BoardServiceImpl implements IBoardService {
 	public int userBoardListTotal() {
 		logger.info("BoardServiceImpl userBoardListTotal");
 		return dao.userBoardListTotal();
+	}
+
+	@Override
+	public int Delete(String seq) {
+		logger.info("BoardServiceImpl Delete seq{}",seq);
+		return dao.Delete(seq);
 	}
 	
 	

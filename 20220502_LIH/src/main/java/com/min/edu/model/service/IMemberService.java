@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 public interface IMemberService {
 	
@@ -18,4 +19,8 @@ public List<MemberVo> selectAllMember();
 	
 	//아이디 찾기
 	public String findID(Map<String, Object> map);
+	
+	//페이징
+	public List<MemberVo> memberListRow(RowNumVo vo);
+	public int memberListTotal();
 }

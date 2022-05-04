@@ -3,7 +3,7 @@ package com.min.edu.vo;
 import java.io.Serializable;
 
 public class RowNumVo implements Serializable {
-
+	
 	private static final long serialVersionUID = -7518380847273610327L;
 	
 	private int pageList;

@@ -11,7 +11,6 @@ $(document).ready(function(){
    }
 );
 
-//해당 페이지 번호를 클릭했을때 해당 값을 전송
 
 function pageIndex(idx){
    console.log("입력받은 index 값",idx);
@@ -19,7 +18,6 @@ function pageIndex(idx){
    index.value = idx-1;
 }
 
-// 글 갯수가 변할 때 
 function pageList(){
    var index = document.getElementById("index");
    var pageNum = document.getElementById("pageNum");
@@ -69,8 +67,8 @@ function pageNext(pNum, total, listNum, pageList){
 
 function pageLast(pNum,total,listNum,pageList){
    console.log("마지막 페이지");
-   var idx = Math.ceil(total/listNum); // 31/ 5 -> 7 index
-   var max = Math.ceil(idx/pageList);  // 12345 | 67-> 2그룹
+   var idx = Math.ceil(total/listNum);
+   var max = Math.ceil(idx/pageList);
    
    while(max*pageList > pNum+pageList){
       pNum += pageList;

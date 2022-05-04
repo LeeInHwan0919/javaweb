@@ -29,6 +29,7 @@
 			<label for="content">수정할 내용:</label>
 			<textarea class="form-control" rows="7" id="content" name="content" required="required">수정할 내용을 입력하세요.</textarea>
 		</div>
+		<input type="hidden" value="${seq}" name="seq">
 		<div>
 		  <input class="btn btn-success" type="submit" value="수정 입력">
 		  <input class="btn btn-primary" type="button" value="취소" onclick="javascript:history.back(-1)">

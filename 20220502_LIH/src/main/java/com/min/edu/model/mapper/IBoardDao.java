@@ -10,7 +10,7 @@ public interface IBoardDao {
 
 	public int insertBoard(Map<String, Object> map);
 	
-	public int replyUpdate(Map<String, Object> map);
+	public int replyUpdate(String seq);
 	
 	public int replyInsert(Map<String, Object> map);
 	
@@ -20,7 +20,7 @@ public interface IBoardDao {
 	
 	public int BoardUpdate(Map<String, Object> map);
 	
-	
+	public int Delete(String seq);
 	
 	public List<BoardVo> selectAllBoard();
 	

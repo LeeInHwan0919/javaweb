@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.min.edu.model.mapper.IMemberDao;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @Service
 public class MemberServiceImpl implements IMemberService {
@@ -54,6 +55,18 @@ public class MemberServiceImpl implements IMemberService {
 	public MemberVo enLogin(String id) {
 		logger.info("MemberServiceImpl enLogin 파라미터 값  : {}",id);
 		return dao.enLogin(id);
+	}
+
+	@Override
+	public List<MemberVo> memberListRow(RowNumVo vo) {
+		logger.info("MemberServiceImpl memberListRow 파라미터 값  : {}",vo);
+		return dao.memberListRow(vo);
+	}
+
+	@Override
+	public int memberListTotal() {
+		logger.info("MemberServiceImpl memberListTotal 파라미터 값  : {}");
+		return dao.memberListTotal();
 	}
 	
 	

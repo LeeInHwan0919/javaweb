@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @Repository
 public class MamberDaoImpl implements IMemberDao {
@@ -58,6 +59,16 @@ public class MamberDaoImpl implements IMemberDao {
 	@Override
 	public MemberVo enLogin(String id) {
 		return sqlSession.selectOne(NS+"enLogin",id);
+	}
+
+	@Override
+	public List<MemberVo> memberListRow(RowNumVo vo) {
+		return sqlSession.selectList(NS+"memberListRow",vo);
+	}
+
+	@Override
+	public int memberListTotal() {
+		return sqlSession.selectOne(NS+"memberListTotal");
 	}
 
 	

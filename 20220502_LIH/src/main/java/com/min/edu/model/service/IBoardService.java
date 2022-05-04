@@ -10,13 +10,13 @@ public interface IBoardService {
 	
 	public int insertBoard(Map<String, Object> map);
 	
-	public int reply(Map<String, Object> map);
+	public int reply(String seq, Map<String, Object> map);
 	
 	public BoardVo selectDetail(String chk);
 	
 	public int BoardUpdate(Map<String, Object> map);
 	
-	
+	public int Delete(String seq);
 	
 	public List<BoardVo> selectAllBoard();
 	

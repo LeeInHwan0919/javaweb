@@ -23,7 +23,7 @@ INSERT INTO SPRINGBOARD
 
 	
 <!--답글 쓰기(업데이트, 답글입력 Transaction) -->
-<update id="replyUpdate" parameterType="java.util.Map">
+<update id="replyUpdate" parameterType="String">
 UPDATE  SPRINGBOARD SET STEP = STEP +1
 WHERE REFER = (SELECT REFER FROM SPRINGBOARD s WHERE SEQ=#{seq})
 AND STEP > (SELECT STEP FROM SPRINGBOARD s2 WHERE SEQ=#{seq})
@@ -72,6 +72,11 @@ UPDATE SPRINGBOARD
 	   #{seq}
 	</foreach>
 </update>
+
+<delete id="Delete" parameterType="String">
+  DELETE FROM SPRINGMEMBER s
+  WHERE SEQ=#{seq}
+</delete>
 
 
 <!-- 게시글 전체조회-->

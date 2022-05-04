@@ -25,8 +25,8 @@ public class BoardDaoImpl implements IBoardDao {
 	}
 
 	@Override
-	public int replyUpdate(Map<String, Object> map) {
-		return sqlSession.update(NS+"replyUpdate",map);
+	public int replyUpdate(String seq) {
+		return sqlSession.update(NS+"replyUpdate",seq);
 	}
 
 	@Override
@@ -88,6 +88,11 @@ public class BoardDaoImpl implements IBoardDao {
 	@Override
 	public int userBoardListTotal() {
 		return sqlSession.selectOne(NS+"userBoardListTotal");
+	}
+
+	@Override
+	public int Delete(String seq) {
+		return sqlSession.delete(NS+"Delete",seq);
 	}
 
 	

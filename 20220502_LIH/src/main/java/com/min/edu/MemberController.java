@@ -2,9 +2,11 @@ package com.min.edu;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.min.edu.model.service.IMemberService;
+import com.min.edu.vo.BoardVo;
 import com.min.edu.vo.MemberVo;
+import com.min.edu.vo.RowNumVo;
 
 @Controller
 @SessionAttributes("member")
@@ -94,4 +98,28 @@ public class MemberController {
 		}
 	}
 	
+	
+	
+	@RequestMapping(value = "/memberList.do", method = RequestMethod.GET)
+	public String memberList(Model model, HttpSession session) {
+
+		MemberVo mVo = (MemberVo) session.getAttribute("member");
+		logger.info("member_Controller 세션 확인 : {} ", mVo);
+
+		logger.info("!!!!MemberController memberList 페이지 넘김");
+		RowNumVo rowVo = null;
+
+		if (session.getAttribute("row") == null) {
+			rowVo = new RowNumVo();
+		} else {
+			rowVo = (RowNumVo) session.getAttribute("row");
+		}
+		
+		rowVo.setTotal(iService.memberListTotal());
+		List<MemberVo> memberLists = iService.memberListRow(rowVo);
+		
+		model.addAttribute("memberLists", memberLists);
+		model.addAttribute("row", rowVo);
+		return "memberList";
+	}
 }
