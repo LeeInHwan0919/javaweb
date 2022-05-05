@@ -57,6 +57,8 @@
 			</c:forEach>
                 </tbody>
             </table>
+		      </form>
+		      <form action="#" id="frmp">
               <input type="hidden" name="index" id="index" value="${row.index}">
 		      <input type="hidden" name="pageNum" id="pageNum" value="${row.pageNum}">
 		      <input type="hidden" name="listNum" id="listNum" value="${row.listNum}">
@@ -69,7 +71,7 @@
 					   <li ${(i-1) == row.index ? "class='active'" : ""}><a href="#" onclick="pageIndex('${i}')">${i}</a></li>
 		      	 	</c:forEach>
 		      	 	<li><a href="#" onclick="pageNext(${row.pageNum},${row.total},${row.listNum},${row.pageList})"><span class="glyphicon glyphicon-step-forward"></span></a></li>
-		      	 	<li><a href="#" onclick="pageLast()"><span class="glyphicon glyphicon-fast-forward"></span></a></li>    
+		      	 	<li><a href="#" onclick="pageLast(${row.pageNum},${row.total},${row.listNum},${row.pageList})"><span class="glyphicon glyphicon-fast-forward"></span></a></li>    
 				  </ul>
 		      </div>
 		      </form>

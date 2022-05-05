@@ -1,21 +1,15 @@
-$(document).ready(function(){
-   var listNum = $("#listNum").val();
-   
-   $("#list option").each(function(){
-      if(listNum == $(this).val){
-         $(this).prop("selected",true);
-      }else{
-         $(this).prop("selected",false);
-      }
-   });
-   }
-);
+function paging(){
+	$("#frmp").attr("action","./boardList.do");
+	$("#frmp").submit();
+}
+
 
 
 function pageIndex(idx){
    console.log("입력받은 index 값",idx);
    var index = document.getElementById("index");
    index.value = idx-1;
+   paging();
 }
 
 function pageList(){
@@ -26,6 +20,7 @@ function pageList(){
    index.value = 0;
    pageNum.value = 1;
    listNum.value = document.getElementById("list").value;
+   paging();
 }
 
 function pageFirst(){
@@ -35,6 +30,7 @@ function pageFirst(){
    
    index.value = 0;
    pageNum.value = 1;
+   paging();
 }
 
 function pagePrev(pNum, pageList){
@@ -47,6 +43,7 @@ function pagePrev(pNum, pageList){
       index.value = pNum-1;
       pageNum.value = pNum;
    }
+   paging();
 }
 
 function pageNext(pNum, total, listNum, pageList){
@@ -63,6 +60,7 @@ function pageNext(pNum, total, listNum, pageList){
    index.value = pNum-1;
    pageNum.value = pNum
    }
+   paging();
 }
 
 function pageLast(pNum,total,listNum,pageList){
@@ -77,9 +75,9 @@ function pageLast(pNum,total,listNum,pageList){
    var index = document.getElementById("index");
    var pageNum = document.getElementById("pageNum");
    
-   index.value=idx-1;
+   index.value=pNum-1;
    pageNum.value=pNum;
-   
+      paging();
 }
 
 
