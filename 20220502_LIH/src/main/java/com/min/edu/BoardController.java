@@ -55,6 +55,7 @@ public class BoardController {
 		} else {
 			rowVo = (RowNumVo) session.getAttribute("row");
 		}
+		
 		if (mVo.getAuth().equals("U")) {
 			rowVo.setTotal(iService.userBoardListTotal());
 			lists = iService.userBoardListRow(rowVo);
