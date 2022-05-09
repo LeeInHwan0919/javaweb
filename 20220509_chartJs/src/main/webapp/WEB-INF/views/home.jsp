@@ -7,6 +7,11 @@
 <title>Chart JS</title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<body>
+<div style="width: 40%; height: 50%">
+<canvas id="myChart"></canvas>
+</div>
 <script>
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
@@ -44,7 +49,5 @@ const myChart = new Chart(ctx, {
     }
 });
 </script>
-<body>
-<canvas id="myChart" width="400" height="400"></canvas>
 </body>
 </html>
