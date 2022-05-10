@@ -5,7 +5,7 @@
 		 version="4.0">
 		 
 		 <welcome-file-list>
-			<welcome-file>home.do</welcome-file>
+			<welcome-file>chartMain.do</welcome-file>
 		</welcome-file-list>
 		 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
