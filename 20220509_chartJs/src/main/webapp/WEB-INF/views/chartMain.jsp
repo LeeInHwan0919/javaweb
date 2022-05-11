@@ -11,7 +11,7 @@
 <div style="width: 80%; height: 80%">
 <canvas id="myChart"></canvas>
 </div>
-<script>
+<script type="text/javascript">
 const ctx = document.getElementById('myChart').getContext('2d');//getContext 속성을 통해 2d로 세팅
 const myChart = new Chart(ctx, {
     type: 'bar',// 차트의 형태(line, pie ...)
@@ -41,7 +41,7 @@ const myChart = new Chart(ctx, {
         {
             label: '납품량',//차트 제목 클릭시 데이터 언바운드
             data: [15, 22, 5, 7, 5, 4], //x축 label에 대응되는 데이터 값
-            backgroundColor: [  //색상
+            backgroundColor: [  //차트 색상
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
                 'rgba(54, 162, 235, 0.2)',

@@ -18,7 +18,7 @@ public class GoodsServiceImpl implements IGoodsService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private final String NS="com.min.edu.model.TurtleServiceImpl.";
+	private final String NS="com.min.edu.model.GoodsServiceImpl.";
 	
 	@Override
 	public List<GraphVo> countGoods() {

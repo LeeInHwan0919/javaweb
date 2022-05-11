@@ -55,7 +55,7 @@ function getGraph(){
 			options:{
 				title:{ 
 					display:true,
-					text:'상품 판매량'
+					text:"상품판매량"
 				},
 				scales: {
 		            y: {

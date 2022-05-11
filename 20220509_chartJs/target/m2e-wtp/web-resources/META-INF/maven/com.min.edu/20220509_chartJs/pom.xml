@@ -110,7 +110,8 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Persistance Layer -->
+		<!-- Persistance Layer: myBatis연동을 위한 라이브러리-->
+
 		<dependency>
 			<groupId>com.oracle.database.jdbc</groupId>
 			<artifactId>ojdbc10</artifactId>
@@ -155,13 +156,14 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- etc -->
+		<!-- (doFilter)StringUtils 에 사용되는 라이브러리-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
 
+		<!-- controller에서 List나 Map data를 아작스에서 json타입으로 받아오기위한 라이브러리 -->
 		<!-- jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>

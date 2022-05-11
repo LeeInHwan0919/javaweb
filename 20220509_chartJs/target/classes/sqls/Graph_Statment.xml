@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.min.edu.model.TurtleServiceImpl">
+<mapper namespace="com.min.edu.model.GoodsServiceImpl">
 
 <select id="countGoods" resultType="GraphVo">
 	SELECT POS_SEQ, POS_TYPE , TO_CHAR(POS_TIME,'yyyy-mm-dd') POS_TIME  , POS_COUNT , MB_ID  
