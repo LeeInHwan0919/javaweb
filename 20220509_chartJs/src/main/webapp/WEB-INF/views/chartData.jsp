@@ -23,7 +23,7 @@ function getGraph(){
 	var posList =[];
 	
 	$.ajax({
-		url:"./countTurtle.do",
+		url:"./countGoods.do",
 		type:"get",
 		dataType:"json",
 		success:function(data){
@@ -42,7 +42,7 @@ function getGraph(){
 				labels:timeList,//x축 data
 				datasets:[{
 					data:posList,//y축 data
-					label:"거북목",
+					label:"A상품",
 					borderColor:"#3e95cd",
 					fill:false
 // 				    - false  : 아무것도 채워지지 않음
@@ -53,9 +53,9 @@ function getGraph(){
 			  ]
 			},
 			options:{
-				title:{
+				title:{ 
 					display:true,
-					text:'주간 거북목'
+					text:'상품 판매량'
 				},
 				scales: {
 		            y: {

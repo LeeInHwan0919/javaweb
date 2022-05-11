@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.min.edu.model.TurtleServiceImpl">
+<mapper namespace="com.min.edu.model.GoodsServiceImpl">
 
-<select id="countTurtle" resultType="GraphVo">
+<select id="countGoods" resultType="GraphVo">
 	SELECT POS_SEQ, POS_TYPE , TO_CHAR(POS_TIME,'yyyy-mm-dd') POS_TIME  , POS_COUNT , MB_ID  
 	FROM POSTURE p 
-  		<![CDATA[WHERE POS_TYPE ='거북목'
-			AND POS_TIME < TO_CHAR(SYSDATE+3,'yyyy-mm-dd')
+  		<![CDATA[WHERE POS_TYPE ='A상품'
+			AND POS_TIME < TO_CHAR(SYSDATE,'yyyy-mm-dd')
 			AND POS_TIME > TO_CHAR(SYSDATE-7,'yyyy-mm-dd')
 			ORDER BY POS_TIME]]>
 </select>

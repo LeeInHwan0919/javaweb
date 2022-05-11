@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.min.edu.model.ITurtleService;
+import com.min.edu.model.IGoodsService;
 import com.min.edu.vo.GraphVo;
 
 @Controller
 public class ChartController {
 	
 	@Autowired
-	private ITurtleService service;
+	private IGoodsService service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ChartController.class);
 	
@@ -35,11 +35,11 @@ public class ChartController {
 		return "chartData";
 	}
 	
-	@RequestMapping(value="/countTurtle.do",method = RequestMethod.GET)
-	public @ResponseBody List<GraphVo> countTurtle(Model model){
-		logger.info("ChartController countTurtle");
-		List<GraphVo> turtle = service.countTurtle();
-		model.addAttribute("turtle", turtle);
-		return turtle;
+	@RequestMapping(value="/countGoods.do",method = RequestMethod.GET)
+	public @ResponseBody List<GraphVo> countGoods(Model model){
+		logger.info("ChartController countGoods");
+		List<GraphVo> goods = service.countGoods();
+		model.addAttribute("goods", goods);
+		return goods;
 	}
 }

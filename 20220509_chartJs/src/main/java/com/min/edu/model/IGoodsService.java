@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.min.edu.vo.GraphVo;
 
-public interface ITurtleService {
+public interface IGoodsService {
 	
-	public List<GraphVo> countTurtle();
+	public List<GraphVo> countGoods();
 }

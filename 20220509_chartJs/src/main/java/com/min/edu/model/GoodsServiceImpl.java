@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import com.min.edu.vo.GraphVo;
 
 @Service
-public class TurtleServiceImpl implements ITurtleService {
+public class GoodsServiceImpl implements IGoodsService {
 
-	private static final Logger logger = LoggerFactory.getLogger(TurtleServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(GoodsServiceImpl.class);
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -21,9 +21,9 @@ public class TurtleServiceImpl implements ITurtleService {
 	private final String NS="com.min.edu.model.TurtleServiceImpl.";
 	
 	@Override
-	public List<GraphVo> countTurtle() {
-		logger.info("TurtleServiceImpl countTurtle 실행");
-		return sqlSession.selectList(NS+"countTurtle");
+	public List<GraphVo> countGoods() {
+		logger.info("GoodsServiceImpl countGoods 실행");
+		return sqlSession.selectList(NS+"countGoods");
 	} 
 	
 	
