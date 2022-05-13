@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Portfolio</title>
+
+        <!-- 페이지 전반에 걸쳐 부트스트랩을 사용하므로 해당 CSS 로드 -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <style>
+            /* 네비게이션 바의 position이 fixed임에 따라 해당 크기에 맞게 컨텐츠 상단의 여백을 줌 */
+            .container-content
+            {
+                padding-top: 6rem;
+            }
+
+            /* 프로필 터미널 창의 커서 깜빡거림을 구현함 */
+            .blink-animation
+            {
+                animation:blink 1s ease-in-out infinite alternate;
+            }
+            @keyframes blink
+            {
+                0.000% { opacity:0; }
+                50.00% { opacity:0; }
+                50.01% { opacity:1; }
+                100.0% { opacity:1; }
+            }
+
+            /* 각 프로젝트 아이템 간 이동을 돕는 탭의 이미지 크기 조정 및 마우스 커서 모양 변경 */
+            #project-tab .nav-item
+            {
+                display: inline-block;
+                width: 16.66%;
+            }
+
+            .active-tab img
+            {
+                border: 1px solid #DEE2E6;
+            }
+            
+            .inactive-tab
+            {
+                background-color: #6C757D20;
+            }
+            .inactive-tab img
+            {
+                opacity: 0.75;
+                border: 1px solid #6C757D;
+            }
+
+            #project-carousel img
+            {
+                cursor: pointer;
+            }
+        </style>
+
+        <!-- 태그 참조와 each문 등의 간결한 코드 표현을 위해 jQuery 라이브러리 로드-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- 부트스트랩 툴팁 표시에 참조되어 사용되는 Popper 라이브러리 로드 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- 부트스트랩 Carousel 등의 처리에 사용되는 Bootstrap 라이브러리 로드 -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- 상수 목록 -->
+        <script>
+            // 트래픽 등의 문제로 필요할 경우 GitHub에 올라간 이미지를 가져올 수 있게끔 처리
+            const IMAGE_PATH = "./image";
+            //const IMAGE_PATH = "https://raw.githubusercontent.com/1F24DCA/1f24dca.github.io/main/portfolio/image";
+
+            // 자동 생성시 사용되는 프로젝트 목록
+            const PROJECTS = [
+                {
+                    id: 'lms',
+                    title: 'LMS',
+                    description: `
+                        7인 팀 프로젝트<br>
+                        제작 기간 2달
+                    `,
+                    webpage: 'http://lms-y.kro.kr/lms',
+                    github: 'https://github.com/goodee-project/LMS-Y'
+                },
+                {
+                    id: 'cash',
+                    title: '가계부',
+                    description: `
+                        Spring Boot 프로젝트<br>
+                        제작 기간 2주
+                    `,
+                    webpage: 'http://goodee.firstfloor.pe.kr/cash',
+                    github: 'https://github.com/1F24DCA/cash'
+                },
+                {
+                    id: 'sakila',
+                    title: '비디오 대여점',
+                    description: `
+                        Model 2 프로젝트<br>
+                        제작 기간 1주
+                    `,
+                    webpage: 'http://goodee.firstfloor.pe.kr/sakila/LoginServlet',
+                    github: 'https://github.com/1F24DCA/sakila'
+                },
+                {
+                    id: 'mall',
+                    title: '쇼핑몰',
+                    description: `
+                        Model 1 프로젝트<br>
+                        제작 기간 1주
+                    `,
+                    webpage: 'http://goodee.firstfloor.pe.kr/mall',
+                    github: 'https://github.com/1F24DCA/mall'
+                },
+                {
+                    id: 'mall-admin',
+                    title: '쇼핑몰: 관리자',
+                    description: `
+                        Model 1 프로젝트<br>
+                        제작 기간 1주
+                    `,
+                    webpage: 'http://goodee.firstfloor.pe.kr/mall-admin',
+                    github: 'https://github.com/1F24DCA/mall-admin'
+                },
+                {
+                    id: 'employees',
+                    title: '직원 목록',
+                    description: `
+                        JSP 프로젝트<br>
+                        제작 기간 3일
+                    `,
+                    webpage: 'http://goodee.firstfloor.pe.kr/employees',
+                    github: 'https://github.com/1F24DCA/employees'
+                }
+            ];
+
+            // 자동 생성시 사용되는 스킬 목록
+            const SKILLS = [
+                {
+                    id: 'java',
+                    favorites: true,
+                    title: 'Java',
+                    tooltip: `
+                        <p class="small">Swing 컴포넌트를 사용해 간단한 GUI 프로그램 제작 가능</p>
+                        <p class="small">Reflection 패키지를 사용해 간단한 JSON 파싱 라이브러리 제작 가능</p>
+                        <p class="small">JSP를 이용해 웹 페이지 구현 가능</p>
+                        <div class="small">서블릿을 이용해 Model 1/Model 2 웹 페이지 구현 가능</div>
+                    `
+                },
+                {
+                    id: 'spring',
+                    favorites: true,
+                    title: 'Spring',
+                    tooltip: `
+                        <p class="small">Spring Boot를 이용해 웹 프로젝트 개발 가능</p>
+                        <div class="small">Maven을 이용해 프로젝트에 필요한 라이브러리 로드 가능</div>
+                    `
+                },
+                {
+                    id: 'eclipse',
+                    favorites: true,
+                    title: 'Eclipse',
+                    tooltip: `
+                        <p class="small">JSP/XML 등의 생성 탬플릿 관리 가능</p>
+                        <p class="small">Team 기능을 사용하여 버전 관리 시스템 연동 가능</p>
+                        <p class="small">상황에 맞는 Perspective 사용 가능</p>
+                        <p class="small">File search와 정규 표현식을 활용한 일괄 Replace 활용 가능</p>
+                        <div class="small">프로젝트 일괄 Import 및 WAR 파일로 Export할 수 있음</div>
+                    `
+                },
+                {
+                    id: 'git',
+                    favorites: true,
+                    title: 'Git',
+                    tooltip: `
+                        <p class="small">간단한 init/clone/commit/push/pull 기능을 사용 가능</p>
+                        <p class="small">브랜치를 만들고 다른 브랜치에 merge/rebase할 수 있음</p>
+                        <p class="small">cherry-pick을 이용해 원하는 커밋만 적용 가능</p>
+                        <div class="small">tag를 만들고 push할 수 있음</div>
+                    `
+                },
+                {
+                    id: 'aws',
+                    favorites: true,
+                    title: 'Amazon Web Services',
+                    tooltip: `
+                        <p class="small">Lightsail/EC2 인스턴스 생성 및 삭제 가능</p>
+                        <p class="small">AWS 인스턴스의 방화벽 설정 가능</p>
+                        <p class="small">공식 사이트의 다운로드 링크를 이용해 리눅스 OS에 프로그램 설치 가능</p>
+                        <p class="small">간단한 업무를 sh파일로 만들어 실행 가능</p>
+                        <p class="small">pem 키 파일을 내려받아서 ssh 및 sftp 접속 가능</p>
+                        <div class="small">Route 53을 이용해 도메인 설정 가능</div>
+                    `
+                },
+                {
+                    id: 'vmware',
+                    favorites: true,
+                    title: 'VMware',
+                    tooltip: `
+                        <p class="small">가상 머신의 프로세서 수, 용량 등의 환경 설정 가능</p>
+                        <p class="small">포트 포워딩을 이용해 호스트 OS랑 통신 가능</p>
+                        <div class="small">배포 환경 테스트를 위한 가상 환경 구축 가능</div>
+                    `
+                },
+                {
+                    id: 'ssh',
+                    favorites: true,
+                    title: 'SSH',
+                    tooltip: `
+                        <p class="small">username@address로 ssh 접속 가능</p>
+                        <p class="small">-i 플래그를 이용해 키 파일로 ssh 로그인 가능</p>
+                        <div class="small">man 페이지 혹은 /? 플래그를 이용해 필요한 기능을 검색할 수 있음</div>
+                    `
+                },
+                {
+                    id: 'html5',
+                    title: 'HTML5',
+                    tooltip: `
+                        <p class="small">HTML5 문법에 맞춰 페이지 작성 가능</p>
+                        <p class="small">Bootstrap과 CSS를 사용해 페이지를 간단히 장식 가능</p>
+                        <div class="small">ECMAScript6을 사용해 동적 페이지 작성 가능</div>
+                    `
+                },
+                {
+                    id: 'python',
+                    title: 'Python',
+                    tooltip: `
+                        <p class="small">pip를 이용해 필요한 모듈 다운로드 가능</p>
+                        <div class="small">API 문서를 참조해 간단한 유틸리티 제작 가능</div>
+                    `
+                },
+                {
+                    id: 'lua',
+                    title: 'Lua',
+                    tooltip: `
+                        <div class="small">API 문서를 참조해 간단한 기능 구현 가능</div>
+                    `
+                },
+                {
+                    id: 'csharp',
+                    title: 'C#',
+                    tooltip: `
+                        <div class="small">API 문서를 참조해 간단한 기능 구현 가능</div>
+                    `
+                },
+                {
+                    id: 'express',
+                    title: 'Express.js',
+                    tooltip: `
+                        <div class="small">간단한 웹 프로젝트 제작 가능</div>
+                    `
+                },
+                {
+                    id: 'flask',
+                    title: 'Flask',
+                    tooltip: `
+                        <div class="small">간단한 웹 프로젝트 제작 가능</div>
+                    `
+                },
+                {
+                    id: 'jquery',
+                    title: 'jQuery',
+                    tooltip: `
+                        <p class="small">선택자를 이용해 원하는 객체를 받아올 수 있음</p>
+                        <p class="small">Ajax를 이용한 비동기 처리 가능</p>
+                        <div class="small">API 문서를 참조해 다양한 기능 구현 가능</div>
+                    `
+                },
+                {
+                    id: 'android-studio',
+                    title: 'Android Studio',
+                    tooltip: `
+                        <p class="small">XML을 사용해 액티비티 레이아웃 수정 가능</p>
+                        <p class="small">액티비티를 만들고 Intent로 각 액티비티로 이동 가능</p>
+                        <p class="small">SQLite를 사용한 DB 관리 가능</p>
+                        <div class="small">외부의 백엔드 웹 서버와 통신하는 앱 작성 가능</div>
+                    `
+                },
+                {
+                    id: 'intelij',
+                    title: 'InteliJ IDEA',
+                    tooltip: `
+                        <p class="small">Java 프로젝트 제작 가능</p>
+                        <p class="small">Android 프로젝트 제작 가능</p>
+                        <div class="small">VCS를 활용해 Git과 연동 가능</div>
+                    `
+                },
+                {
+                    id: 'visual-studio',
+                    title: 'Visual Studio',
+                    tooltip: `
+                        <p class="small">간단한 콘솔 프로그램 제작 가능</p>
+                        <div class="small">간단한 ASP 페이지 작성 가능</div>
+                    `
+                },
+                {
+                    id: 'vscode',
+                    title: 'Visual Studio Code',
+                    tooltip: `
+                        <p class="small">폰트 조절 등의 편의 기능 설정 가능</p>
+                        <p class="small">Source Control 메뉴를 활용해 Git과 연동 가능</p>
+                        <p class="small">FTP 등의 Extension 설치 및 사용 가능</p>
+                        <div class="small">터미널을 열어 컴파일 및 로그 확인 가능</div>
+                    `
+                },
+                {
+                    id: 'npp',
+                    title: 'Notepad++',
+                    tooltip: `
+                        <p class="small">폰트 조절 등의 편의 기능 설정 가능</p>
+                        <p class="small">FTP 등의 Plugin 설치 및 사용 가능</p>
+                        <div class="small">터미널을 열어 컴파일 및 로그 확인 가능</div>
+                    `
+                },
+                {
+                    id: 'notepad',
+                    title: 'Notepad',
+                    tooltip: `
+                        <div class="small">API 문서를 참조해 해당 에디터로 소스 코드 작업 가능</div>
+                    `
+                },
+                {
+                    id: 'nano',
+                    title: 'GNU nano',
+                    tooltip: `
+                        <div class="small">설정 파일을 읽고 쓸 수 있음</div>
+                    `
+                },
+                {
+                    id: 'vim',
+                    title: 'Vim',
+                    tooltip: `
+                        <div class="small">설정 파일을 읽고 쓸 수 있음</div>
+                    `
+                },
+                {
+                    id: 'github',
+                    title: 'GitHub',
+                    tooltip: `
+                        <p class="small">push/pull/fetch를 사용해 원격지 소스 코드를 읽고 쓸 수 있음</p>
+                        <p class="small">Issue를 Open 및 Close할 수 있음</p>
+                        <div class="small">원격지에 저장된 데이터를 바로 수정할 수 있음</div>
+                    `
+                },
+                {
+                    id: 'github-desktop',
+                    title: 'Github Desktop',
+                    tooltip: `
+                        <div class="small">Git의 간단한 기능들을 활용 가능</div>
+                    `
+                },
+                {
+                    id: 'sourcetree',
+                    title: 'Sourcetree',
+                    tooltip: `
+                        <div class="small">Git의 간단한 기능들을 활용 가능</div>
+                    `
+                },
+                {
+                    id: 'tomcat',
+                    title: 'Apache Tomcat',
+                    tooltip: `
+                        <p class="small">설정 파일을 변경해 https 연결 및 포트 변경 가능</p>
+                        <div class="small">WAR 파일을 배포하여 서비스 가능</div>
+                    `
+                },
+                {
+                    id: 'nodejs',
+                    title: 'Node.js',
+                    tooltip: `
+                        <div class="small">API를 이용해 간단한 프로그램 제작 가능</div>
+                    `
+                },
+                {
+                    id: 'mariadb',
+                    title: 'MariaDB',
+                    tooltip: `
+                        <p class="small">간단한 SQL문을 이용한 CRUD 작업 가능</p>
+                        <div class="small">함수 및 프로시저 작성 및 사용 가능</div>
+                    `
+                },
+                {
+                    id: 'oracledb',
+                    title: 'Oracle 11g XE',
+                    tooltip: `
+                        <p class="small">간단한 SQL문을 이용한 CRUD 작업 가능</p>
+                        <div class="small">함수 및 프로시저 작성 및 사용 가능</div>
+                    `
+                },
+                {
+                    id: 'windows',
+                    title: 'Windows',
+                    tooltip: `
+                        <p class="small">2개 이상의 윈도우를 설치해 bootmgr과 연결하여 독립된 개발 환경 세팅 가능</p>
+                        <div class="small">환경 변수를 설정하여 개발 환경을 편리하게 세팅 가능</div>
+                    `
+                },
+                {
+                    id: 'ubuntu',
+                    title: 'Ubuntu',
+                    tooltip: `
+                        <p class="small">apt를 사용해 프로그램 추가/제거 가능</p>
+                        <p class="small">sed 및 grep 등을 활용해 파일 수정 및 검색 가능</p>
+                        <p class="small">sh파일 작성 및 실행 가능</p>
+                        <div class="small">fdisk와 gdisk를 활용해 파티션 수정 가능</div>
+                    `
+                },
+                {
+                    id: 'tinycore',
+                    title: 'TinyCore',
+                    tooltip: `
+                        <p class="small">TCZ 레포지토리를 이용해 프로그램 추가/제거 가능</p>
+                        <p class="small">sed 및 grep 등을 활용해 파일 수정 및 검색 가능</p>
+                        <p class="small">sh파일 작성 및 실행 가능</p>
+                        <div class="small">fdisk와 gdisk를 활용해 파티션 수정 가능</div>
+                    `
+                },
+                {
+                    id: 'vbox',
+                    title: 'VirtualBox',
+                    tooltip: `
+                        <p class="small">가상 머신의 프로세서 수, 용량 등의 환경 설정 가능</p>
+                        <p class="small">포트 포워딩을 이용해 호스트 OS랑 통신 가능</p>
+                        <div class="small">배포 환경 테스트를 위한 가상 환경 구축 가능</div>
+                    `
+                },
+                {
+                    id: 'putty',
+                    title: 'PuTTY',
+                    tooltip: `
+                        <div class="small">원격지 터미널 접속 가능</div>
+                    `
+                },
+                {
+                    id: 'unity',
+                    title: 'Unity',
+                    tooltip: `
+                        <p class="small">2D 게임 및 유틸리티 제작 가능</p>
+                        <div class="small">제공되는 물리 엔진 및 유니티 C# 사용 가능</div>
+                    `
+                },
+                {
+                    id: 'gamemaker',
+                    title: 'Game Maker',
+                    tooltip: `
+                        <p class="small">2D 게임 및 유틸리티 제작 가능</p>
+                        <div class="small">GML을 사용하여 간단한 스크립트 구현 가능</div>
+                    `
+                },
+                {
+                    id: 'rmxp',
+                    title: 'RPG Maker XP',
+                    tooltip: `
+                        <p class="small">2D 게임 제작 가능</p>
+                        <div class="small">Ruby 언어로 작성된 내부 스크립트 수정 가능</div>
+                    `
+                }
+            ];
+        </script>
+
+        <!-- 이벤트 처리 관련 코드 -->
+        <script>
+            $(document).ready(function() {
+                /*
+                    Anchor 태그 클릭 시 스크롤을 부드럽게 이동하는 자바스크립트 코드
+                    참고 링크 #1: https://stackoverflow.com/a/35032979
+                    참고 링크 #2: https://css-tricks.com/snippets/jquery/smooth-scrolling/
+                */
+                // nav 태그 안에 존재하는 a 링크를 클릭했을 때 실행함
+                $("nav a").on('click',function(e) {
+                    // 각 섹션 div 태그의 id 속성값을 받아옴
+                    let url = e.target.href;
+                    let sectionId = '#'+url.substring(url.indexOf("#")+1);
+                    // 해당 섹션 div 태그의 위치로 이동(behaivor: smooth로 부드럽게 이동)
+                    window.scroll({
+                        top: $(sectionId).offset().top, 
+                        left: 0, 
+                        behavior: 'smooth'
+                    });
+                    // 기존 A태그의 해야할 일(href로 이동)을 비활성화
+                    return false;
+                });
+
+                /*
+                    Tab의 활성화/비활성화 탭 색상 변경 코드
+                */
+                $('.nav-tabs a').each(function(_, element) {
+                    if ($(element).hasClass('active') == true) {
+                        $(element).addClass('active-tab');
+                        $(element).css('border', '1px solid #DEE2E6');
+                        $(element).css('border-bottom', '1px solid #FFFFFF');
+                    } else {
+                        $(element).addClass('inactive-tab');
+                        $(element).css('border', '1px solid #343A4010');
+                        $(element).css('border-bottom', '0px');
+                    }
+                });
+
+                $('.nav-tabs a').on('show.bs.tab', function(e) {
+                    $(e.target).removeClass('inactive-tab');
+                    $(e.target).addClass('active-tab');
+                    $(e.target).css('border', '1px solid #DEE2E6');
+                    $(e.target).css('border-bottom', '1px solid #FFFFFF');
+                    
+                    $(e.relatedTarget).addClass('inactive-tab');
+                    $(e.relatedTarget).removeClass('active-tab');
+                    $(e.relatedTarget).css('border', '1px solid #343A4010');
+                    $(e.relatedTarget).css('border-bottom', '0px');
+                });
+
+                /*
+                    Project Tab과 Carousel 간의 동기화 코드
+                */
+                for (let idx=0; idx<PROJECTS.length; idx+=1) {
+                    $('#project-tab li:eq('+idx+') a').on('click', function(e) {
+                        $('#project-carousel').carousel(idx);
+                    });
+                }
+
+                $('#project-carousel').on('slide.bs.carousel', function(e) {
+                    $('#project-tab li:eq('+e.to+') a').tab('show');
+                });
+                
+                $('#project-carousel img').on('click', function(e) {
+                    window.open($(this).attr('href'), '_blank');
+                });
+            });
+        </script>
+    </head>
+
+    <!-- Bootstrap의 Scroll-spy 기능을 사용하여 네비게이션 이동 버튼의 활성화 효과를 줌 (스크롤 위치에 따라 보고 있는 컨텐츠의 a태그 링크를 밝게 표시) -->
+    <body data-spy="scroll" data-target=".navbar">
+        <!-- 화면 상단에 고정된 네비게이션 바 -->
+        <nav class="navbar navbar-expand-sm fixed-top bg-dark navbar-dark shadow mb-4">
+            <div class="container-xl">
+                <ul class="navbar-nav">
+                    <li class="nav-item ml-n3 mr-3">
+                        <span class="display-4 text-light text-decoration-none">
+                            Portfolio
+                        </span>
+                    </li>
+
+                    <li class="nav-item mt-auto mx-1">
+                        <a href="#information" class="nav-link">
+                            Information
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-auto mx-1">
+                        <a href="#projects" class="nav-link">
+                            Projects
+                        </a>
+                    </li>
+
+                    <li class="nav-item mt-auto mx-1">
+                        <a href="#skills" class="nav-link">
+                            Skills
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 컨텐츠 컨테이너 -->
+        <section id="main-container" class="container-xl">
+            <div id="information" class="container-content">
+                <h2>Information</h2>
+
+                <hr>
+
+                <h4>Profile</h4>
+                <div class="m-4">
+                    <!-- 프로필 탭 -->
+                    <ul id="profile-tab" class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark active" data-toggle="tab" href="#profile-output">Output: ProfileApp</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" data-toggle="tab" href="#profile-source-profile-app">Source: ProfileApp.java</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" data-toggle="tab" href="#profile-source-profile">Source: Profile.java</a>
+                        </li>
+                    </ul>
+
+                    <!-- 프로필 컨텐츠 -->
+                    <div class="tab-content border-left border-right border-bottom p-4">
+                        <div id="profile-output" class="tab-pane active">
+                            <div class="text-monospace text-light bg-dark rounded-lg border border-secondary w-100 p-2">
+                                <span class="text-success">portfolio@1f24dca.github.io</span>:<span class="text-primary">~</span>$ javac *.java<br>
+                                <span class="text-success">portfolio@1f24dca.github.io</span>:<span class="text-primary">~</span>$ java ProfileApp<br>
+                                프로필<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;이름: 신동한<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;생년월일: 1997-06-27<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;이메일: fstflr446712@gmail.com<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;취미: 조립 및 분해, 전반적인 프로그램 제작, 삽질<br>
+                                <span class="text-success">portfolio@1f24dca.github.io</span>:<span class="text-primary">~</span>$ <span class="font-weight-bold blink-animation">_</span>
+                            </div>
+                        </div>
+                        <!-- GitHub Gist 사용-->
+                        <div id="profile-source-profile-app"  class="tab-pane fade mb-n3">
+                            <script src="https://gist.github.com/1F24DCA/0e7b08082005492e2b34f620fa294588.js"></script>
+                        </div>
+                        <div id="profile-source-profile" class="tab-pane fade mb-n3">
+                            <script src="https://gist.github.com/1F24DCA/d3685da3a99dc30360b45235c03af0f0.js"></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="projects" class="container-content">
+                <h2>Projects</h2>
+
+                <hr>
+
+                <div class="m-4">
+                    <ul id="project-tab" class="nav nav-tabs"></ul>
+
+                    <div class="tab-content border-left border-right border-bottom p-4">
+                        <div id="project-carousel" class="carousel slide border" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner"></div>
+
+                            <a class="carousel-control-prev ml-n4" href="#project-carousel" data-slide="prev">
+                                <span class="display-4 font-weight-bold text-dark">◀</span>
+                            </a>
+                            <a class="carousel-control-next mr-n4" href="#project-carousel" data-slide="next">
+                                <span class="display-4 font-weight-bold text-dark">▶</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div id="skills" class="container-content" style="height: 100vh">
+                <h2>Skills</h2>
+
+                <hr>
+
+                <h4>Favorites</h4>
+                <div id="skill-list-favorites" class="row text-center"></div>
+
+                <h4>All</h4>
+                <table id="skill-list-all" class="table table-borderless table-sm small"></table>
+            </div>
+        </section>
+
+        <!-- HTML 생성 코드 (프로젝트 Carousel, Skills 테이블 및 툴팁) -->
+        <script>
+            // Projects HTML 입력
+            for (let idx in PROJECTS) {
+                idx = parseInt(idx);
+                let project = PROJECTS[idx];
+
+                let active = '';
+                if (idx == 0) {
+                    active = 'active';
+                }
+                
+                $('#project-tab').append(`
+                    <li class="nav-item">
+                        <a class="nav-link ${active}" href="#project-${project.id}" data-toggle="tab">
+                            <img src="${IMAGE_PATH}/projects/${project.id}.jpg" class="w-100 h-auto">
+                        </a>
+                    </li>
+                `);
+
+                $('#project-carousel > .carousel-inner').append(`
+                    <div class="carousel-item ${active}">
+                        <img src="${IMAGE_PATH}/projects/${project.id}.jpg" href="${project.webpage}" class="w-100 h-auto">
+                        <div class="carousel-caption border" style="background-color: #FFFFFFCC;">
+                            <div class="text-secondary small">(${parseInt(idx)+1}/${PROJECTS.length})</div>
+                            <h3 class="text-dark">${project.title}</h3>
+                            <p class="text-dark">
+                                ${project.description}
+                            </p>
+                            <div class="row mx-2">
+                                <div class="col">
+                                    <a href="${project.webpage}" target="_blank" class="btn btn-link btn-block font-weight-bold text-decoration-none mx-1" style="font-size: larger">
+                                        Webpage
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <a href="${project.github}" target="_blank" class="btn btn-link btn-block font-weight-bold text-decoration-none mx-1" style="font-size: larger">
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            }
+
+            // Skills HTML 입력
+            for (let idx in SKILLS) {
+                idx = parseInt(idx);
+                let skill = SKILLS[idx];
+
+                if (skill.favorites) {
+                    $('#skill-list-favorites').append(`
+                        <div class="col">
+                            <div class="skill-${skill.id} d-flex flex-column align-items-center py-4">
+                                <img src="${IMAGE_PATH}/skills/${skill.id}.jpg" style="width: 2rem; height: 2rem">
+                                <span>${skill.title}</span>
+                            </div>
+                        </div>
+                    `);
+                }
+
+                if (idx == 0) {
+                    $('#skill-list-all').append('<tr>');
+                } else if (idx%4 == 0) {
+                    $('#skill-list-all').append('</tr><tr>');
+                }
+
+                $('#skill-list-all').append(`
+                    <td class="skill-${skill.id} w-25" data-offset="-45%">
+                        <img src="${IMAGE_PATH}/skills/${skill.id}.jpg" style="width: 1.25rem; height: 1.25rem">
+                        <span>${skill.title}</span>
+                    </td>
+                `);
+                
+                if (idx == skills.length-1) {
+                    $('#skill-list-all').append('</tr>');
+                }
+
+                $('.skill-'+skill.id).tooltip({title: skill.tooltip, html: true, placement: 'bottom', template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>'});
+            }
+        </script>
+    </body>
+</html>

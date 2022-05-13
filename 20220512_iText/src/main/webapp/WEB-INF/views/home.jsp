@@ -12,5 +12,6 @@
 버튼을누르면 
 html을 pdf로 바꾸어지는 메소드를 동작
 <P>  The time on the server is ${serverTime}. </P>
+<a href="./newFile.do">포폴페이지이동</a>
 </body>
 </html>
