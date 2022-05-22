@@ -5,7 +5,7 @@
       <value foreignKeyColumnGroup="FKCGroup_OFtzYdaDEey3p9JHAMQhZw" childCardinalityType="ONE_OR_MORE"/>
     </relation>
     <relation key="FKCGroup_OFtzd9aDEey3p9JHAMQhZw">
-      <value foreignKeyColumnGroup="FKCGroup_OFtzd9aDEey3p9JHAMQhZw" identifying="true"/>
+      <value foreignKeyColumnGroup="FKCGroup_OFtzd9aDEey3p9JHAMQhZw"/>
     </relation>
     <relation key="FKCGroup_OFuaf9aDEey3p9JHAMQhZw">
       <value foreignKeyColumnGroup="FKCGroup_OFuaf9aDEey3p9JHAMQhZw"/>
@@ -19,20 +19,20 @@
     <relation key="FKCGroup_UBEnANcREeyj-7G8xR3dJQ">
       <value foreignKeyColumnGroup="FKCGroup_UBEnANcREeyj-7G8xR3dJQ"/>
     </relation>
-    <relation key="FKCGroup_y9v6kNcREeyj-7G8xR3dJQ">
-      <value foreignKeyColumnGroup="FKCGroup_y9v6kNcREeyj-7G8xR3dJQ" identifying="true"/>
+    <relation key="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ">
+      <value foreignKeyColumnGroup="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ"/>
     </relation>
-    <relation key="FKCGroup_OFtzk9aDEey3p9JHAMQhZw">
-      <value foreignKeyColumnGroup="FKCGroup_OFtzk9aDEey3p9JHAMQhZw" identifying="true"/>
+    <relation key="FKCGroup_bhIIcNkcEeyaE7RSo08SBQ">
+      <value foreignKeyColumnGroup="FKCGroup_bhIIcNkcEeyaE7RSo08SBQ"/>
     </relation>
-    <relation key="FKCGroup_i-EbsNcaEeyj-7G8xR3dJQ">
-      <value foreignKeyColumnGroup="FKCGroup_i-EbsNcaEeyj-7G8xR3dJQ"/>
+    <relation key="FKCGroup_gOw04NkfEeyaE7RSo08SBQ">
+      <value foreignKeyColumnGroup="FKCGroup_gOw04NkfEeyaE7RSo08SBQ"/>
     </relation>
-    <relation key="FKCGroup_WSum4NfdEeyV8dOLKer7_w">
-      <value foreignKeyColumnGroup="FKCGroup_WSum4NfdEeyV8dOLKer7_w" identifying="true"/>
+    <relation key="FKCGroup_Xt7v8NmmEeyjbPEyJZVB6A">
+      <value foreignKeyColumnGroup="FKCGroup_Xt7v8NmmEeyjbPEyJZVB6A"/>
     </relation>
-    <relation key="FKCGroup_OFtzsNaDEey3p9JHAMQhZw">
-      <value foreignKeyColumnGroup="FKCGroup_OFtzsNaDEey3p9JHAMQhZw"/>
+    <relation key="FKCGroup_n7GogNmuEeyjbPEyJZVB6A">
+      <value foreignKeyColumnGroup="FKCGroup_n7GogNmuEeyjbPEyJZVB6A"/>
     </relation>
   </relationManager>
   <configuration>
@@ -96,13 +96,13 @@
       <domain UUID="Domain_7S-yENcPEeyj-7G8xR3dJQ" name="g_detail" suggestedDataType="VARCHAR2(30)"/>
       <domain UUID="Domain_HH2HQNcQEeyj-7G8xR3dJQ" name="g_country" suggestedDataType="VARCHAR2(30)"/>
       <domain UUID="Domain_Myy34NcQEeyj-7G8xR3dJQ" name="status" suggestedDataType="VARCHAR(10)"/>
-      <domain UUID="Domain_OrAWsNcQEeyj-7G8xR3dJQ" name="ct_date" suggestedDataType="DATE"/>
+      <domain UUID="Domain_OrAWsNcQEeyj-7G8xR3dJQ" name="ct_date_year_sum" suggestedDataType="NUMBER"/>
       <domain UUID="Domain_TDc9oNcQEeyj-7G8xR3dJQ" name="ct_code" suggestedDataType="VARCHAR2(20)"/>
       <domain UUID="Domain_WvlRINcQEeyj-7G8xR3dJQ" name="dup"/>
       <domain UUID="Domain_mf0PsNcQEeyj-7G8xR3dJQ" name="du_price" suggestedDataType="NUMBER"/>
       <domain UUID="Domain_n_TFcNcQEeyj-7G8xR3dJQ" name="ct_start" suggestedDataType="DATE"/>
       <domain UUID="Domain_o_c64NcQEeyj-7G8xR3dJQ" name="ct_end" suggestedDataType="DATE"/>
-      <domain UUID="Domain_p6OhENcQEeyj-7G8xR3dJQ" name="du_date" suggestedDataType="DATE"/>
+      <domain UUID="Domain_p6OhENcQEeyj-7G8xR3dJQ" name="du_date" suggestedDataType="NUMBER"/>
       <domain UUID="Domain_muOF0NcVEeyj-7G8xR3dJQ" name="re_date"/>
       <domain UUID="Domain_m-TwQNcVEeyj-7G8xR3dJQ" name="re_cnt"/>
       <domain UUID="Domain_oaNGgNcVEeyj-7G8xR3dJQ" name="in_date" suggestedDataType="DATE"/>
@@ -122,6 +122,10 @@
       <domain UUID="Domain_9BwOsNfYEeyV8dOLKer7_w" name="g_date" suggestedDataType="VARCHAR2(50)"/>
       <domain UUID="Domain__pE2QNfYEeyV8dOLKer7_w" name="g_capacity" suggestedDataType="VARCHAR2(10)"/>
       <domain UUID="Domain_LWWVsNfZEeyV8dOLKer7_w" name="g_amount" suggestedDataType="VARCHAR2(10)"/>
+      <domain UUID="Domain_MHZuwNkDEeyaE7RSo08SBQ" name="g_kg" suggestedDataType="VARCHAR2(10)"/>
+      <domain UUID="Domain_NDfjkNkDEeyaE7RSo08SBQ" name="g_from"/>
+      <domain UUID="Domain_PqOVQNkDEeyaE7RSo08SBQ" name="g_contain"/>
+      <domain UUID="Domain_uh01YNkgEeyaE7RSo08SBQ" name="ctm_CODE" suggestedDataType="VARCHAR2(20)"/>
     </domainDefinition>
     <viewSettingsPreset name="eXERD 기본" showAltTableName="false">
       <cellsToShow>name</cellsToShow>
@@ -148,17 +152,16 @@
   <businessAreas UUID="BArea_DpAJftZuEey3p9JHAMQhZw" logicalName="기본 업무영역" physicalName="DEFAULT_AREA" tables="Table_OFtMZNaDEey3p9JHAMQhZw Table_OFtzZNaDEey3p9JHAMQhZw Table_OFtzfNaDEey3p9JHAMQhZw Table_OFtzldaDEey3p9JHAMQhZw Table_OFtzs9aDEey3p9JHAMQhZw Table_OFuacNaDEey3p9JHAMQhZw Table_OFuagdaDEey3p9JHAMQhZw Table_OFuamtaDEey3p9JHAMQhZw Table_OFuarNaDEey3p9JHAMQhZw Table_OFuas9aDEey3p9JHAMQhZw Table_OFuautaDEey3p9JHAMQhZw Table_5jaQINaGEey3p9JHAMQhZw Table_jzofENaIEey3p9JHAMQhZw Table_pDU3ENaIEey3p9JHAMQhZw Table_tbntANaIEey3p9JHAMQhZw Table_3CA_gNaIEey3p9JHAMQhZw Table_TdZbANaJEey3p9JHAMQhZw Table_2y9NYNcYEeyj-7G8xR3dJQ Table_AJf2YNgTEeyV8dOLKer7_w Table_Za0M0NgXEeyV8dOLKer7_w">
     <diagrams UUID="Diagram_DpAJf9ZuEey3p9JHAMQhZw" logicalName="다이어그램" physicalName="diagram">
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMVdaDEey3p9JHAMQhZw" location="Point(356.0, 180.0)" table="Table_OFtMZNaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMVtaDEey3p9JHAMQhZw" location="Point(720.0, 200.0)" table="Table_OFtzZNaDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMVtaDEey3p9JHAMQhZw" location="Point(731.0, 200.0)" table="Table_OFtzZNaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMV9aDEey3p9JHAMQhZw" location="Point(1077.0, 210.0)" table="Table_OFtzfNaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWNaDEey3p9JHAMQhZw" location="Point(1436.0, 150.0)" table="Table_OFtzldaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWdaDEey3p9JHAMQhZw" location="Point(1947.0, 190.0)" table="Table_OFtzs9aDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWdaDEey3p9JHAMQhZw" location="Point(1530.0, 433.0)" table="Table_OFtzs9aDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWtaDEey3p9JHAMQhZw" location="Point(18.0, 170.0)" table="Table_OFuacNaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMW9aDEey3p9JHAMQhZw" location="Point(362.0, 423.0)" table="Table_OFuagdaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXNaDEey3p9JHAMQhZw" location="Point(704.0, 413.0)" table="Table_OFuamtaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXtaDEey3p9JHAMQhZw" location="Point(737.0, 672.0)" table="Table_OFuas9aDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMW9aDEey3p9JHAMQhZw" location="Point(356.0, 460.0)" table="Table_OFuagdaDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXNaDEey3p9JHAMQhZw" location="Point(720.0, 440.0)" table="Table_OFuamtaDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXtaDEey3p9JHAMQhZw" location="Point(725.0, 707.0)" table="Table_OFuas9aDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMX9aDEey3p9JHAMQhZw" location="Point(364.0, 60.0)" table="Table_OFuautaDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_TdapINaJEey3p9JHAMQhZw" location="Point(1522.0, 42.0)" table="Table_TdZbANaJEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_Za1a8NgXEeyV8dOLKer7_w" location="Point(1867.0, 482.0)" table="Table_Za0M0NgXEeyV8dOLKer7_w"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_TdapINaJEey3p9JHAMQhZw" location="Point(1508.0, 42.0)" table="Table_TdZbANaJEey3p9JHAMQhZw"/>
       <viewSettings showAltTableName="false">
         <cellsToShow>name</cellsToShow>
         <cellsToShow>domain</cellsToShow>
@@ -197,15 +200,12 @@
       <tables UUID="Table_OFtzZNaDEey3p9JHAMQhZw" logicalName="(O)client거래처" physicalName="TABLE2">
         <columns UUID="Column_OFtzZdaDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL4" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ">
           <memberships UUID="MEntry_OFtzZtaDEey3p9JHAMQhZw" key="PKCGroup_OFtzddaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzZ9aDEey3p9JHAMQhZw" group="PKCGroup_OFtzddaDEey3p9JHAMQhZw" entryIndex="1"/>
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzZ9aDEey3p9JHAMQhZw" group="PKCGroup_OFtzddaDEey3p9JHAMQhZw" entryIndex="0"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFtzaNaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ">
+        <columns UUID="Column_OFtzaNaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE">
           <memberships UUID="MEntry_OFtzadaDEey3p9JHAMQhZw" key="FKCGroup_OFtzd9aDEey3p9JHAMQhZw">
             <value xsi:type="e:ColumnReference" UUID="CReference_OFtzataDEey3p9JHAMQhZw" group="FKCGroup_OFtzd9aDEey3p9JHAMQhZw" entryIndex="0" parentColumn="Column_OFtMZdaDEey3p9JHAMQhZw"/>
-          </memberships>
-          <memberships UUID="MEntry_2s7iQNc2Eeyj-7G8xR3dJQ" key="PKCGroup_OFtzddaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzbNaDEey3p9JHAMQhZw" group="PKCGroup_OFtzddaDEey3p9JHAMQhZw" entryIndex="0"/>
           </memberships>
         </columns>
         <columns UUID="Column_OFtzbdaDEey3p9JHAMQhZw" logicalName="거래처명" physicalName="COL2" domain="Domain_tNrckNcVEeyj-7G8xR3dJQ" notNull="TRUE"/>
@@ -218,57 +218,35 @@
           <foreignKeyConstraint UUID="FKConstraint_OFtzeNaDEey3p9JHAMQhZw" logicalName="(O)USER_INFO사원 -> (O)client거래처" physicalName="FK_TABLE_TO_TABLE2" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
-      <tables UUID="Table_OFtzfNaDEey3p9JHAMQhZw" logicalName="(-)contract_management계약관리" physicalName="TABLE3">
-        <columns UUID="Column_WSvN8NfdEeyV8dOLKer7_w" logicalName="계약번호" physicalName="COL2" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_WSvN8dfdEeyV8dOLKer7_w" key="FKCGroup_WSum4NfdEeyV8dOLKer7_w">
-            <value xsi:type="e:ColumnReference" UUID="CReference_WSvN8tfdEeyV8dOLKer7_w" group="FKCGroup_WSum4NfdEeyV8dOLKer7_w" parentColumn="Column_OGp9UNfdEeyV8dOLKer7_w"/>
-          </memberships>
-          <memberships UUID="MEntry_WSwcENfdEeyV8dOLKer7_w" key="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_WSwcEdfdEeyV8dOLKer7_w" group="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" entryIndex="1"/>
+      <tables UUID="Table_OFtzfNaDEey3p9JHAMQhZw" logicalName="(O)contract_management계약관리" physicalName="TABLE3">
+        <columns UUID="Column_BXHAsNkeEeyaE7RSo08SBQ" logicalName="계약관리번호" physicalName="COL2" domain="Domain_uh01YNkgEeyaE7RSo08SBQ">
+          <memberships UUID="MEntry_BXHAsdkeEeyaE7RSo08SBQ" key="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_BXHAstkeEeyaE7RSo08SBQ" group="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" entryIndex="1"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFtzgNaDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL4" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_OFtzgdaDEey3p9JHAMQhZw" key="FKCGroup_OFtzk9aDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OFtzgtaDEey3p9JHAMQhZw" group="FKCGroup_OFtzk9aDEey3p9JHAMQhZw" entryIndex="1" parentColumn="Column_OFtzZdaDEey3p9JHAMQhZw"/>
-          </memberships>
-          <memberships UUID="MEntry_OFtzg9aDEey3p9JHAMQhZw" key="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzhNaDEey3p9JHAMQhZw" group="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" entryIndex="1"/>
-          </memberships>
-        </columns>
-        <columns UUID="Column_OFtzhdaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_2s7iQdc2Eeyj-7G8xR3dJQ" key="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzidaDEey3p9JHAMQhZw" group="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" entryIndex="0"/>
-          </memberships>
-          <memberships UUID="MEntry_2s7iRdc2Eeyj-7G8xR3dJQ" key="FKCGroup_OFtzk9aDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OFtzh9aDEey3p9JHAMQhZw" group="FKCGroup_OFtzk9aDEey3p9JHAMQhZw" entryIndex="0" parentColumn="Column_OFtzaNaDEey3p9JHAMQhZw"/>
+        <columns UUID="Column_8tAJYNkaEeyaE7RSo08SBQ" logicalName="사업자번호" physicalName="COL4" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ" notNull="TRUE">
+          <memberships UUID="MEntry_BLQn8NkcEeyaE7RSo08SBQ" key="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ">
+            <value xsi:type="e:ColumnReference" UUID="CReference_8tAJYtkaEeyaE7RSo08SBQ" group="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ" parentColumn="Column_OFtzZdaDEey3p9JHAMQhZw"/>
           </memberships>
         </columns>
         <columns UUID="Column_OFtzj9aDEey3p9JHAMQhZw" logicalName="상태" physicalName="COL5" domain="Domain_Myy34NcQEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtzkNaDEey3p9JHAMQhZw" logicalName="총계약기간" physicalName="COL6" domain="Domain_OrAWsNcQEeyj-7G8xR3dJQ"/>
-        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" logicalName="(-)contract_management계약관리 기본키" physicalName="PK_TABLE3" derivedPhysicalName="true" derivedLogicalName="true">
-          <primaryKeyConstraint UUID="PKConstraint_OFtzktaDEey3p9JHAMQhZw" logicalName="(-)contract_management계약관리 기본키" physicalName="PK_TABLE3" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzkdaDEey3p9JHAMQhZw" logicalName="(O)contract_management계약관리 기본키" physicalName="PK_TABLE3" derivedPhysicalName="true" derivedLogicalName="true">
+          <primaryKeyConstraint UUID="PKConstraint_OFtzktaDEey3p9JHAMQhZw" logicalName="(O)contract_management계약관리 기본키" physicalName="PK_TABLE3" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_OFtzk9aDEey3p9JHAMQhZw" logicalName="(O)client거래처 -> (-)contract_management계약관리" physicalName="FK_TABLE2_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzddaDEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_OFtzlNaDEey3p9JHAMQhZw" logicalName="(O)client거래처 -> (-)contract_management계약관리" physicalName="FK_TABLE2_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true"/>
-        </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_WSum4NfdEeyV8dOLKer7_w" logicalName="(-)contract계약 -> (-)contract_management계약관리" physicalName="FK_TABLE4_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_WSum4dfdEeyV8dOLKer7_w" logicalName="(-)contract계약 -> (-)contract_management계약관리" physicalName="FK_TABLE4_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ" logicalName="(O)client거래처 -> (O)contract_management계약관리" physicalName="FK_TABLE2_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzddaDEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_8s_iUdkaEeyaE7RSo08SBQ" logicalName="(O)client거래처 -> (O)contract_management계약관리" physicalName="FK_TABLE2_TO_TABLE3" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
-      <tables UUID="Table_OFtzldaDEey3p9JHAMQhZw" logicalName="(-)contract계약" physicalName="TABLE4">
-        <columns UUID="Column_OGp9UNfdEeyV8dOLKer7_w" logicalName="계약번호" physicalName="COL2" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_OGp9UdfdEeyV8dOLKer7_w" key="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OGp9UtfdEeyV8dOLKer7_w" group="PKCGroup_OFtzrtaDEey3p9JHAMQhZw" entryIndex="1"/>
+      <tables UUID="Table_OFtzldaDEey3p9JHAMQhZw" logicalName="(O)contract계약" physicalName="TABLE4">
+        <columns UUID="Column_D2udwNkeEeyaE7RSo08SBQ" logicalName="계약번호" physicalName="COL" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ">
+          <memberships UUID="MEntry_D2vE0NkeEeyaE7RSo08SBQ" key="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_D2vE0dkeEeyaE7RSo08SBQ" group="PKCGroup_OFtzrtaDEey3p9JHAMQhZw" entryIndex="1"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFtzm9aDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL4" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ" notNull="TRUE">
-          <memberships UUID="MEntry_T7LAANflEeyV8dOLKer7_w" key="FKCGroup_OFtzsNaDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OFtzndaDEey3p9JHAMQhZw" group="FKCGroup_OFtzsNaDEey3p9JHAMQhZw" parentColumn="Column_OFtzgNaDEey3p9JHAMQhZw"/>
-          </memberships>
-        </columns>
-        <columns UUID="Column_OFtzoNaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE">
-          <memberships UUID="MEntry_T7LAAdflEeyV8dOLKer7_w" key="FKCGroup_OFtzsNaDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OFtzotaDEey3p9JHAMQhZw" group="FKCGroup_OFtzsNaDEey3p9JHAMQhZw" entryIndex="0" parentColumn="Column_OFtzhdaDEey3p9JHAMQhZw"/>
+        <columns UUID="Column_BXHnwNkeEeyaE7RSo08SBQ" logicalName="계약관리번호" physicalName="COL2" derivedLogicalName="true" domain="Domain_uh01YNkgEeyaE7RSo08SBQ" notNull="TRUE">
+          <memberships UUID="MEntry_BXHnwdkeEeyaE7RSo08SBQ" key="FKCGroup_bhIIcNkcEeyaE7RSo08SBQ">
+            <value xsi:type="e:ColumnReference" UUID="CReference_BXHnwtkeEeyaE7RSo08SBQ" group="FKCGroup_bhIIcNkcEeyaE7RSo08SBQ" entryIndex="1" parentColumn="Column_BXHAsNkeEeyaE7RSo08SBQ"/>
           </memberships>
         </columns>
         <columns UUID="Column_sSwestcQEeyj-7G8xR3dJQ" logicalName="거래처할인코드" physicalName="COL12" derivedLogicalName="true" domain="Domain_ozlwgNcNEeyj-7G8xR3dJQ" notNull="TRUE">
@@ -276,50 +254,43 @@
             <value xsi:type="e:ColumnReference" UUID="CReference_sSwetNcQEeyj-7G8xR3dJQ" group="FKCGroup_sSwesNcQEeyj-7G8xR3dJQ" parentColumn="Column_TdZbAdaJEey3p9JHAMQhZw"/>
           </memberships>
         </columns>
-        <columns UUID="Column_WSwcEtfdEeyV8dOLKer7_w" logicalName="계약번호" physicalName="COL2" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_T7LAAtflEeyV8dOLKer7_w" key="FKCGroup_OFtzsNaDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_WSwcFNfdEeyV8dOLKer7_w" group="FKCGroup_OFtzsNaDEey3p9JHAMQhZw" entryIndex="1" parentColumn="Column_WSvN8NfdEeyV8dOLKer7_w"/>
-          </memberships>
-        </columns>
-        <columns UUID="Column_OFtzqtaDEey3p9JHAMQhZw" logicalName="납품단가" physicalName="COL5" domain="Domain_mf0PsNcQEeyj-7G8xR3dJQ"/>
+        <columns UUID="Column_OFtzqtaDEey3p9JHAMQhZw" logicalName="납품원가" physicalName="COL5" domain="Domain_mf0PsNcQEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtzrdaDEey3p9JHAMQhZw" logicalName="납품일자" physicalName="COL8" domain="Domain_p6OhENcQEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtzq9aDEey3p9JHAMQhZw" logicalName="계약시작날짜" physicalName="COL6" domain="Domain_n_TFcNcQEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtzrNaDEey3p9JHAMQhZw" logicalName="계약종료날짜" physicalName="COL7" domain="Domain_o_c64NcQEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_cHxxMNaJEey3p9JHAMQhZw" logicalName="할인율(거래처)적용 된 가격 || 소계" physicalName="COL10" domain="Domain_tcZJ0NccEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_cJ7GQNaJEey3p9JHAMQhZw" logicalName="할인율(거래처+상품)적용 된 가격 || 총금액" physicalName="COL11" domain="Domain_rU8VINccEeyj-7G8xR3dJQ"/>
-        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzrtaDEey3p9JHAMQhZw" logicalName="(-)contract계약 기본키" physicalName="PK_TABLE4" derivedPhysicalName="true" derivedLogicalName="true">
-          <primaryKeyConstraint UUID="PKConstraint_OFtzr9aDEey3p9JHAMQhZw" logicalName="(-)contract계약 기본키" physicalName="PK_TABLE4" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzrtaDEey3p9JHAMQhZw" logicalName="(O)contract계약 기본키" physicalName="PK_TABLE4" derivedPhysicalName="true" derivedLogicalName="true">
+          <primaryKeyConstraint UUID="PKConstraint_OFtzr9aDEey3p9JHAMQhZw" logicalName="(O)contract계약 기본키" physicalName="PK_TABLE4" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_OFtzsNaDEey3p9JHAMQhZw" logicalName="(-)contract_management계약관리 -> (-)contract계약" physicalName="FK_TABLE3_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_OFtzsdaDEey3p9JHAMQhZw" logicalName="(-)contract_management계약관리 -> (-)contract계약" physicalName="FK_TABLE3_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true">
-            <physicalProperties xsi:type="o10g:ForeignKeyConstraintProperties" UUID="FKCProperties_OFtzstaDEey3p9JHAMQhZw"/>
-          </foreignKeyConstraint>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_sSwesNcQEeyj-7G8xR3dJQ" logicalName="(O)client_discount거래처할인 -> (O)contract계약" physicalName="FK_TABLE17_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_TdZbBtaJEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_sSwesdcQEeyj-7G8xR3dJQ" logicalName="(O)client_discount거래처할인 -> (O)contract계약" physicalName="FK_TABLE17_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_sSwesNcQEeyj-7G8xR3dJQ" logicalName="(O)client_discount거래처할인 -> (-)contract계약" physicalName="FK_TABLE17_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_TdZbBtaJEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_sSwesdcQEeyj-7G8xR3dJQ" logicalName="(O)client_discount거래처할인 -> (-)contract계약" physicalName="FK_TABLE17_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_bhIIcNkcEeyaE7RSo08SBQ" logicalName="(O)contract_management계약관리 -> (O)contract계약" physicalName="FK_TABLE3_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzkdaDEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_bhIIcdkcEeyaE7RSo08SBQ" logicalName="(O)contract_management계약관리 -> (O)contract계약" physicalName="FK_TABLE3_TO_TABLE4" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
-      <tables UUID="Table_OFtzs9aDEey3p9JHAMQhZw" logicalName="(-)contract_goods 계약상품" physicalName="TABLE5">
+      <tables UUID="Table_OFtzs9aDEey3p9JHAMQhZw" logicalName="(O)contract_goods 계약상품" physicalName="TABLE5">
         <columns UUID="Column_OFtztNaDEey3p9JHAMQhZw" logicalName="seq" physicalName="COL7" domain="Domain_9QwDINcLEeyj-7G8xR3dJQ">
           <memberships UUID="MEntry_OFtztdaDEey3p9JHAMQhZw" key="PKCGroup_OFtzztaDEey3p9JHAMQhZw">
             <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzttaDEey3p9JHAMQhZw" group="PKCGroup_OFtzztaDEey3p9JHAMQhZw" entryIndex="1"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OGqkYNfdEeyV8dOLKer7_w" logicalName="계약번호" physicalName="COL2" derivedLogicalName="true" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_OGqkYdfdEeyV8dOLKer7_w" key="FKCGroup_i-EbsNcaEeyj-7G8xR3dJQ">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OGqkYtfdEeyV8dOLKer7_w" group="FKCGroup_i-EbsNcaEeyj-7G8xR3dJQ" entryIndex="1" parentColumn="Column_OGp9UNfdEeyV8dOLKer7_w"/>
+        <columns UUID="Column_gOxb8NkfEeyaE7RSo08SBQ" logicalName="계약번호" physicalName="COL2" derivedLogicalName="true" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ" notNull="TRUE">
+          <memberships UUID="MEntry_gOxb8dkfEeyaE7RSo08SBQ" key="FKCGroup_gOw04NkfEeyaE7RSo08SBQ">
+            <value xsi:type="e:ColumnReference" UUID="CReference_gOxb8tkfEeyaE7RSo08SBQ" group="FKCGroup_gOw04NkfEeyaE7RSo08SBQ" parentColumn="Column_D2udwNkeEeyaE7RSo08SBQ"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFtzvNaDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL5" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ" notNull="TRUE"/>
         <columns UUID="Column_OFtzwdaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL6" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE"/>
+        <columns UUID="Column_OFtzvNaDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL5" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ" notNull="TRUE"/>
         <columns UUID="Column_OFtzy9aDEey3p9JHAMQhZw" logicalName="상품명" physicalName="COL" domain="Domain_c2308NcPEeyj-7G8xR3dJQ" notNull="TRUE"/>
+        <columns UUID="Column_cNTikNgXEeyV8dOLKer7_w" logicalName="원가" physicalName="COL14" domain="Domain_ms_SkNccEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtzzNaDEey3p9JHAMQhZw" logicalName="납품수량" physicalName="COL3" domain="Domain_koE0gNccEeyj-7G8xR3dJQ"/>
-        <columns UUID="Column_OFtzzdaDEey3p9JHAMQhZw" logicalName="상품원가" physicalName="COL4" domain="Domain_ms_SkNccEeyj-7G8xR3dJQ"/>
-        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzztaDEey3p9JHAMQhZw" logicalName="(-)contract_goods 계약상품 기본키" physicalName="PK_TABLE5" derivedPhysicalName="true" derivedLogicalName="true">
-          <primaryKeyConstraint UUID="PKConstraint_OFtzz9aDEey3p9JHAMQhZw" logicalName="(-)contract_goods 계약상품 기본키" physicalName="PK_TABLE5" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtzztaDEey3p9JHAMQhZw" logicalName="(O)contract_goods 계약상품 기본키" physicalName="PK_TABLE5" derivedPhysicalName="true" derivedLogicalName="true">
+          <primaryKeyConstraint UUID="PKConstraint_OFtzz9aDEey3p9JHAMQhZw" logicalName="(O)contract_goods 계약상품 기본키" physicalName="PK_TABLE5" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_i-EbsNcaEeyj-7G8xR3dJQ" logicalName="(-)contract계약 -> (-)contract_goods 계약상품" physicalName="FK_TABLE4_TO_TABLE5" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_i-EbsdcaEeyj-7G8xR3dJQ" logicalName="(-)contract계약 -> (-)contract_goods 계약상품" physicalName="FK_TABLE4_TO_TABLE5" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_gOw04NkfEeyaE7RSo08SBQ" logicalName="(O)contract계약 -> (O)contract_goods 계약상품" physicalName="FK_TABLE4_TO_TABLE5" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_gOw04dkfEeyaE7RSo08SBQ" logicalName="(O)contract계약 -> (O)contract_goods 계약상품" physicalName="FK_TABLE4_TO_TABLE5" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
       <tables UUID="Table_OFuacNaDEey3p9JHAMQhZw" logicalName="(O)board공지게시판" physicalName="TABLE6">
@@ -349,15 +320,12 @@
       <tables UUID="Table_OFuagdaDEey3p9JHAMQhZw" logicalName="(-)Inventory_management재고관리" physicalName="TABLE7">
         <columns UUID="Column_eFdgQNcVEeyj-7G8xR3dJQ" logicalName="seq" physicalName="COL3" domain="Domain_9QwDINcLEeyj-7G8xR3dJQ">
           <memberships UUID="MEntry_eFdgQdcVEeyj-7G8xR3dJQ" key="PKCGroup_OFualNaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_eFdgQtcVEeyj-7G8xR3dJQ" group="PKCGroup_OFualNaDEey3p9JHAMQhZw" entryIndex="0"/>
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_eFdgQtcVEeyj-7G8xR3dJQ" group="PKCGroup_OFualNaDEey3p9JHAMQhZw" entryIndex="1"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFuah9aDEey3p9JHAMQhZw" logicalName="상품코드" physicalName="COL" derivedLogicalName="true" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ" notNull="TRUE">
-          <memberships UUID="MEntry_y9v6ktcREeyj-7G8xR3dJQ" key="FKCGroup_y9v6kNcREeyj-7G8xR3dJQ">
-            <value xsi:type="e:ColumnReference" UUID="CReference_y9v6k9cREeyj-7G8xR3dJQ" group="FKCGroup_y9v6kNcREeyj-7G8xR3dJQ" entryIndex="0" parentColumn="Column_OFuam9aDEey3p9JHAMQhZw"/>
-          </memberships>
-          <memberships UUID="MEntry_u1pVYNcUEeyj-7G8xR3dJQ" key="PKCGroup_OFualNaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_u1pVYdcUEeyj-7G8xR3dJQ" group="PKCGroup_OFualNaDEey3p9JHAMQhZw"/>
+        <columns UUID="Column_Xt8XANmmEeyjbPEyJZVB6A" logicalName="상품코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ" notNull="TRUE">
+          <memberships UUID="MEntry_Xt8XAdmmEeyjbPEyJZVB6A" key="FKCGroup_Xt7v8NmmEeyjbPEyJZVB6A">
+            <value xsi:type="e:ColumnReference" UUID="CReference_Xt8XAtmmEeyjbPEyJZVB6A" group="FKCGroup_Xt7v8NmmEeyjbPEyJZVB6A" entryIndex="1" parentColumn="Column_VQonENmmEeyjbPEyJZVB6A"/>
           </memberships>
         </columns>
         <columns UUID="Column_OFuagtaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL2" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE">
@@ -376,14 +344,19 @@
         <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_OFualtaDEey3p9JHAMQhZw" logicalName="(O)USER_INFO사원 -> (-)Inventory_management재고관리" physicalName="FK_TABLE_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtMcNaDEey3p9JHAMQhZw">
           <foreignKeyConstraint UUID="FKConstraint_OFual9aDEey3p9JHAMQhZw" logicalName="(O)USER_INFO사원 -> (-)Inventory_management재고관리" physicalName="FK_TABLE_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
-        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_y9v6kNcREeyj-7G8xR3dJQ" logicalName="(-)inventory_goods -> (-)Inventory_management재고관리" physicalName="FK_TABLE8_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFuap9aDEey3p9JHAMQhZw">
-          <foreignKeyConstraint UUID="FKConstraint_y9v6kdcREeyj-7G8xR3dJQ" logicalName="(-)inventory_goods -> (-)Inventory_management재고관리" physicalName="FK_TABLE8_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true"/>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_Xt7v8NmmEeyjbPEyJZVB6A" logicalName="(-)inventory_goods -> (-)Inventory_management재고관리" physicalName="FK_TABLE8_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFuap9aDEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_Xt7v8dmmEeyjbPEyJZVB6A" logicalName="(-)inventory_goods -> (-)Inventory_management재고관리" physicalName="FK_TABLE8_TO_TABLE7" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
       <tables UUID="Table_OFuamtaDEey3p9JHAMQhZw" logicalName="(-)inventory_goods" physicalName="TABLE8">
-        <columns UUID="Column_OFuam9aDEey3p9JHAMQhZw" logicalName="상품코드" physicalName="COL5" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ">
-          <memberships UUID="MEntry_OFuanNaDEey3p9JHAMQhZw" key="PKCGroup_OFuap9aDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFuandaDEey3p9JHAMQhZw" group="PKCGroup_OFuap9aDEey3p9JHAMQhZw" entryIndex="1"/>
+        <columns UUID="Column_VQonENmmEeyjbPEyJZVB6A" logicalName="상품코드" physicalName="COL" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ">
+          <memberships UUID="MEntry_WakqoNmmEeyjbPEyJZVB6A" key="PKCGroup_OFuap9aDEey3p9JHAMQhZw">
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_WakqodmmEeyjbPEyJZVB6A" group="PKCGroup_OFuap9aDEey3p9JHAMQhZw" entryIndex="1"/>
+          </memberships>
+        </columns>
+        <columns UUID="Column_n7GogtmuEeyjbPEyJZVB6A" logicalName="계약번호" physicalName="COL4" derivedLogicalName="true" domain="Domain_TDc9oNcQEeyj-7G8xR3dJQ" notNull="TRUE">
+          <memberships UUID="MEntry_n7Gog9muEeyjbPEyJZVB6A" key="FKCGroup_n7GogNmuEeyjbPEyJZVB6A">
+            <value xsi:type="e:ColumnReference" UUID="CReference_n7GohNmuEeyjbPEyJZVB6A" group="FKCGroup_n7GogNmuEeyjbPEyJZVB6A" parentColumn="Column_D2udwNkeEeyaE7RSo08SBQ"/>
           </memberships>
         </columns>
         <columns UUID="Column_UBEnAtcREeyj-7G8xR3dJQ" logicalName="상품할인코드" physicalName="COL6" derivedLogicalName="true" domain="Domain_paZR0NcNEeyj-7G8xR3dJQ" notNull="TRUE">
@@ -391,18 +364,21 @@
             <value xsi:type="e:ColumnReference" UUID="CReference_UBEnBNcREeyj-7G8xR3dJQ" group="FKCGroup_UBEnANcREeyj-7G8xR3dJQ" parentColumn="Column_OFuatNaDEey3p9JHAMQhZw"/>
           </memberships>
         </columns>
-        <columns UUID="Column_OFuapNaDEey3p9JHAMQhZw" logicalName="상품명" physicalName="COL" domain="Domain_c2308NcPEeyj-7G8xR3dJQ" notNull="TRUE"/>
+        <columns UUID="Column_mQkBANmoEeyjbPEyJZVB6A" logicalName="상품명" physicalName="COL3" domain="Domain_c2308NcPEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFuantaDEey3p9JHAMQhZw" logicalName="재고수량" physicalName="COL2" domain="Domain_9BOSANcOEeyj-7G8xR3dJQ" notNull="TRUE"/>
-        <columns UUID="Column_OFuapdaDEey3p9JHAMQhZw" logicalName="원산지" physicalName="COL3" domain="Domain_HH2HQNcQEeyj-7G8xR3dJQ"/>
-        <columns UUID="Column_OFuaptaDEey3p9JHAMQhZw" logicalName="원재료 및 함량" physicalName="COL4" domain="Domain_sthyQNfYEeyV8dOLKer7_w"/>
-        <columns UUID="Column_0eLrINfYEeyV8dOLKer7_w" logicalName="유통기한 및 품질 유지기한" physicalName="COL7" domain="Domain_9BwOsNfYEeyV8dOLKer7_w"/>
-        <columns UUID="Column_1nNvwNfYEeyV8dOLKer7_w" logicalName="내용물의 중량" physicalName="COL8" domain="Domain__pE2QNfYEeyV8dOLKer7_w"/>
-        <columns UUID="Column_2Pt6MNfYEeyV8dOLKer7_w" logicalName="포장 단위별 수량" physicalName="COL9" domain="Domain_LWWVsNfZEeyV8dOLKer7_w"/>
+        <columns UUID="Column_cW9N0NgXEeyV8dOLKer7_w" logicalName="중량" physicalName="COL13" domain="Domain_MHZuwNkDEeyaE7RSo08SBQ"/>
+        <columns UUID="Column_ck140NgXEeyV8dOLKer7_w" logicalName="원산지" physicalName="COL12" domain="Domain_HH2HQNcQEeyj-7G8xR3dJQ"/>
+        <columns UUID="Column_ijPJ4NgXEeyV8dOLKer7_w" logicalName="원재료 및 함량" physicalName="COL11" domain="Domain_sthyQNfYEeyV8dOLKer7_w"/>
+        <columns UUID="Column_i9A70NgXEeyV8dOLKer7_w" logicalName="유통기한" physicalName="COL10" domain="Domain_9BwOsNfYEeyV8dOLKer7_w"/>
+        <columns UUID="Column_d_7PgNkDEeyaE7RSo08SBQ" logicalName="포장단위별 수량" physicalName="COL9" domain="Domain_LWWVsNfZEeyV8dOLKer7_w"/>
         <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFuap9aDEey3p9JHAMQhZw" logicalName="(-)inventory_goods 기본키" physicalName="PK_TABLE8" derivedPhysicalName="true" derivedLogicalName="true">
           <primaryKeyConstraint UUID="PKConstraint_OFuaqNaDEey3p9JHAMQhZw" logicalName="(-)inventory_goods 기본키" physicalName="PK_TABLE8" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
         <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_UBEnANcREeyj-7G8xR3dJQ" logicalName="(-)goods_discount -> (-)inventory_goods" physicalName="FK_TABLE10_TO_TABLE8" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFuauNaDEey3p9JHAMQhZw">
           <foreignKeyConstraint UUID="FKConstraint_UBEnAdcREeyj-7G8xR3dJQ" logicalName="(-)goods_discount -> (-)inventory_goods" physicalName="FK_TABLE10_TO_TABLE8" derivedPhysicalName="true" derivedLogicalName="true"/>
+        </columnGroups>
+        <columnGroups xsi:type="e:ForeignKeyColumnGroup" UUID="FKCGroup_n7GogNmuEeyjbPEyJZVB6A" logicalName="(O)contract계약 -> (-)inventory_goods" physicalName="FK_TABLE4_TO_TABLE8" derivedPhysicalName="true" derivedLogicalName="true" parentColumnGroup="PKCGroup_OFtzrtaDEey3p9JHAMQhZw">
+          <foreignKeyConstraint UUID="FKConstraint_n7GogdmuEeyjbPEyJZVB6A" logicalName="(O)contract계약 -> (-)inventory_goods" physicalName="FK_TABLE4_TO_TABLE8" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
       </tables>
       <tables UUID="Table_OFuarNaDEey3p9JHAMQhZw" logicalName="백업" physicalName="TABLE9">
@@ -519,14 +495,16 @@
         </columnGroups>
       </tables>
       <tables UUID="Table_AJf2YNgTEeyV8dOLKer7_w" logicalName="상품 납품" physicalName="TABLE19"/>
-      <tables UUID="Table_Za0M0NgXEeyV8dOLKer7_w" logicalName="상품" physicalName="TABLE20">
-        <columns UUID="Column_aoBm0NgXEeyV8dOLKer7_w" logicalName="상품코드" physicalName="COL" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ"/>
+      <tables UUID="Table_Za0M0NgXEeyV8dOLKer7_w" logicalName="(O)상품goods" physicalName="TABLE20">
+        <columns UUID="Column_aoBm0NgXEeyV8dOLKer7_w" logicalName="상품코드" physicalName="COL" domain="Domain_GvtbcNcNEeyj-7G8xR3dJQ">
+          <memberships UUID="MEntry_m3XKQNkDEeyaE7RSo08SBQ" key="PKCGroup_m3SRwNkDEeyaE7RSo08SBQ">
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_m3XKQdkDEeyaE7RSo08SBQ" group="PKCGroup_m3SRwNkDEeyaE7RSo08SBQ" entryIndex="0"/>
+          </memberships>
+        </columns>
         <columns UUID="Column_bLMlUNgXEeyV8dOLKer7_w" logicalName="상품명" physicalName="COL2" domain="Domain_c2308NcPEeyj-7G8xR3dJQ"/>
-        <columns UUID="Column_cNTikNgXEeyV8dOLKer7_w" logicalName="원가" physicalName="COL3"/>
-        <columns UUID="Column_cW9N0NgXEeyV8dOLKer7_w" logicalName="중량" physicalName="COL4"/>
-        <columns UUID="Column_ck140NgXEeyV8dOLKer7_w" logicalName="원산지" physicalName="COL5"/>
-        <columns UUID="Column_ijPJ4NgXEeyV8dOLKer7_w" logicalName="원재료 및 함량" physicalName="COL6"/>
-        <columns UUID="Column_i9A70NgXEeyV8dOLKer7_w" logicalName="유통기한" physicalName="COL7"/>
+        <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_m3SRwNkDEeyaE7RSo08SBQ" logicalName="(O)상품goods 기본키" physicalName="PK_TABLE20" derivedPhysicalName="true" derivedLogicalName="true">
+          <primaryKeyConstraint UUID="PKConstraint_m3SRwdkDEeyaE7RSo08SBQ" logicalName="(O)상품goods 기본키" physicalName="PK_TABLE20" derivedPhysicalName="true" derivedLogicalName="true"/>
+        </columnGroups>
       </tables>
     </schema>
   </databaseModel>
