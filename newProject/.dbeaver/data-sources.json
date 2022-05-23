@@ -1,20 +1,21 @@
 {
 	"folders": {},
 	"connections": {
-		"oracle_thin-180d9b3f1c8-2b5729e5903ba444": {
+		"oracle_thin-180eedc3ece-5b2178925a1c0b6c": {
 			"provider": "oracle",
 			"driver": "oracle_thin",
-			"name": "localhost",
+			"name": "ORCL",
 			"save-password": true,
 			"read-only": false,
 			"configuration": {
 				"host": "localhost",
 				"port": "1521",
-				"database": "XE",
-				"url": "jdbc:oracle:thin:@//localhost:1521/XE",
+				"database": "ORCL",
+				"url": "jdbc:oracle:thin:@db20220523104800_medium?TNS_ADMIN=C:\\\\Users\\\\GDJ44\\\\Wallet",
 				"home": "C:\\app\\GDJ44\\product\\21c\\dbhomeXE",
 				"type": "dev",
 				"provider-properties": {
+					"@dbeaver-connection-type@": "CUSTOM",
 					"show-only-one-schema@": "false",
 					"@dbeaver-check-schema-content@": "false",
 					"@dbeaver-always-show-dba@": "false",
@@ -25,7 +26,6 @@
 					"@dbeaver-use-meta-optimizer@": "true",
 					"@dbeaver-meta-use-alternative-table-query@": "false",
 					"oracle.meta-search-in-synonyms": "false",
-					"@dbeaver-connection-type@": "BASIC",
 					"@dbeaver-sid-service@": "SERVICE"
 				},
 				"auth-model": "oracle_native",
