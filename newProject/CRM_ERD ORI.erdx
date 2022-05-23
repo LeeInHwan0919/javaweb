@@ -156,7 +156,7 @@
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMV9aDEey3p9JHAMQhZw" location="Point(1077.0, 210.0)" table="Table_OFtzfNaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWNaDEey3p9JHAMQhZw" location="Point(1436.0, 150.0)" table="Table_OFtzldaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWdaDEey3p9JHAMQhZw" location="Point(1512.0, 455.0)" table="Table_OFtzs9aDEey3p9JHAMQhZw"/>
-      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWtaDEey3p9JHAMQhZw" location="Point(18.0, 170.0)" table="Table_OFuacNaDEey3p9JHAMQhZw"/>
+      <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMWtaDEey3p9JHAMQhZw" location="Point(24.0, 170.0)" table="Table_OFuacNaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMW9aDEey3p9JHAMQhZw" location="Point(356.0, 460.0)" table="Table_OFuagdaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXNaDEey3p9JHAMQhZw" location="Point(720.0, 450.0)" table="Table_OFuamtaDEey3p9JHAMQhZw"/>
       <diagramEntry xsi:type="e:TableDiagram" UUID="TDiagram_OFtMXtaDEey3p9JHAMQhZw" location="Point(725.0, 707.0)" table="Table_OFuas9aDEey3p9JHAMQhZw"/>
@@ -200,7 +200,7 @@
       <tables UUID="Table_OFtzZNaDEey3p9JHAMQhZw" logicalName="(O)client거래처" physicalName="TABLE2">
         <columns UUID="Column_OFtzZdaDEey3p9JHAMQhZw" logicalName="사업자번호" physicalName="COL4" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ">
           <memberships UUID="MEntry_OFtzZtaDEey3p9JHAMQhZw" key="PKCGroup_OFtzddaDEey3p9JHAMQhZw">
-            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzZ9aDEey3p9JHAMQhZw" group="PKCGroup_OFtzddaDEey3p9JHAMQhZw" entryIndex="0"/>
+            <value xsi:type="e:PrimaryKeyMembership" UUID="PKMembership_OFtzZ9aDEey3p9JHAMQhZw" group="PKCGroup_OFtzddaDEey3p9JHAMQhZw" entryIndex="1"/>
           </memberships>
         </columns>
         <columns UUID="Column_OFtzaNaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE">
@@ -226,7 +226,7 @@
         </columns>
         <columns UUID="Column_8tAJYNkaEeyaE7RSo08SBQ" logicalName="사업자번호" physicalName="COL4" derivedPhysicalName="true" derivedLogicalName="true" domain="Domain_gftOwNcNEeyj-7G8xR3dJQ" notNull="TRUE">
           <memberships UUID="MEntry_BLQn8NkcEeyaE7RSo08SBQ" key="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ">
-            <value xsi:type="e:ColumnReference" UUID="CReference_8tAJYtkaEeyaE7RSo08SBQ" group="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ" parentColumn="Column_OFtzZdaDEey3p9JHAMQhZw"/>
+            <value xsi:type="e:ColumnReference" UUID="CReference_8tAJYtkaEeyaE7RSo08SBQ" group="FKCGroup_8s_iUNkaEeyaE7RSo08SBQ" entryIndex="1" parentColumn="Column_OFtzZdaDEey3p9JHAMQhZw"/>
           </memberships>
         </columns>
         <columns UUID="Column_OFtzj9aDEey3p9JHAMQhZw" logicalName="상태" physicalName="COL5" domain="Domain_Myy34NcQEeyj-7G8xR3dJQ"/>

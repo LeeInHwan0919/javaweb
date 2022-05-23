@@ -11,7 +11,7 @@
 				"host": "localhost",
 				"port": "1521",
 				"database": "ORCL",
-				"url": "jdbc:oracle:thin:@db20220523104800_medium?TNS_ADMIN=C:\\\\Users\\\\GDJ44\\\\Wallet",
+				"url": "jdbc:oracle:thin:@db20220523104800_medium?TNS_ADMIN=C:\\\\Users\\\\ldkko\\\\Desktop\\\\Wallet",
 				"home": "C:\\app\\GDJ44\\product\\21c\\dbhomeXE",
 				"type": "dev",
 				"provider-properties": {
