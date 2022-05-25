@@ -10,9 +10,6 @@
     <relation key="FKCGroup_OFuaf9aDEey3p9JHAMQhZw">
       <value foreignKeyColumnGroup="FKCGroup_OFuaf9aDEey3p9JHAMQhZw"/>
     </relation>
-    <relation key="FKCGroup_OFualtaDEey3p9JHAMQhZw">
-      <value foreignKeyColumnGroup="FKCGroup_OFualtaDEey3p9JHAMQhZw"/>
-    </relation>
     <relation key="FKCGroup_sSwesNcQEeyj-7G8xR3dJQ">
       <value foreignKeyColumnGroup="FKCGroup_sSwesNcQEeyj-7G8xR3dJQ"/>
     </relation>
@@ -33,6 +30,9 @@
     </relation>
     <relation key="FKCGroup_INiwsNpVEey4xfOmhEpfHQ">
       <value foreignKeyColumnGroup="FKCGroup_INiwsNpVEey4xfOmhEpfHQ"/>
+    </relation>
+    <relation key="FKCGroup_OFualtaDEey3p9JHAMQhZw">
+      <value foreignKeyColumnGroup="FKCGroup_OFualtaDEey3p9JHAMQhZw"/>
     </relation>
   </relationManager>
   <configuration>
@@ -126,6 +126,7 @@
       <domain UUID="Domain_NDfjkNkDEeyaE7RSo08SBQ" name="g_from"/>
       <domain UUID="Domain_PqOVQNkDEeyaE7RSo08SBQ" name="g_contain"/>
       <domain UUID="Domain_uh01YNkgEeyaE7RSo08SBQ" name="ctm_CODE" suggestedDataType="VARCHAR2(20)"/>
+      <domain UUID="Domain_lUS-INv6EeyWoP9AQLZ8cQ" name="emp_auth" suggestedDataType="VARCHAR2(20)"/>
     </domainDefinition>
     <viewSettingsPreset name="eXERD 기본" showAltTableName="false">
       <cellsToShow>name</cellsToShow>
@@ -188,6 +189,7 @@
         <columns UUID="Column_OFtMbdaDEey3p9JHAMQhZw" logicalName="성별" physicalName="COL3" domain="Domain_Dh4fcNcLEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtMbtaDEey3p9JHAMQhZw" logicalName="사용여부" physicalName="COL5" domain="Domain_PKkZ0NcLEeyj-7G8xR3dJQ"/>
         <columns UUID="Column_OFtMb9aDEey3p9JHAMQhZw" logicalName="사원사진" physicalName="COL6" domain="Domain_RF9vgNcLEeyj-7G8xR3dJQ"/>
+        <columns UUID="Column_j4a2ANv6EeyWoP9AQLZ8cQ" logicalName="권한" physicalName="COL8" domain="Domain_lUS-INv6EeyWoP9AQLZ8cQ"/>
         <columnGroups xsi:type="e:PrimaryKeyColumnGroup" UUID="PKCGroup_OFtMcNaDEey3p9JHAMQhZw" logicalName="(O)USER_INFO사원 기본키" physicalName="PK_TABLE" derivedPhysicalName="true" derivedLogicalName="true">
           <primaryKeyConstraint UUID="PKConstraint_OFtzYNaDEey3p9JHAMQhZw" logicalName="(O)USER_INFO사원 기본키" physicalName="PK_TABLE" derivedPhysicalName="true" derivedLogicalName="true"/>
         </columnGroups>
@@ -337,8 +339,8 @@
           </memberships>
         </columns>
         <columns UUID="Column_OFuagtaDEey3p9JHAMQhZw" logicalName="사원코드" physicalName="COL2" derivedLogicalName="true" domain="Domain_mVZ-MNcKEeyj-7G8xR3dJQ" notNull="TRUE">
-          <memberships UUID="MEntry_OFuag9aDEey3p9JHAMQhZw" key="FKCGroup_OFualtaDEey3p9JHAMQhZw">
-            <value xsi:type="e:ColumnReference" UUID="CReference_OFuahNaDEey3p9JHAMQhZw" group="FKCGroup_OFualtaDEey3p9JHAMQhZw" entryIndex="0" parentColumn="Column_OFtMZdaDEey3p9JHAMQhZw"/>
+          <memberships UUID="MEntry_nJKHoNvyEeyWoP9AQLZ8cQ" key="FKCGroup_OFualtaDEey3p9JHAMQhZw">
+            <value xsi:type="e:ColumnReference" UUID="CReference_OFuahNaDEey3p9JHAMQhZw" group="FKCGroup_OFualtaDEey3p9JHAMQhZw" parentColumn="Column_OFtMZdaDEey3p9JHAMQhZw"/>
           </memberships>
         </columns>
         <columns UUID="Column_asCmANcYEeyj-7G8xR3dJQ" logicalName="상품명" physicalName="COL8" domain="Domain_c2308NcPEeyj-7G8xR3dJQ"/>
