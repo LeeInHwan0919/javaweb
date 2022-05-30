@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mozzle.web.Users">
+
+<select id="loginChk" parameterType="java.lang.String" resultType="uDto">
+  SELECT u.USER_PW, a.AUTH_NAME AUTH
+	FROM USERS u INNER JOIN USERS_AUTH a
+	ON u.AUTH_CODE = a.AUTH_CODE 
+		WHERE u.USER_ID = #{id} AND u.DELFLAG = 'N'
+</select>
+
+<select id="passwordChk" parameterType="java.lang.String" resultType="java.lang.String">
+  SELECT USER_PW 
+	FROM USERS
+		WHERE USER_ID = #{id}
+</select>
+
+<insert id="signUp" parameterType="uDto">
+	INSERT INTO USERS(USER_ID, USER_PW, USER_NAME, AUTH_CODE, BIRTH, EMAIL, TEL, DELFLAG)
+		VALUES(#{user_id}, #{user_pw}, #{user_name},
+		2, #{birth}, #{email},
+		#{tel}, 'N')
+</insert>
+
+<select id="duplicationIdChk" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT COUNT(*) FROM USERS WHERE USER_ID = #{id}
+</select>
+
+<select id="getUserInfo" parameterType="java.lang.String" resultType="uDto">
+	SELECT USER_NAME, BIRTH, EMAIL, TEL
+	FROM USERS WHERE USER_ID = #{id}
+</select>
+
+<select id="duplicationMailChk" parameterType="java.lang.String" resultType="java.lang.Integer">
+	SELECT COUNT(*) FROM USERS WHERE EMAIL = #{email}
+</select>
+
+<select id="findId" parameterType="uDto" resultType="java.lang.String">
+	SELECT USER_ID FROM USERS WHERE EMAIL = #{email} AND USER_NAME = #{user_name}	
+</select>
+
+<select id="findPw" parameterType="uDto" resultType="java.lang.Integer">
+	SELECT COUNT(*) FROM USERS WHERE EMAIL = #{email} AND USER_ID = #{user_id} AND USER_NAME = #{user_name}
+</select>
+
+<update id="changePw" parameterType="uDto">
+	UPDATE USERS SET USER_PW = #{user_pw} WHERE USER_ID = #{user_id}
+</update>
+
+<update id="updateUser" parameterType="uDto">
+	UPDATE USERS 
+	<set>
+	<if test="user_pw != null and user_pw != ''">
+	USER_PW = #{user_pw}, 
+	</if>
+	<if test="user_name != null and user_name != ''">
+	USER_NAME = #{user_name}, 
+	</if>
+	<if test="birth != null and birth != ''">
+	BIRTH = #{birth}, 
+	</if>
+	<if test="tel != null and tel != ''">
+	TEL = #{tel}
+	</if>
+	</set>
+	WHERE USER_ID = #{user_id}
+</update>
+
+<update id="delflagUser" parameterType="java.lang.String">
+	UPDATE USERS
+	SET DELFLAG = 'Y'
+	WHERE USER_ID = #{user_id}
+</update>
+
+</mapper>

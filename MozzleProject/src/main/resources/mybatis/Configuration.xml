@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+<typeAliases>
+	<typeAlias type="com.mozzle.web.dto.users.UserDto" alias="uDto"/>
+	<typeAlias type="com.mozzle.web.dto.users.GuestDto" alias="guestDto"/>
+	<typeAlias type="com.mozzle.web.dto.schedule.ScheduleDto" alias="ScheduleDto"/>
+	<typeAlias type="com.mozzle.web.dto.manage.MozzleDto" alias="mDto"/>
+	<typeAlias type="com.mozzle.web.dto.manage.CategoryDto" alias="cDto"/>
+	<typeAlias type="com.mozzle.web.dto.board.Board" alias="board"/>
+	<typeAlias type="com.mozzle.web.dto.users.MozzleUserDto" alias="mozzleUserDto"/>
+	<typeAlias type="com.mozzle.web.dto.board.PostReportDto" alias="postReportDto"/>
+	<typeAlias type="com.mozzle.web.dto.notice.NotificationDto" alias="nDto"/>
+	<typeAlias type="com.mozzle.web.dto.board.MozzlePostDto" alias="pDto"/>
+	<typeAlias type="com.mozzle.web.dto.board.RowNum_Dto" alias="rownumDto"/>
+</typeAliases>
+
+<mappers>
+	<mapper resource="sql/User_mapper.xml"/>
+	<mapper resource="sql/Guest_mapper.xml"/>
+	<mapper resource="sql/schedule_mapper.xml"/>
+	<mapper resource="sql/Mozzle_mapper.xml"/>
+	<mapper resource="sql/Category_mapper.xml"/>
+	<mapper resource="sql/Board_mapper.xml"/>
+	<mapper resource="sql/MozzleUser_mapper.xml"/>
+	<mapper resource="sql/PostReport_mapper.xml"/>
+	<mapper resource="sql/Notice_mapper.xml"/>
+	<mapper resource="sql/MozzlePost_mapper.xml"/>
+</mappers>
+ 
+</configuration>

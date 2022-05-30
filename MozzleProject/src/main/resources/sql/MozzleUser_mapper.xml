@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper  namespace="com.mozzle.web.dao.users.MozzleUserDaoImpl">
+
+<!-- USERS + MOZZLE_USER join문 (모즐 내 회원 닉네임으로 찾기) -->
+<select id="selectJoin">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED, 
+u.USER_NAME ,u.AUTH_CODE,u.BIRTH  ,u.EMAIL , u.TEL ,u.DELFLAG 
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+WHERE um.NICKNAME like '%%' AND um.MOZZLE_ID ='1' AND um.AUTH_CODE IN ('1','2')
+</select>
+
+<!-- 모즐내 회원 닉네임으로 찾기 -> 리스트로 뿌리기 -->
+<select id="selectListMozzleUser" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+<trim prefix="WHERE" prefixOverrides="AND">
+<if test="nickname !=null">
+ um.NICKNAME like '%'||#{nickname}||'%'
+</if>
+AND um.MOZZLE_ID =#{mozzle_id}
+AND um.AUTH_CODE IN ('1','2')
+AND u.DELFLAG = 'N'
+</trim>
+</select>
+
+<!-- 모즐내 회원 닉네임으로 찾기 운영자권한 -->
+<select id="selectListadminMozzleUser" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+<trim prefix="WHERE" prefixOverrides="AND">
+<if test="nickname !=null">
+ um.NICKNAME like '%'||#{nickname}||'%'
+</if>
+AND um.AUTH_CODE = '2'
+AND um.MOZZLE_ID =#{mozzle_id}
+AND u.DELFLAG = 'N'
+</trim>
+</select>
+
+<!-- 모즐내 회원 닉네임으로 찾기 운영자권한 -->
+<select id="selectListadminMozzleUser2" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+<trim prefix="WHERE" prefixOverrides="AND">
+<if test="nickname !=null">
+ um.NICKNAME like '%'||#{nickname}||'%'
+</if>
+AND um.AUTH_CODE IN ('3','2')
+AND um.MOZZLE_ID =#{mozzle_id}
+AND u.DELFLAG = 'N'
+</trim>
+</select>
+
+
+<!-- 모즐내 회원 닉네임으로 찾기 -> 상세조회 -->
+<select id="selectMozzleUser" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED, 
+u.USER_NAME ,u.AUTH_CODE,u.BIRTH  ,u.EMAIL , u.TEL ,u.DELFLAG 
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+WHERE um.NICKNAME = #{nickname} AND um.MOZZLE_ID = #{mozzle_id} AND um.AUTH_CODE IN ('1','2') AND u.DELFLAG = 'N'
+</select>
+
+
+<!-- 모즐 내 일반회원가입 -->
+<insert id="insertMozzleUser" parameterType="mozzleUserDto">
+INSERT INTO USER_MOZZLE
+(USER_ID, MOZZLE_ID, AUTH_CODE, NICKNAME, JOINED_DATE, BIRTHDAY_SHOW
+ <if test="image_saved != null">
+ , IMAGE_ORIGIN, IMAGE_SAVED
+ </if>
+)
+VALUES(#{user_id},#{mozzle_id}, '2', #{nickname}, sysdate, #{birthday_show}
+<if test="image_saved != null">
+, #{image_origin}, #{image_saved}
+</if>
+)
+</insert>
+
+
+<!-- 12/19(일) 모즐유저를 userid로 조회 -->
+<select id="selectMozzleUserByUserId" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED, (SELECT count(*) FROM MOZZLE_POST mp WHERE USER_ID = #{user_id} and MOZZLE_ID = #{mozzle_id}) AS postcnt,
+u.USER_NAME , u.AUTH_CODE,u.BIRTH  ,u.EMAIL , u.TEL ,u.DELFLAG 
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+WHERE um.USER_ID = #{user_id} AND um.MOZZLE_ID =#{mozzle_id} AND um.AUTH_CODE IN ('1','2','3')
+</select>
+
+<!-- 12/19(일) 모즐유저 운영자 생성 -->
+<insert id="insertMozzleHost" parameterType="mDto">
+INSERT INTO USER_MOZZLE
+(USER_ID, MOZZLE_ID, AUTH_CODE, NICKNAME, JOINED_DATE, BIRTHDAY_SHOW)
+VALUES(#{user_id}, #{mozzle_id}, '1', #{user_id}, sysdate, 'N')
+</insert>
+
+<!-- 12/19(일) 모즐 유저 본인이 탈퇴 -->
+<delete id="deleteMozzleUser" parameterType="mozzleUserDto">
+DELETE FROM USER_MOZZLE um WHERE USER_ID = #{user_id} AND MOZZLE_ID = #{mozzle_id}
+</delete>
+
+<!-- 12/19(일) 모즐유저 회원정보수정 본인이-->
+<update id="updateMozzleUser" parameterType="mozzleUserDto">
+UPDATE USER_MOZZLE SET NICKNAME = #{nickname}, BIRTHDAY_SHOW = #{birthday_show}
+<if test="image_origin !=null">
+,IMAGE_ORIGIN = #{image_origin},IMAGE_SAVED = #{image_saved}
+</if>
+ WHERE USER_ID = #{user_id} AND MOZZLE_ID = #{mozzle_id} AND AUTH_CODE IN ('1','2')
+</update>
+
+<!-- 12/19(일) 모즐내 회원 권한수정 운영자가 -->
+<update id="updateMozzleUserAuth" parameterType="mozzleUserDto">
+UPDATE USER_MOZZLE set auth_code = #{auth_code} WHERE USER_ID = #{user_id} AND MOZZLE_ID = #{mozzle_id}
+</update>
+
+
+<!-- <select id="selectListMozzleUser2" parameterType="java.util.Map" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+<trim prefix="WHERE" prefixOverrides="AND">
+<if test="nickname !=null">
+ um.NICKNAME like '%'||#{nickname}||'%'
+</if>
+AND um.MOZZLE_ID =#{mozzle_id}
+AND um.AUTH_CODE IN ('1','2')
+AND u.DELFLAG = 'N'
+</trim>
+</select> -->
+
+
+<select id="leaderCheck" parameterType="java.lang.String" resultType="java.util.Map">
+	SELECT um.MOZZLE_ID, m.MOZZLE_NAME FROM USER_MOZZLE um INNER JOIN MOZZLE m 
+	ON um.MOZZLE_ID = m.MOZZLE_ID 
+	WHERE USER_ID = #{user_id} AND AUTH_CODE = 1
+</select>
+
+<!-- 회원 권한 수정 -->
+<update id="changeMozzleAuth" parameterType="java.util.Map">
+	UPDATE USER_MOZZLE SET AUTH_CODE = #{auth_code} WHERE MOZZLE_ID = #{mozzle_id} AND USER_ID = #{user_id}
+</update>
+
+<!--운영자 찾기 -->
+<select id="selectmozzleUserLeader" parameterType="java.lang.String" resultType="mozzleUserDto">
+SELECT um.USER_ID, um.MOZZLE_ID, um.AUTH_CODE, um.NICKNAME, um.JOINED_DATE,
+um.BIRTHDAY_SHOW, um.IMAGE_ORIGIN, um.IMAGE_SAVED, u.EMAIL 
+FROM USER_MOZZLE um JOIN USERS u ON um.USER_ID = u.USER_ID 
+WHERE um.AUTH_CODE = '1'
+AND um.MOZZLE_ID = #{mozzle_id}
+</select>
+
+<!-- 탈퇴 시, 모즐 가입 정보 삭제 -->
+<delete id="deleteAllUserMozzleById" parameterType="java.lang.String">
+	DELETE FROM USER_MOZZLE WHERE USER_ID = #{user_id}
+</delete>
+
+</mapper>

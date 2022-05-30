@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#calendar{
+	border-collapse: collapse; /* 표의 테두리를 실선으로 표현 */
+	border: 1px solid #ddd; 
+}
+caption{
+	text-decoration: none;
+	text-align: center;
+}
+#calendar td{
+	width: 80px;
+	height: 80px;
+	text-align: left;
+	vertical-align: top; /* 이미지 또는 td안에만 사용이 잘된다.  */
+	
+}
+a{
+	text-decoration: none;
+}
+
+.calendar_table > tbody >tr >th {
+	text-align: center;
+    border-bottom: 1px solid;
+    background: #e82d55;
+    border: none;
+    color: #fff;
+    height: 56px;
+    vertical-align: middle;
+}
+.cal_title {
+	font-size:18px;
+	padding: 0px 20px;
+}
+.angle {
+	font-size: 20px;
+    color: #999;
+}
