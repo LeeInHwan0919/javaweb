@@ -1,8 +1,6 @@
 package com.min.edu;
 
-import java.text.DateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Random;
 
 import org.slf4j.Logger;
@@ -16,9 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.edu.service.API_Service;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	
