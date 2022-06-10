@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.edu.model.mapper.MemberDaoImpl">
+
+<select id="calenList" resultType="calVo"> 
+SELECT ID, GROUPID, TITLE, WRITER, DESCRIPTION, TO_CHAR("START", 'YYYY-MM-DD"T"HH24:MI:SS') AS "START",
+ TO_CHAR("END", 'YYYY-MM-DD"T"HH24:MI:SS') AS "END"
+ FROM CALENDAR
+ WHERE DELFLAG = 'N'
+</select> 
+
+<insert id="insertCal" parameterType="java.util.Map">
+INSERT INTO CALENDAR 
+VALUES(CAL_SEQ.NEXTVAL,#{groupid},#{title},
+		#{writer}, #{description},TO_DATE(#{start},'YYYY/MM/DD HH24/MI/SS'),
+		 TO_DATE(#{end},'YYYY/MM/DD HH24/MI/SS'),'N')
+</insert>
+
+<update id="dragUpdateCal" parameterType="java.util.Map">
+UPDATE CALENDAR SET "START" = TO_DATE(#{start},'YYYY/MM/DD HH24:MI'), "END" = TO_DATE(#{end},'YYYY/MM/DD HH24:MI')
+	WHERE ID=#{id}
+</update>
+
+</mapper>
