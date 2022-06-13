@@ -26,16 +26,6 @@ public class Login_DaoImpl implements Login_IDao{
 
 	@Override
 	public MemberDto loginChk(String id) {
-		// DB 에 담겨 있는 암호화 된 비밀번호
-//		String password = session.selectOne(NS+"passwordChk", id);
-		// 입력된 비밀번호를 암호화 한거랑 비교해서 같으면 로그인이 되야 하는데....
-//		 HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//	     String rePassword = request.getParameter("password");
-//		if(passwordEncoder.matches(rePassword, password)) {
-//			return session.selectOne(NS+"loginChk", id);
-//		}else {
-//			return null;
-//		}
 		MemberDto dto = session.selectOne(NS+"loginChk", id);
 		System.out.println("DTO : " + dto);
 		
